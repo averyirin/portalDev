@@ -479,6 +479,10 @@ function internApiPageHandler($page) {
             tripReportsRouter($method, $page, $publicKey);
             exit;
             break;
+        case 'confluence_spaces':
+            confluenceSpaceRouter($method,$page, $publicKey);
+            exit;
+            break;
         case 'projects':
             projectsRouter($method, $page, $publicKey);
             exit;

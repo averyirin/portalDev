@@ -5,6 +5,60 @@
 		<h2>{{vm.project.title}}</h2>
 		<a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
         <a ng-click="vm.print()" href='' target='_blank' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:print'); ?></a>
+
+   <!-- Confluence Integration for only project admins -->
+        <div ng-if="user.project_admin">
+
+            <!-- Confluence Integration Modal  ------------------------------------>
+            <script type="text/ng-template" id="confluenceModal.html">
+                <div class="row modal-header">
+                    <div class="col-xs-11">
+                        <h3 class="modal-title" style="margin-top: 0px;"><?php echo elgg_echo('projects:confluence:modal:title'); ?></h3>
+                    </div>
+                    <div class="col-xs-1" id="closeHeader"><a style="" class="elgg-button elgg-button-cancel"
+                                                              type="button" ng-click="cancel()"><?php echo elgg_echo('projects:confluence:modal:x'); ?></a>
+                    </div>
+                </div>
+                <div class="row  modal-body">
+                    <p><?php echo elgg_echo('projects:confluence:modal:whereAddTo'); ?></p>
+                    <div class="col-sm-6">
+                        <label><input type="radio" ng-model="spaceType" value="new"><?php echo elgg_echo('projects:confluence:modal:newSpace'); ?></label>
+                        <p><?php echo elgg_echo('projects:confluence:modal:newSpaceDesc'); ?></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label><input type="radio" ng-model="spaceType" value="old"><?php echo elgg_echo('projects:confluence:modal:existingSpace'); ?></label>
+                        <select style="width:100%;max-width:100%;margin-top:5px;" ng-disabled="spaceType == 'new'" ng-model="selectSpace"
+                                ng-options='obj.key as obj.name for obj in allSpaces'>
+                        </select>
+                    </div>
+                </div>
+                <div class="row modal-footer">
+                    <div ng-if="spaceType == 'new'">
+                        <a class="elgg-button elgg-button-action" type="button" ng-click="ok()"><?php echo elgg_echo('projects:confluence:modal:createNewSpace'); ?></a>
+                    </div>
+                    <div ng-if="spaceType == 'old'">
+                        <a class="elgg-button elgg-button-action" type="button" ng-click="ok()"><?php echo elgg_echo('projects:confluence:modal:addExistingSpace'); ?></a>
+                    </div>
+                </div>
+            </script>
+            <!-- Confluence Integration Modal  ------------------------------------------------->
+            <!--    Already added to confluence btn     -->
+            <div  ng-show="vm.inConfluence">
+                <a target="_blank"   href="{{vm.confluenceUrl}}"
+                   id="confluenceAlreadyBtn"
+                   class='elgg-button elgg-button-action elgg-button-cancel'>
+                    <?php echo elgg_echo('projects:confluence:view'); ?></a>
+            </div>
+            <!--    Add to confluence btn     -->
+            <div ng-show="!vm.inConfluence">
+                <a  id="confluenceAddBtn" ng-click="vm.addConfluence()" href=''
+                    class='elgg-button elgg-button-action'>
+                    <?php echo elgg_echo('projects:confluence:add'); ?></a>
+            </div>
+
+        </div>
+        <!-- End confluence integration -->
+
 		<div class="project-brief-info">
 			<div class='submitted' ng-if="vm.project.status=='Submitted'">
 				<span class='glyphicon exclamation'></span>

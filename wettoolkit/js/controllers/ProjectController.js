@@ -9,6 +9,13 @@
         tinyMCE.remove();
 
         var vm = this;
+
+        $rootScope.chosenAddMethod = null;
+        $rootScope.chosenSpace = null;
+        vm.animationsEnabled = true;
+        vm.selected = null;
+
+
         vm.projects = [];
         vm.project = resolveProject;
         vm.opis = [{}];
@@ -106,6 +113,11 @@
             vm.usa = {};
             vm.savings = {};
 
+
+            //default on load
+            vm.inConfluence = false;
+            vm.bindConfluence = 'undefined';
+
             //set default value for existing project from saved json data
             angular.forEach(vm.project, function (value, key) {
                 vm[key] = value;
@@ -123,6 +135,8 @@
                     }
                 }
             };
+
+            getSpaceInConfluence(vm);
 
             vm.project.editable = [];
             vm.loaded = true;
@@ -163,12 +177,11 @@
             //no need to add filter query param if set to All
             for (var key in params) {
                 if (params.hasOwnProperty(key)) {
-                    if (params[key] == 'All' || params[key] == 'all') {
+                    if (params[key] == 'All' || params[key] == 'all' || params[key] == 'Toutes' || params[key] == 'toutes') {
                         delete params[key];
                     }
                 }
             }
-
             return getProjects(params);
         }
 
@@ -178,17 +191,21 @@
 
         // Sets the department owner based on the unit selected in the add form
         vm.setDepartmentOwner = function (param) {
-
-            // Maps the unit to the Department to assign to
-            var ownerLookup = {
-                [elgg.echo('projects:ta:air_force')]: elgg.echo('projects:owner:alsc'),
-                [elgg.echo('projects:ta:army')]: elgg.echo('projects:owner:lsc'),
-                [elgg.echo('projects:ta:navy')]: elgg.echo('projects:owner:lsc'),
-                [elgg.echo('projects:ta:mpc')]: elgg.echo('projects:owner:lsc')
-            };
-
             if (param != elgg.echo('projects:pleaseselect')) {
-                vm.project.department_owner = ownerLookup[param];
+                var deptOwner = null;
+
+                switch(param) {
+                    case elgg.echo('projects:ta:air_force'):
+                        deptOwner = elgg.echo('projects:owner:alsc');
+                        break;
+                    case elgg.echo('projects:ta:army'):
+                    case elgg.echo('projects:ta:navy'):
+                    case elgg.echo('projects:ta:mpc'):
+                        deptOwner = elgg.echo('projects:owner:lsc');
+                        break;
+                }
+
+                vm.project.department_owner = deptOwner;
             }
         }
 
@@ -343,6 +360,9 @@
         vm.filter = function (event) {
             var filter = $(event.target).attr('id');
             var filterType = $(event.target).attr('data-filter-type');
+            //Testing
+            //console.log('filter = ' + filter);
+            //console.log('type = ' + filterType);
 
             //toggle menu item highlighting
             if (filterType == 'owner_guid') {
@@ -436,6 +456,7 @@
             popupWin.document.write('<html><head><style>body{font-family:sans-serif; margin: 2.25rem;} p{margin:.667rem 0 2.25rem; white-space: pre-wrap;}</style></head><body onload="window.print()">' + printContents + '</body></html>');
             popupWin.document.close();
         }
+
 
         function getPrintContent(project) {
             var fields = ['title', 'department_owner', 'status', 'course', 'org', 'ta', 'project_type', 'description', 'scope', 'opis',
@@ -536,6 +557,373 @@
             popupWin.document.write('<html><head><style>body{font-family:sans-serif; margin: 2.25rem;} p{margin:.667rem 0 2.25rem; white-space: pre-wrap;}</style></head><body onload="window.print()">' + printContents + '</body></html>');
             popupWin.document.close();
         }
+ //return if the space exisits in confluence
+        function getSpaceInConfluence(vm){
+            project.getSpace(vm.project.id).then(function (result) {
+               vm.inConfluence = result.data;
+               if(vm.inConfluence){
+                   vm.confluenceUrl = result.url;
+               }
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        //get all the spaces without Project Charter
+        vm.getSpaces = function (size) {
+            //display loading overlay
+            $rootScope.isLoading = true;
+            project.getSpaces().then(function (success) {
+                var allSpacesArr = [];
+                var keyArr = [];
+                for (var index in success.results) {
+                    var space = new Object();
+                    space.key = success.results[index]['key'];
+                    space.name= success.results[index]['name'];
+                    allSpacesArr.push(space);
+                    keyArr.push(space.key);
+                }
+                $rootScope.allSpaces = allSpacesArr;
+                $rootScope.newSpaceKey = getCondensedKey(vm.title, keyArr);
+                //remove loading overlay
+                $rootScope.isLoading = false;
+                $rootScope.isModalOpen = true;
+
+                //show Confluence Integration modal
+                var modalInstance = $uibModal.open({
+                    animation: vm.animationsEnabled,
+                    windowClass: "confluenceModal",
+                    backdropClass: "full-screen loading-screen",
+                    templateUrl: 'confluenceModal.html',
+                    controller: 'ModalInstanceCtrl',
+                    size: size,
+                    scope: $rootScope
+                });
+                //get results from confluence modal
+                modalInstance.result.then(function (result) {
+                    vm.chosenAddMethod = result[0];
+                    var spaceKey = null;
+                    //Set the space key depending on exisitng or new (autogenerated) space
+                    if(vm.chosenAddMethod == 'old'){
+                        spaceKey = vm.chosenSpace = result[1];
+                    }else{
+                        spaceKey = $rootScope.newSpaceKey;
+                    }
+                    //create the new project charter
+                    vm.createNewProjectCharter(vm.chosenAddMethod, spaceKey);
+                    //close the modal
+                    $rootScope.isModalOpen = false;
+                }, function () {
+                    $rootScope.isModalOpen = false;
+                });
+            }, function (error) {
+                $rootScope.isLoading = false;
+                $rootScope.errorMessage = true;
+                $rootScope.message =  error.data.data;
+            });
+        }
+
+        //create a project
+        vm.createNewProjectCharter = function (addMethod, spaceKey) {
+            //Get the formatted HTML Project Charter information
+            var projectCharter = generateProjectCharter();
+
+            //display loading overlay
+            $rootScope.isLoading = true;
+            //create the charter in confluence
+            project.createNewCharter(projectCharter, addMethod, spaceKey, vm.project.id, vm.project.title).then(function (result) {
+                //sets the btn to be "view in confluence"
+                getSpaceInConfluence(vm);
+                //show successful message
+                $rootScope.isLoading = false;
+                $rootScope.successMessage = true;
+                $rootScope.message = result.data;
+
+            }, function (error) {
+                //show error message
+                $rootScope.isLoading = false;
+                $rootScope.errorMessage = true;
+                $rootScope.message = error.data.data;
+            });
+        }
+
+        //formatted html of the project charter
+        function generateProjectCharter() {
+
+
+            //Table
+            var projCharterPg1 = "<div class='projCharter'><table class='break' style='width:100%;'>";
+            //Title and Date
+            projCharterPg1 += "<tr><th colspan='2'><strong>MPC LSC PROJECT CHARTER</strong></th></tr>";
+            projCharterPg1 += "<tr><td><strong>" + "Learning Support Request Project Title and Date" + "</strong></td>" +
+                "<td><strong>" + ((vm.project.title == null) ? "<p> </p>" : vm.project.title) + "<br />" +
+                ((vm.project.time_created == null) ? "<p> </p>" : vm.project.time_created) + "</strong></td></tr>";
+            //Completed By
+            projCharterPg1 += "<tr><td><strong>" + "For Completion By:" + "</strong></td>" +
+                "<td></td></tr>";
+
+            //Associated Course
+            projCharterPg1 += "<tr><td><strong>" + "Associated Course:" + "</strong></td>" +
+                "<td><strong>" + ((vm.project.course == null) ? "No" : vm.project.course) + "</strong></td></tr>";
+
+            //Client Organization
+            projCharterPg1 += "<tr><td><strong>" + "Client Organization:" + "</strong></td>" +
+                "<td><strong>" + ((vm.project.org == null) ? "<p> </p>" : vm.project.org) + "</strong></td></tr>";
+
+            //Training Authority
+            projCharterPg1 += "<tr><td><strong>" + "Training Authority:" + "</strong></td>" +
+                "<td><strong>" + ((vm.project.ta == null) ? "<p> </p>" : vm.project.ta) + "</strong></td></tr>";
+
+            //Department Owner
+            projCharterPg1 += "<tr><td><strong>" + "Department Owner:" + "</strong></td>" +
+                "<td><strong>" + ((vm.project.department_owner == null) ? "<p> </p>" : vm.project.department_owner) + "</strong></td></tr>";
+
+            //Project Type
+           /* projCharterPg1 += "<tr><td><strong>" + "Type:" + "</strong></td>" +
+                "<td><strong>" + ((vm.project.project_type == null) ? "<p> </p>" : vm.project.project_type) + "</strong></td></tr>";
+            */
+            //Attached files
+            var attachedFiles = '';
+            if (vm.project.attachments != null) {
+                for (var index in vm.project.attachments) {                  
+		var baseUrl = elgg.get_site_url();
+		baseUrl = (baseUrl.slice(-1) == "/") ? baseUrl : baseUrl+"/";
+
+                    var attachment = vm.project.attachments[index];
+                    //<a href='{{attachment.url}}'>{{attachment.title}}</a>
+                  
+                    attachedFiles += "<a href='" + baseUrl + attachment.url + "'>" + attachment.title + "</a><br />";
+                }
+            }
+
+            //Description of project
+            projCharterPg1 += "<tr><td colspan='2'><strong>" + "Description:" + "</strong><br />" +
+                ((vm.description == null) ? "<p> </p>" : vm.description) + "<br />" +
+                ((vm.project.comments == null) ? "<p> </p>" : vm.project.comments) + "<br />" +
+                ((attachedFiles == '') ? "<p> </p>" : attachedFiles) + "<br />" +
+                "<strong>" + "Goals:" + "</strong><br />" + "Insert goals here" + "</td></tr>";
+
+
+            //Known history
+            projCharterPg1 += "<tr><td colspan='2'><strong>" + "(Known) History:" + "</strong><br />" +
+                "Insert known history here" + "</td></tr>";
+
+            //Organizational priorities
+            projCharterPg1 += "<tr><td colspan='2'><strong>" + "Organizational Priorities/Operational Mandate" + "</strong><br />" +
+                ((vm.project.priority == null) ? "<p> </p>" : vm.project.priority) + "</td></tr>";
+
+            //Impact
+            projCharterPg1 += "<tr><td colspan='2'><strong>" + "Impact" + "</strong><br />" +
+                ((vm.project.impact == null) ? "<p> </p>" : vm.project.impact) + "</td></tr>";
+
+            //Limitations
+            projCharterPg1 += "<tr><td colspan='2'><strong>" + elgg.echo('projects:is_limitation') + "</strong><br />" +
+                ((vm.project.is_limitation == null) ? "<p> </p>" : vm.project.is_limitation) + "</td></tr>";
+
+            //Is an update to exisiting product
+            projCharterPg1 += "<tr><td colspan='2'><strong>" + elgg.echo('projects:updateExistingProduct') + "</strong><br />" +
+                ((vm.project.update_existing_product == null) ? "<p> </p>" : vm.project.update_existing_product) + "</td></tr>";
+
+            //End table
+            projCharterPg1 += "</table>";
+
+            //Table
+            var projCharterPg2 = "<table class='break'  style='width:100%;'>";
+            //Life expectancy
+            projCharterPg2 += "<tr><td colspan='2'><strong>" + "What is the product/course life expectancy?" + "</strong></td>" +
+                "<td style='width:60%;'>" + ((vm.project.life_expectancy == null) ? "<p> </p>" : vm.project.life_expectancy) + "</td></tr>";
+
+            //Investments required
+            projCharterPg2 += "<tr><td colspan='2'><strong>" + "List any investments that are required." + "</strong></td>" +
+                "<td>" + ((vm.project.investment == null) ? "<p> </p>" : vm.project.investment) + "</td></tr>";
+
+            //Potential savings
+            var savings = '';
+            if (vm.project.savings != null) {
+
+                for (var index in vm.project.savings.choices) {
+                    var choice = vm.project.savings.choices[index];
+                    if (choice.selected) {
+                        savings += choice.title + "<br />";
+                    }
+                }
+                savings += ((vm.project.savings.substantiation == null) ? "<p> </p>" : vm.project.savings.substantiation);
+
+            }
+            projCharterPg2 += "<tr><td colspan='2'><strong>" + "Identify potential savings (return on investment and cost avoidance)." + "</strong></td>" +
+                "<td>" + savings + "</td></tr>";
+
+            //Team resources required
+            projCharterPg2 += "<tr><td rowspan='6' style='width:10%;' ><strong>" + "Team Resources" + "</strong></td>";
+
+            //MPC LSC OPI / Manager
+            projCharterPg2 += "<td style='width:30%;'>" + "MPCLSC_OPI/Manager" + "</td>" +
+                "<td style='width:60%;'></td></tr>";
+
+            //Client OPIs
+            var clientOpis = '';
+            for (var index in vm.project.opis) {
+                var client = vm.project.opis[index];
+                clientOpis += client.name + ", " + client.rank + "<br />";
+                clientOpis += "<a href='" + "mailto:" + client.email + "'>" + client.email + "</a><br />";
+                clientOpis += client.phone + "<br />";
+            }
+            projCharterPg2 += "<tr><td>" + "Client OPI" + "</td>" +
+                "<td>" + clientOpis + "</td></tr>";
+
+            //Instructional Designer
+            projCharterPg2 += "<tr><td>" + "Instructional Designer" + "</td>" +
+                "<td></td></tr>";
+
+            //Developer
+            projCharterPg2 += "<tr><td>" + "Developer" + "</td>" +
+                "<td></td></tr>";
+
+            //Available SMEs
+            var availSmes = '';
+            if (vm.project.is_sme_avail != "No") {
+                var sme = vm.project.sme;
+                if (sme != null) {
+                    availSmes += sme.name + ", " + sme.rank + "<br />";
+                    availSmes += "<a href='" + "mailto:" + sme.email + "'>" + sme.email + "</a><br />";
+                    availSmes += sme.phone + "<br />";
+                }
+            }
+            projCharterPg2 += "<tr><td>" + "Available SMEs:" + "</td>" +
+                "<td>" + availSmes + "</td></tr>";
+
+            //Unit signing authorities
+            var usaList = '';
+            var usa = vm.project.usa;
+            usaList += usa.rank + " " + usa.name + ", " + usa.position + "<br />";
+            usaList += "<a href='" + "mailto:" + usa.email + "'>" + usa.email + "</a><br />";
+
+            projCharterPg2 += "<tr><td>" + "Unit Signing Authorit(ies)" + "</td>" +
+                "<td>" + usaList + "</td></tr>";
+
+            //Objectives
+            projCharterPg2 += "<tr><th colspan='3'><strong>" + "OBJECTIVES" + "</strong></th></tr>";
+            projCharterPg2 += "<tr><td colspan='3'>" + "The objectives of this project are to:" +
+                "<ul><li>First objective</li><li>Second objective</li><li>Third objective</li></ul>" + "</td></tr>";
+
+            //end table
+            projCharterPg2 += "</table>";
+
+            //Table
+            var projCharterPg3 = "<table class='break'  style='width:100%;'>";
+            //Scope of work
+            projCharterPg3 += "<tr><th colspan='2'><strong>" + "SCOPE" + "</strong></th></tr>";
+            projCharterPg3 += "<tr><td colspan='2'><p>" + ((vm.project.scope == null) ? "<p>&nbsp;</p>" : vm.project.scope) + "</p></td></tr>";
+            projCharterPg3 += "<tr><td colspan='2'><strong>" + "The project scope does NOT include the following:" +
+                "</strong><ul><li>First not in scope</li><li>Second  not in scope</li><li>Third  not in scope</li></ul>" + "</td></tr>";
+
+            //Milestones and Deliverables
+            projCharterPg3 += "<tr><th style='width:50%;text-align: center'><strong>Milestones</strong></th><th style='width:50%;text-align: center'><strong>Expected Date</strong></th></tr>";
+            projCharterPg3 += "<tr><td>Training</td><td></td></tr>";
+            projCharterPg3 += "<tr><td>Design of Project</td><td></td></tr>";
+            projCharterPg3 += "<tr><td>Alpha version</td><td></td></tr>";
+            projCharterPg3 += "<tr><td>Beta version</td><td></td></tr>";
+            projCharterPg3 += "<tr><td>Pilot version</td><td></td></tr>";
+            projCharterPg3 += "<tr><th style='text-align: center'><strong>Deliverables</strong></th><th style='text-align: center'><strong>Estimated Completion Timeframe</strong></th></tr>";
+            projCharterPg3 += "<tr><td>" + ((vm.project.timeline == null) ? "<p>Deliverable 1</p>" : vm.project.timeline) + "</td><td></td></tr>";
+            projCharterPg3 += "<tr><td>" + "Deliverable 2" + "</td><td></td></tr>";
+            projCharterPg3 += "<tr><td>" + "Deliverable 3" + "</td><td></td></tr>";
+
+            //End table
+            projCharterPg3 += "</table>";
+
+            //Table
+            var projCharterPg4 = "<table class='break'  style='width:100%;'>";
+
+            //Assumptions
+            projCharterPg4 += "<tr><th colspan='3'><strong>ASSUMPTIONS</strong></th></tr>";
+            projCharterPg4 += "<tr><td colspan='3'>" + "The following assumptions have been made in documenting this charter:" +
+                "<ul><li>First assumption</li><li>Second  assumption</li><li>Third assumption</li></ul>" + "</td></tr>";
+
+            //Risk
+            projCharterPg4 += "<tr><th colspan='3'><strong>RISKS</strong></th></tr>";
+            projCharterPg4 += "<tr><td colspan='3'>" + ((vm.project.risk == null) ? "<p>&nbsp;</p>" : vm.project.risk) + "</td></tr>";
+
+            //Sign off
+            projCharterPg4 += "<tr><th style='width:30%;'><strong>NAME</strong></th>" +
+                "<th style='width:35%;'><strong>SIGNATURE</strong></th>" +
+                "<th style='width:35%;'><strong>DATE</strong></th></tr>";
+            projCharterPg4 += "<tr><td><strong>MPC LSC Signing Authority:</strong><br /><br /></td>" +
+                "<td></td>" +
+                "<td></td></tr>";
+            projCharterPg4 += "<tr><td><strong>Project Signing Authority:</strong><br /><br /></td>" +
+                "<td></td>" +
+                "<td></td></tr>";
+            //end table and document
+            projCharterPg4 += "</table></div>";
+
+            //some styling
+            var projCharterStyle = '<style>.projCharter table,.projCharter table td,.projCharter table th{border:1px solid #000}.projCharter .break{page-break-before:always}.projCharter td{vertical-align: top;}.projCharter table{border-collapse:collapse;text-align:left;width:100%;table-layout: fixed}.projCharter table th{background-color:#EEE}.projCharter table tr:first-child th{border-top:0}.projCharter table tr:last-child td{border-bottom:0;}.projCharter table tr td:first-child,.projCharter table tr th:first-child{border-left:0}.projCharter table tr td:last-child,.projCharter table tr th:last-child{border-right:0}}</style>';
+
+            //set the document to be all 4 tables
+            var projCharterDocument = projCharterPg1 + projCharterPg2 + projCharterPg3 + projCharterPg4;
+            return projCharterDocument;
+        }
+
+        //show the Confluence Modal
+        vm.addConfluence = function (size) {
+            //display loading overlay
+            vm.getSpaces(size);
+
+        };
+
+
+        vm.toggleAnimation = function () {
+            vm.animationsEnabled = !vm.animationsEnabled;
+        };
+
     }
+function contains(a, obj) {
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] === obj) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //Autogenerates a unique key for Confluence Space
+    function findKey(titleToKeyArr, notInKeyList, offset) {
+       
+        offset = (typeof offset !== 'undefined') ? offset : 0;
+        var key = "";
+        for (var word in titleToKeyArr) {
+            key += titleToKeyArr[word].substr(0, (1 + offset)).toUpperCase();
+        }
+        var hasKey = contains(notInKeyList, key);
+        return {"hasKey": hasKey, "key": key};
+
+    }
+    //Confluence unique key builder
+    function getCondensedKey(title, notInKeyList) {
+        var returnKey = "";
+        var hasKey = true;
+        var offset = 0;
+        var regExpStr = /[a-zA-Z0-9]+[a-zA-Z0-9]*/g;
+        var titleToKeyArr = title.match(regExpStr);
+        while(hasKey == true){
+            var potentialKey = findKey(titleToKeyArr, notInKeyList, offset);
+            hasKey = potentialKey["hasKey"];
+            returnKey = potentialKey["key"];
+            offset++;
+        }
+        return returnKey;
+    }
+    //Confluence Modal controller
+    angular.module('portal').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+        $scope.spaceType = 'new';
+        $scope.selectSpace = $scope.allSpaces[0]['key'];
+        $scope.ok = function () {
+            var result = [$scope.spaceType, $scope.selectSpace];
+            $uibModalInstance.close(result);
+        };
+
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+    });
 
 })();
