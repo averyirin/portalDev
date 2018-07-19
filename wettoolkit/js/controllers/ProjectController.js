@@ -589,7 +589,7 @@
                 $rootScope.isModalOpen = true;
 
                 //show Confluence Integration modal
-                var modalInstance = $uibModal.open({
+                var modalInstance = $modal.open({
                     animation: vm.animationsEnabled,
                     windowClass: "confluenceModal",
                     backdropClass: "full-screen loading-screen",
@@ -684,13 +684,13 @@
             //Attached files
             var attachedFiles = '';
             if (vm.project.attachments != null) {
-                for (var index in vm.project.attachments) {                  
+                for (var index in vm.project.attachments) {
 		var baseUrl = elgg.get_site_url();
 		baseUrl = (baseUrl.slice(-1) == "/") ? baseUrl : baseUrl+"/";
 
                     var attachment = vm.project.attachments[index];
                     //<a href='{{attachment.url}}'>{{attachment.title}}</a>
-                  
+
                     attachedFiles += "<a href='" + baseUrl + attachment.url + "'>" + attachment.title + "</a><br />";
                 }
             }
@@ -887,7 +887,7 @@ function contains(a, obj) {
     }
     //Autogenerates a unique key for Confluence Space
     function findKey(titleToKeyArr, notInKeyList, offset) {
-       
+
         offset = (typeof offset !== 'undefined') ? offset : 0;
         var key = "";
         for (var word in titleToKeyArr) {
@@ -913,16 +913,16 @@ function contains(a, obj) {
         return returnKey;
     }
     //Confluence Modal controller
-    angular.module('portal').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+    angular.module('portal').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
         $scope.spaceType = 'new';
         $scope.selectSpace = $scope.allSpaces[0]['key'];
         $scope.ok = function () {
             var result = [$scope.spaceType, $scope.selectSpace];
-            $uibModalInstance.close(result);
+            $modalInstance.close(result);
         };
 
         $scope.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
+            $modalInstance.dismiss('cancel');
         };
     });
 
