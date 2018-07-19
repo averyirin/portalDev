@@ -575,14 +575,17 @@
             project.getSpaces().then(function (success) {
                 var allSpacesArr = [];
                 var keyArr = [];
+                console.log(success);
                 for (var index in success.results) {
                     var space = new Object();
                     space.key = success.results[index]['key'];
                     space.name= success.results[index]['name'];
+                    console.log(space.key+" "+space.name);
                     allSpacesArr.push(space);
                     keyArr.push(space.key);
                 }
                 $rootScope.allSpaces = allSpacesArr;
+                console.log(allSpacesArr);
                 $rootScope.newSpaceKey = getCondensedKey(vm.title, keyArr);
                 //remove loading overlay
                 $rootScope.isLoading = false;
