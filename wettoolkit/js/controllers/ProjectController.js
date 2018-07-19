@@ -5,7 +5,7 @@
             .module('portal')
             .controller('Projects', Projects);
 
-    function Projects(resolveProject, project, user, notification, $location, Upload, $routeParams, $rootScope, helper, DTOptionsBuilder, $q, $sce) {
+    function Projects(resolveProject, project, user, notification, $location, Upload, $routeParams, $rootScope, helper, DTOptionsBuilder, $q, $sce, $uibModal) {
         tinyMCE.remove();
 
         var vm = this;
@@ -589,7 +589,7 @@
                 $rootScope.isModalOpen = true;
 
                 //show Confluence Integration modal
-                var modalInstance = $modal.open({
+                var modalInstance = $uibModal.open({
                     animation: vm.animationsEnabled,
                     windowClass: "confluenceModal",
                     backdropClass: "full-screen loading-screen",
@@ -913,16 +913,16 @@ function contains(a, obj) {
         return returnKey;
     }
     //Confluence Modal controller
-    angular.module('portal').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+    angular.module('portal').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
         $scope.spaceType = 'new';
         $scope.selectSpace = $scope.allSpaces[0]['key'];
         $scope.ok = function () {
             var result = [$scope.spaceType, $scope.selectSpace];
-            $modalInstance.close(result);
+            $uibModalInstance.close(result);
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
     });
 
