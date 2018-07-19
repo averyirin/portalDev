@@ -1,16 +1,16 @@
 <?php
 /**
  * Elgg Web Services language pack.
- * 
+ *
  * @package Webservice
  * @author Saket Saurabh
  */
 
 $english = array(
-	'web_services:user' => "User", 
-	'web_services:blog' => "Blog", 
-	'web_services:wire' => "Wire", 
-	'web_services:core' => "Core", 
+	'web_services:user' => "User",
+	'web_services:blog' => "Blog",
+	'web_services:wire' => "Wire",
+	'web_services:core' => "Core",
 	'web_services:group' => "Group",
 	'web_services:file' => "File",
 	'web_services:messages' => "Messages",
@@ -26,7 +26,7 @@ $english = array(
 	'web_services:tests:run' => 'Run tests',
 	'web_services:likes' => 'Likes',
 	'likes:notallowed' => 'Not allowed to like',
-	
+
 	//A resolution to json convertion error (for river)
 	'river:update:user:default' => ' updated their profile ',
 
@@ -35,7 +35,7 @@ $english = array(
 	'email:project:submit:heading' => "A project request has been successfully submitted",
 	'email:project:submit:body' => "Good Day %s,
 
-A project request has been submitted by %s. 
+A project request has been submitted by %s.
 Project title: %s
 
 To review it, click on the link below:
@@ -47,6 +47,25 @@ If you cannot click on the link, copy and paste it into your browser manually.
 %s
 %s",
 	'email:project:submit:error' => "There was an error sending your project submission email",
+
+	//Task Operation Email Notification
+	'email:task:submit:taskNotFound' => "The task is not in the system",
+	'email:task:submit:heading' => "A task request has been successfully submitted",
+	'email:task:submit:body' => "Good Day %s,
+
+A task request has been submitted by %s.
+Task title: %s
+
+To review it, click on the link below:
+
+%s
+
+If you cannot click on the link, copy and paste it into your browser manually.
+
+%s
+%s",
+'email:task:submit:error' => "There was an error sending your task submission email"
+
 );
-				
+
 add_translation("en", $english);
