@@ -12,6 +12,34 @@
     <div ng-include="'projects/sidebar'"</div>
 </section>
 <section class='col-md-9 projects'>
+  <!-- Tab Test
+  <div class='wb-tabs'>
+      <ul role="tablist" class="generated">
+          <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('Projects'); ?></a></li>
+          <li><a href='' ng-click="vm.filter($event)" data-filter-type="owner_guid" id='mine'><?php echo elgg_echo('Tasks'); ?></a></li>
+      </ul>
+
+    </div>
+    <div class="wb-tabs">
+   -->
+
+<div class="tabpanels">
+  <details id="details-panel1">
+    <summary>Example 1</summary>
+    <p>
+      ...
+    </p>
+  </details>
+  <details id="details-panel2" open="open">
+    <summary>Example 2</summary>
+    <p>
+      ...
+    </p>
+  </details>
+</div>
+
+<p class="mrgn-tp-md"><a href="#details-panel3" class="wb-tabs-ext">Show the third panel</a></p>
+</div>
     <div class='wb-tabs'>
         <ul role="tablist" class="generated">
             <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
