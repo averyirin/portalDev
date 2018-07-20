@@ -1,9 +1,9 @@
 <?php
 /**
- * Project name-based search form body
+ * Task name-based search form body
  */
 
-$name_string = elgg_echo('projects:search:name');
+$name_string = elgg_echo('tasks:search:name');
 
 $params = array(
 	'name' => 'tag',

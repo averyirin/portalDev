@@ -1,7 +1,7 @@
 <?php ?>
 <div class='template-header'>
-    <h2><?php echo elgg_echo('projects:add'); ?></h2>
-    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
+    <h2><?php echo elgg_echo('tasks:add'); ?></h2>
+    <a href='#/tasks' class='elgg-button elgg-button-action'><?php echo elgg_echo('tasks:all:list'); ?></a>
 </div>
 <div class="row">
     <div class="col-sm-8">
@@ -20,6 +20,6 @@
     </div>
 
     <div class="col-sm-12">
-        <a class='elgg-button elgg-button-action elgg-button-accept' ng-click="vm.addProjectAdmin(selected_user.id)">Add Admin</a>
+        <a class='elgg-button elgg-button-action elgg-button-accept' ng-click="vm.addTaskAdmin(selected_user.id)">Add Admin</a>
     </div>
 </div>

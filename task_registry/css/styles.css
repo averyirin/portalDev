@@ -1,4 +1,4 @@
-/** Projects **/
+/** Tasks **/
 #wb-main-in {
     /*
      * slider
@@ -27,37 +27,37 @@
     font-weight: 400; }
 #wb-main-in .template-header a {
     float: right; }
-#wb-main-in .project-brief-info > div {
+#wb-main-in .task-brief-info > div {
     display: inline-block;
     color: #fff;
     padding: 4px 8px;
     margin: 0 .444rem 0 0;
     border-radius: 3px; }
-#wb-main-in .project-brief-info > div span {
+#wb-main-in .task-brief-info > div span {
     color: #fff; }
-#wb-main-in .project-brief-info .under-review {
+#wb-main-in .task-brief-info .under-review {
     background: #ec971f; }
-#wb-main-in .project-brief-info .in-progress {
+#wb-main-in .task-brief-info .in-progress {
     background: #337ab7; }
-#wb-main-in .project-brief-info .completed {
+#wb-main-in .task-brief-info .completed {
     background: #5cb85c; }
-#wb-main-in .project-brief-info .submitted {
+#wb-main-in .task-brief-info .submitted {
     background: #31b0d5; }
-#wb-main-in .project-brief-info p, #wb-main-in .project-brief-info h4 {
+#wb-main-in .task-brief-info p, #wb-main-in .task-brief-info h4 {
     display: inline-block; }
-#wb-main-in .project-brief-info p {
+#wb-main-in .task-brief-info p {
     font-weight: bold;
     font-size: 1rem;
     line-height: 20px; }
-#wb-main-in .project-brief-info h4 {
+#wb-main-in .task-brief-info h4 {
     font-weight: 400;
     font-size: 1rem; }
-#wb-main-in .project-brief-info h4 span {
+#wb-main-in .task-brief-info h4 span {
     font-weight: bold; }
-#wb-main-in .project {
+#wb-main-in .task {
     font-family: 'Open Sans', sans-serif;
     padding: 0 1rem; }
-#wb-main-in .project p {
+#wb-main-in .task p {
     font-size: 1rem;
     line-height: 1.4;
     white-space: pre-wrap; }
@@ -119,27 +119,27 @@
     margin-bottom: .667rem; }
 #wb-main-in .form-row .field-body input, #wb-main-in .form-row .field-body textarea, #wb-main-in .form-row .field-body select {
     border-radius: 5px; }
-#wb-main-in .project-sidebar-row {
+#wb-main-in .task-sidebar-row {
     margin-bottom: 1rem;
     border-bottom: 1px solid #ddd;
     padding-bottom: 1rem;
     /*
      * Misc
      **/ }
-#wb-main-in .project-sidebar-row .field-header {
+#wb-main-in .task-sidebar-row .field-header {
     padding: 1rem; }
-#wb-main-in .project-sidebar-row .field-header label {
+#wb-main-in .task-sidebar-row .field-header label {
     display: inline-block;
     width: 78%;
     margin: 0; }
-#wb-main-in .project-sidebar-row .field-header .glyphicon {
+#wb-main-in .task-sidebar-row .field-header .glyphicon {
     float: right;
     margin-right: .444rem; }
-#wb-main-in .project-sidebar-row .field-header .glyphicon:first-child {
+#wb-main-in .task-sidebar-row .field-header .glyphicon:first-child {
     margin-right: 0; }
-#wb-main-in .project-sidebar-row .field-header .glyphicon:hover {
+#wb-main-in .task-sidebar-row .field-header .glyphicon:hover {
     cursor: pointer; }
-#wb-main-in .project-sidebar-row .helper-text {
+#wb-main-in .task-sidebar-row .helper-text {
     color: #444;
     font-size: 13px;
     line-height: 1.5; }

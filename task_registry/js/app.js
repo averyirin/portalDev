@@ -16,89 +16,89 @@
     angular
             .module('portal')
             .config(function ($routeProvider) {
-                $routeProvider.when('/projects', {
-                    templateUrl: 'projects/list',
-                    controller: 'Projects as vm',
+                $routeProvider.when('/tasks', {
+                    templateUrl: 'tasks/list',
+                    controller: 'Tasks as vm',
                     resolve: {
-                        resolveProject: function () {
+                        resolveTask: function () {
                             return {};
                         }
                     }
                 }).
-                        when('/projects/create', {
-                            templateUrl: 'projects/add',
-                            controller: 'Projects as vm',
+                        when('/tasks/create', {
+                            templateUrl: 'tasks/add',
+                            controller: 'Tasks as vm',
                             resolve: {
-                                resolveProject: function () {
+                                resolveTask: function () {
                                     return {};
                                 }
                             }
                         }).
-                        when('/projects/view/:project_id', {
+                        when('/tasks/view/:task_id', {
                             templateUrl: function (params) {
-                                return 'projects/view/' + params.project_id;
+                                return 'tasks/view/' + params.task_id;
                             },
-                            controller: 'Projects as vm',
+                            controller: 'Tasks as vm',
                             resolve: {
-                                resolveProject: function (project, $route) {
+                                resolveTask: function (task, $route) {
                                     var paramObject = new Object();
 
-                                    return project.getProject(paramObject, $route.current.params.project_id);
+                                    return task.getTask(paramObject, $route.current.params.task_id);
                                 }
                             }
                         }).
-                        when('/projects/edit/:project_id', {
+                        when('/tasks/edit/:task_id', {
                             templateUrl: function (params) {
-                                return 'projects/edit/' + params.project_id;
+                                return 'tasks/edit/' + params.task_id;
                             },
-                            controller: 'Projects as vm',
+                            controller: 'Tasks as vm',
                             resolve: {
-                                resolveProject: function () {
+                                resolveTask: function () {
                                     return {};
                                 }
                             }
                         }).
-                        when('/projects/delete/:project_id', {
+                        when('/tasks/delete/:task_id', {
                             templateUrl: function (params) {
-                                return 'projects/delete/' + params.project_id;
+                                return 'tasks/delete/' + params.task_id;
                             },
-                            controller: 'Projects as vm',
+                            controller: 'Tasks as vm',
                             resolve: {
-                                resolveProject: function () {
+                                resolveTask: function () {
                                     return {};
                                 }
                             }
                         }).
-                        when('/projects/create_admin', {
-                            templateUrl: 'projects/add_admin',
+                        when('/tasks/create_admin', {
+                            templateUrl: 'tasks/add_admin',
                             controller: 'UsersCtrl as vm',
                             resolve: {
                                 users: function (user) {
                                     return user.getUsers();
                                 },
-                                resolveProject: function () {
+                                resolveTask: function () {
                                     return {};
                                 }
                             }
                         }).
-                        when('/projects/manage_admins', {
-                            templateUrl: 'projects/manage_admins',
+                        when('/tasks/manage_admins', {
+                            templateUrl: 'tasks/manage_admins',
                             controller: 'UsersCtrl as vm',
                             resolve: {
                                 users: function (user) {
                                     return user.getAllUsers();
                                 },
-                                resolveProject: function () {
+                                resolveTask: function () {
                                     return {};
                                 }
                             }
                         }).
-                        when('/projects/dashboard', {
-                            templateUrl: 'projects/dashboard',
-                            controller: 'ProjectsDashboard as vm',
+                        when('/tasks/dashboard', {
+                            templateUrl: 'tasks/dashboard',
+                            controller: 'TasksDashboard as vm',
                             resolve: {
-                                projects: function (project) {
-                                    return project.getProjects().then(function (results) {
+                                tasks: function (task) {
+                                    return task.getTasks().then(function (results) {
                                         return results.data;
                                     }, function (results) {
                                         console.log(results);
@@ -107,7 +107,7 @@
                             }
                         }).
                         otherwise({
-                            redirectTo: '/projects'
+                            redirectTo: '/tasks'
                         });
             });
 

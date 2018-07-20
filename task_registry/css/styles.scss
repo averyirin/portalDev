@@ -1,4 +1,4 @@
-/** Projects **/
+/** Tasks **/
 $grey : #ddd;
 $blue: #337ab7;
 $light-blue: #31b0d5;
@@ -8,7 +8,7 @@ $red: #c9302c;
 
 
 #wb-main-in {
-    
+
     .data-table{
         td{
             vertical-align: middle;
@@ -37,8 +37,8 @@ $red: #c9302c;
             float:right;
         }
     }
-    
-    .project-brief-info{
+
+    .task-brief-info{
         > div{
             display:inline-block;
             color:#fff;
@@ -69,7 +69,7 @@ $red: #c9302c;
             font-size:1rem;
             line-height:20px;
         }
-        
+
         h4{
             font-weight:400;
             font-size:1rem;
@@ -78,8 +78,8 @@ $red: #c9302c;
             }
         }
     }
-    
-    .project{
+
+    .task{
         font-family:'Open Sans', sans-serif;
         padding:0 1rem;
         p{
@@ -88,7 +88,7 @@ $red: #c9302c;
             white-space: pre-wrap;
         }
     }
-    
+
     .form-row{
         margin-bottom:1.5rem;
         border:1px solid #ddd;
@@ -130,7 +130,7 @@ $red: #c9302c;
                 padding-left:30px;
             }
             p, li{
-                
+
                 font-size:13px;
                 color: #444;
             }
@@ -146,7 +146,7 @@ $red: #c9302c;
                 width:90%;
                 line-height: 1.5;
             }
-            
+
             .glyphicon{
                 float:right;
                 margin-right:.444rem;
@@ -158,33 +158,33 @@ $red: #c9302c;
                 }
             }
         }
-        
+
         .field-body{
             padding:1rem;
-            
+
             > .row{
                 margin-bottom:.667rem;
             }
-            
+
             input, textarea, select{
                 border-radius:5px;
             }
         }
     }
-    
-    .project-sidebar-row{
+
+    .task-sidebar-row{
         margin-bottom: 1rem;
         border-bottom:1px solid $grey;
         padding-bottom: 1rem;
         .field-header{
             padding:1rem;
-            
+
             label{
                 display: inline-block;
                 width:78%;
                 margin:0;
             }
-            
+
             .glyphicon{
                 float:right;
                 margin-right:.444rem;
@@ -196,7 +196,7 @@ $red: #c9302c;
                 }
             }
         }
-        
+
         /*
          * Misc
          **/
@@ -206,7 +206,7 @@ $red: #c9302c;
             line-height:1.5;
         }
     }
-    
+
     /*
      * slider
      **/
@@ -214,26 +214,26 @@ $red: #c9302c;
         height:.8em;
         margin:0 0 .667rem;
     }
-    
+
     .editable-content-buttons{
         float:right;
     }
-    
+
     .form-btn{
         margin-bottom:1rem !important;
     }
-    
+
     /*
      * Button Colors
      **/
     .elgg-button.elgg-button-cancel{
         background:#d9534f !important;
     }
-    
+
     .elgg-button.elgg-button-accept{
         background:#449d44 !important;
     }
-    
+
     /*
      * loading overlay
      **/
