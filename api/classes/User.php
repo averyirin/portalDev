@@ -380,8 +380,9 @@ class User {
         $notification = new Notification($this->id, $subject, $body);
         $notification->send();
 
-        $notification = new Notification(45602, $subject, $body);
-        $notification->send();
+        // Disable email to CDA LABS
+        // $notification = new Notification(45602, $subject, $body);
+        // $notification->send();
     }
 
 }

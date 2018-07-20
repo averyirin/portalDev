@@ -35,7 +35,6 @@ header("Content-type: text/html; charset=UTF-8");
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <link rel="stylesheet" href="<?php echo $base_url . '/node_modules/bootstrap/dist/css/bootstrap.min.css';?>"/>
-<link rel="stylesheet" href="<?php echo $wettoolkit_url.'/dest/css/styles.min.css';?>"/>
 <?php echo elgg_view('page/elements/head', $vars); ?>
 </head>
 <body>

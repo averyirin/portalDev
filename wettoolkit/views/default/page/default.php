@@ -171,18 +171,26 @@ if(elgg_is_logged_in() && 1==5){
             $alert_list = elgg_get_entities(array(
                 'type' => 'object',
                 'subtype' => 'global_alert',
-                'limit' => 25
+                'limit' => 10
             ));
 
             //Check for global alert - if any exist add to page
             if($alert_list){
+                $lang = get_current_language();
                 for ($i = 0; $i < count($alert_list); $i++){
                     ?>
                     <section class="alert alert-<?php echo elgg_strtolower($alert_list[$i]->alert_type)?>">
-                        <h2><?php echo $alert_list[$i]->title?></h2>
-                        <p><?php echo $alert_list[$i]->description?></p>
-                    </section>
-                    <?php
+                        <?php
+                            if ($lang == "en"){ ?>
+                                <h2><?php echo $alert_list[$i]->title_en ?></h2>
+                                <p><?php echo $alert_list[$i]->message_en ?></p>
+                        <?php
+                            }else { ?>
+                                <h2><?php echo $alert_list[$i]->title_fr ?></h2>
+                                <p><?php echo $alert_list[$i]->message_fr ?></p>
+                                </section>
+                        <?php
+                            }
                 }
             }
         }?>
