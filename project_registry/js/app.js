@@ -36,12 +36,10 @@
                         }).
                         when('/projects/request_support', {
                             templateUrl: 'projects/request_support_landing',
-                            controller: 'Projects as vm',
+                            controller: '',
                             resolve: {
-                                resolveProject: function () {
-                                    return {};
-                                }
-                            }                            
+
+                            }
                         }).
                         when('/projects/view/:project_id', {
                             templateUrl: function (params) {
