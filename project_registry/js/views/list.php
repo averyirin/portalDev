@@ -24,16 +24,22 @@
    -->
 
 <div class="tabpanels">
-  <details id="details-panel1">
+  <details id="details-panel1" >
     <summary>Example 1</summary>
     <p>
-      ...
+     Panel 1
     </p>
   </details>
   <details id="details-panel2" open="open">
     <summary>Example 2</summary>
     <p>
-      ...
+      Panel 2!
+    </p>
+  </details>
+  <details id="details-panel3">
+    <summary>Example 3</summary>
+    <p>
+      Panel 3!
     </p>
   </details>
 </div>
