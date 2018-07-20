@@ -22,68 +22,56 @@
     </div>
     <div class="wb-tabs">
    -->
+   <div class='wb-tabs'>
+       <ul role="tablist" class="generated">
+           <li class="active"><a href='' ng-click='' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('Projects'); ?></a></li>
+           <li><a href='' ng-click="" data-filter-type="owner_guid" id='mine'><?php echo elgg_echo('Tasks'); ?></a></li>
+       </ul>
+       <div class="tabpanels">
+           <div>
+             <div class='wb-tabs'>
+                 <ul role="tablist" class="generated">
+                     <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
+                     <li><a href='' ng-click="vm.filter($event)" data-filter-type="owner_guid" id='mine'><?php echo elgg_echo('projects:label:mine'); ?></a></li>
+                 </ul>
+                 <div class="tabpanels">
+                     <div>
+                         <table class='data-table' datatable="ng" dt-options="vm.dtOptions">
+                             <thead>
+                                 <tr>
+                                     <th><?php echo elgg_echo('projects:title'); ?></th>
+                                     <th><?php echo elgg_echo('projects:status'); ?></th>
+                                     <th><?php echo elgg_echo('projects:submittedBy'); ?></th>
+                                     <th><?php echo elgg_echo('projects:dateSubmitted'); ?></th>
+                                     <th><?php echo elgg_echo('projects:departmentOwner'); ?></th>
+                                     <th><?php echo elgg_echo('projects:actions'); ?></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr ng-repeat='(key,project) in vm.projects'>
+                                     <td><a href='#/projects/view/{{project.id}}'>{{project.title}}</a></td>
+                                     <td>
+                                         <select id='statusSelect{{key}}' ng-if="user.project_admin" ng-model='project.status' ng-options='status.name as status.name for status in vm.statuses' ng-change='vm.updateStatus(key)'></select>
 
-<div class="wb-tabs">
-  <div class="tabpanels">
-    <details id="details-panel1" >
-      <summary>Example 1</summary>
-      <p>
-       Panel 1
-      </p>
-    </details>
-    <details id="details-panel2" open="open">
-      <summary>Example 2</summary>
-      <p>
-        Panel 2!
-      </p>
-    </details>
-    <details id="details-panel3">
-      <summary>Example 3</summary>
-      <p>
-        Panel 3!
-      </p>
-    </details>
-  </div>
+                                         <span ng-if="!user.project_admin">{{project.status}}</span>
+                                     </td>
+                                     <td>{{project.owner}}</td>
+                                     <td>{{project.time_created}}</td>
+                                     <td>{{project.department_owner}}</td>
+                                     <td style="text-align: center;">
+                                         <a href="#/projects/view/{{project.id}}" class='glyphicon edit-button action-item' ng-if='project.can_edit'></a>
+                                         <a class="glyphicon delete-button action-item" ng-if="project.can_edit" ng-click='vm.deleteProject(project.id, key)' ng-delete-once="<?php echo elgg_echo('projects:deleteConfirm'); ?>"></a>
+                                     </td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+     </div>
 
-<p class="mrgn-tp-md"><a href="#details-panel3" class="wb-tabs-ext">Show the third panel</a></p>
-</div>
-    <div class='wb-tabs'>
-        <ul role="tablist" class="generated">
-            <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
-            <li><a href='' ng-click="vm.filter($event)" data-filter-type="owner_guid" id='mine'><?php echo elgg_echo('projects:label:mine'); ?></a></li>
-        </ul>
-        <div class="tabpanels">
-            <div>
-                <table class='data-table' datatable="ng" dt-options="vm.dtOptions">
-                    <thead>
-                        <tr>
-                            <th><?php echo elgg_echo('projects:title'); ?></th>
-                            <th><?php echo elgg_echo('projects:status'); ?></th>
-                            <th><?php echo elgg_echo('projects:submittedBy'); ?></th>
-                            <th><?php echo elgg_echo('projects:dateSubmitted'); ?></th>
-                            <th><?php echo elgg_echo('projects:departmentOwner'); ?></th>
-                            <th><?php echo elgg_echo('projects:actions'); ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat='(key,project) in vm.projects'>
-                            <td><a href='#/projects/view/{{project.id}}'>{{project.title}}</a></td>
-                            <td>
-                                <select id='statusSelect{{key}}' ng-if="user.project_admin" ng-model='project.status' ng-options='status.name as status.name for status in vm.statuses' ng-change='vm.updateStatus(key)'></select>
 
-                                <span ng-if="!user.project_admin">{{project.status}}</span>
-                            </td>
-                            <td>{{project.owner}}</td>
-                            <td>{{project.time_created}}</td>
-                            <td>{{project.department_owner}}</td>
-                            <td style="text-align: center;">
-                                <a href="#/projects/view/{{project.id}}" class='glyphicon edit-button action-item' ng-if='project.can_edit'></a>
-                                <a class="glyphicon delete-button action-item" ng-if="project.can_edit" ng-click='vm.deleteProject(project.id, key)' ng-delete-once="<?php echo elgg_echo('projects:deleteConfirm'); ?>"></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
 </section>
