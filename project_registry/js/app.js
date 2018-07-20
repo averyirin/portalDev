@@ -34,6 +34,9 @@
                                 }
                             }
                         }).
+                        when('/projects/request_support', {
+                            templateUrl: 'projects/request_support_landing'                            
+                        }).
                         when('/projects/view/:project_id', {
                             templateUrl: function (params) {
                                 return 'projects/view/' + params.project_id;
