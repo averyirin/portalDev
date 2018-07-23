@@ -41,7 +41,7 @@
                             }
                         }).
                         when('/projects/create_task', {
-                            templateUrl: 'projects/add_task',
+                            templateUrl: 'projects/create_task',
                             controller: 'Projects as vm',
                             resolve: {
                                 resolveProject: function () {
