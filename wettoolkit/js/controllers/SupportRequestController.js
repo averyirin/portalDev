@@ -5,7 +5,7 @@
 		.module('portal')
 		.controller('SupportRequestCtrl', SupportRequest);
 
-		function SupportRequest(projects, $rootScope) {
+		function SupportRequest($rootScope) {
 
             var vm = this;
 
