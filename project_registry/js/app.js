@@ -41,6 +41,7 @@
                             }
                         }).
                         when('/projects/create_task', {
+                          /*
                             templateUrl: 'tasks/add',
                             controller: 'Tasks as vm',
                             resolve: {
@@ -48,6 +49,7 @@
                                     return {};
                                 }
                             }
+                            */
                         }).
                         when('/projects/view/:project_id', {
                             templateUrl: function (params) {
