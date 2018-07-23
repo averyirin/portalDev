@@ -41,6 +41,11 @@
                             }
                         }).
                         when('/projects/create_task', {
+                          templateUrl: '',
+                          controller: '',
+                          resolve: {
+                          }
+
                           /*
                             templateUrl: 'tasks/add',
                             controller: 'Tasks as vm',
