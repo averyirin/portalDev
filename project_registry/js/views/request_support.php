@@ -7,9 +7,12 @@
 <section class='col-md-1'></section>
 <section class='col-md-5'>
 
-      <h1><?php echo elgg_echo('projects:create:tasl'); ?></h1>
+      <h1><?php echo elgg_echo('projects:create:task'); ?></h1>
 
-    <div>Tasks are anything that is less than 80 hrs of work</div>
+    <div>
+      Tasks are anything that is less than 80 hours of work.
+      
+    </div>
     <a href='#/projects/create_task' style="margin-top:1em"  class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('tasks:create:task'); ?></a>
 </section>
 <section class='col-md-5 projects'>
