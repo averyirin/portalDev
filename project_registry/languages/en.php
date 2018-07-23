@@ -208,6 +208,12 @@ $english = array(
      * Search entry
      */
     'item:object:project_registry'                => 'Support Requests',
+
+    /*Task and request support*/
+    'projectst:request_support'                => 'Request Support',
+    'projects:create:task' => 'Create task request',
+    'projects:create:project'=>'Create project request',
+
 );
 
 add_translation("en", $english);
