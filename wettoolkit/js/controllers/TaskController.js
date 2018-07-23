@@ -3,93 +3,93 @@
 
     angular
             .module('portal')
-            .controller('Projects', Projects);
+            .controller('Tasks', Tasks);
 
-    function Projects(resolveProject, project, user, notification, $location, Upload, $routeParams, $rootScope, helper, DTOptionsBuilder, $q, $sce) {
+    function Tasks(resolveTask, task, user, notification, $location, Upload, $routeParams, $rootScope, helper, DTOptionsBuilder, $q, $sce) {
         tinyMCE.remove();
 
         var vm = this;
-        vm.projects = [];
-        vm.project = resolveProject;
+        vm.tasks = [];
+        vm.task = resolveTask;
         vm.opis = [{}];
         //filter object
-        vm.filters = {owner_guid: '', status: '', project_type: '', department_owner: ''};
-        vm.filters.owner_guid = vm.filters.status = vm.filters.project_type = vm.filters.department_owner = elgg.echo('projects:label:all');
+        vm.filters = {owner_guid: '', status: '', task_type: '', department_owner: ''};
+        vm.filters.owner_guid = vm.filters.status = vm.filters.task_type = vm.filters.department_owner = elgg.echo('tasks:label:all');
 
         //JSON arrays for select dropdowns - this SHOULD be all retreived from a service or directive
         vm.statuses = [
-            {name: elgg.echo('projects:label:submitted'), id: elgg.echo('projects:label:submitted')},
-            {name: elgg.echo('projects:label:underreview'), id: elgg.echo('projects:label:underreview')},
-            {name: elgg.echo('projects:label:inprogress'), id: elgg.echo('projects:label:inprogress')},
-            {name: elgg.echo('projects:label:completed'), id: elgg.echo('projects:label:completed')}
+            {name: elgg.echo('tasks:label:submitted'), id: elgg.echo('tasks:label:submitted')},
+            {name: elgg.echo('tasks:label:underreview'), id: elgg.echo('tasks:label:underreview')},
+            {name: elgg.echo('tasks:label:inprogress'), id: elgg.echo('tasks:label:inprogress')},
+            {name: elgg.echo('tasks:label:completed'), id: elgg.echo('tasks:label:completed')}
         ];
 
         vm.ta_options = {
             "values": [
-                elgg.echo('projects:pleaseselect'),
-                elgg.echo('projects:ta:air_force'),
-                elgg.echo('projects:ta:army'),
-                elgg.echo('projects:ta:mpc'),
-                elgg.echo('projects:ta:navy')
+                elgg.echo('tasks:pleaseselect'),
+                elgg.echo('tasks:ta:air_force'),
+                elgg.echo('tasks:ta:army'),
+                elgg.echo('tasks:ta:mpc'),
+                elgg.echo('tasks:ta:navy')
             ]
         };
 
-        vm.projectTypes = {
+        vm.taskTypes = {
             "values": [
-                elgg.echo('projects:types:courseware'),
-                elgg.echo('projects:types:enterprise_apps'),
-                elgg.echo('projects:types:instructor_support'),
-                elgg.echo('projects:types:learning_application'),
-                elgg.echo('projects:types:learning_technologies'),
-                elgg.echo('projects:types:mobile'),
-                elgg.echo('projects:types:modelling'),
-                elgg.echo('projects:types:rnd'),
-                elgg.echo('projects:types:gaming'),
-                elgg.echo('projects:types:support')
+                elgg.echo('tasks:types:courseware'),
+                elgg.echo('tasks:types:enterprise_apps'),
+                elgg.echo('tasks:types:instructor_support'),
+                elgg.echo('tasks:types:learning_application'),
+                elgg.echo('tasks:types:learning_technologies'),
+                elgg.echo('tasks:types:mobile'),
+                elgg.echo('tasks:types:modelling'),
+                elgg.echo('tasks:types:rnd'),
+                elgg.echo('tasks:types:gaming'),
+                elgg.echo('tasks:types:support')
             ]
         };
 
         vm.booleanOptions = {
             "values": [
-                elgg.echo('projects:no'),
-                elgg.echo('projects:yes')
+                elgg.echo('tasks:no'),
+                elgg.echo('tasks:yes')
             ]
         };
 
         vm.multiOptions = {
             "values": [
-                elgg.echo('projects:no'),
-                elgg.echo('projects:update'),
-                elgg.echo('projects:change')
+                elgg.echo('tasks:no'),
+                elgg.echo('tasks:update'),
+                elgg.echo('tasks:change')
             ]
         };
 
         vm.department_options = {
             "values": [
-                //elgg.echo('projects:unassigned'),
-                //elgg.echo('projects:owner:learning_technologies'),
-                elgg.echo('projects:owner:lsc'),
-                elgg.echo('projects:owner:alsc'),
-                //elgg.echo('projects:owner:modernization'),
-                //elgg.echo('projects:owner:programmes'),
-                //elgg.echo('projects:owner:lt_lsc')
+                //elgg.echo('tasks:unassigned'),
+                //elgg.echo('tasks:owner:learning_technologies'),
+                elgg.echo('tasks:owner:lsc'),
+                elgg.echo('tasks:owner:alsc'),
+                //elgg.echo('tasks:owner:modernization'),
+                //elgg.echo('tasks:owner:programmes'),
+                //elgg.echo('tasks:owner:lt_lsc')
             ]
         };
 
         vm.classification_options = {
             "values": [
-                elgg.echo('projects:unassigned'),
-                elgg.echo('projects:project'),
-                elgg.echo('projects:task')
+                elgg.echo('tasks:unassigned'),
+                elgg.echo('tasks:task'),
+                elgg.echo('tasks:task')
             ]
         };
 
         //choices for the savings checkboxes
         vm.choices = {
-            "projects:savings:productivityIncrease": {"title": elgg.echo('projects:savings:productivityIncrease')},
-            "projects:savings:reduction": {"title": elgg.echo('projects:savings:reduction')},
-            "projects:savings:rationalization": {"title": elgg.echo('projects:savings:rationalization')},
-            "projects:savings:qualitative": {"title": elgg.echo('projects:savings:qualitative')}
+            "tasks:savings:productivityIncrease": {"title": elgg.echo('tasks:savings:productivityIncrease')},
+            "tasks:savings:reduction": {"title": elgg.echo('tasks:savings:reduction')},
+            "tasks:savings:rationalization": {"title": elgg.echo('tasks:savings:rationalization')},
+            "tasks:savings:qualitative": {"title": elgg.echo('tasks:savings:qualitative')}
         };
 
         //make datatable default sorting by the fourth column(time-submitted)
@@ -98,19 +98,19 @@
         //get public key from the client
         var publicKey = localStorage.getItem('publicKey');
 
-        //get single project
-        if ($routeParams.project_id) {
+        //get single task
+        if ($routeParams.task_id) {
             $(window).scrollTop(0);
             vm.loaded = false;
             vm.sme = {};
             vm.usa = {};
             vm.savings = {};
 
-            //set default value for existing project from saved json data
-            angular.forEach(vm.project, function (value, key) {
+            //set default value for existing task from saved json data
+            angular.forEach(vm.task, function (value, key) {
                 vm[key] = value;
             });
-            vm.project.description = $sce.trustAsHtml(vm.project.description);
+            vm.task.description = $sce.trustAsHtml(vm.task.description);
 
             //create slider for percentage complete
             vm.slider = {
@@ -124,28 +124,28 @@
                 }
             };
 
-            vm.project.editable = [];
+            vm.task.editable = [];
             vm.loaded = true;
         } else {
-            getProjects();
+            getTasks();
 
-            vm.project.ta = vm.ta_options.values[0];
-            vm.project.project_type = vm.projectTypes.values[0];
-            vm.project.is_sme_avail = vm.booleanOptions.values[0];
-            vm.project.is_limitation = vm.booleanOptions.values[0];
-            vm.project.update_existing_product = vm.multiOptions.values[0];
-            vm.project.department_owner = vm.department_options.values[0];
-            vm.project.classification = vm.classification_options.values[0];
+            vm.task.ta = vm.ta_options.values[0];
+            vm.task.task_type = vm.taskTypes.values[0];
+            vm.task.is_sme_avail = vm.booleanOptions.values[0];
+            vm.task.is_limitation = vm.booleanOptions.values[0];
+            vm.task.update_existing_product = vm.multiOptions.values[0];
+            vm.task.department_owner = vm.department_options.values[0];
+            vm.task.classification = vm.classification_options.values[0];
         }
 
         /*
          * Helper Functions
          */
 
-        function getProjects(params) {
+        function getTasks(params) {
             return $q(function (resolve, reject) {
-                project.getProjects(params).then(function (results) {
-                    vm.projects = results.data;
+                task.getTasks(params).then(function (results) {
+                    vm.tasks = results.data;
                     resolve();
                 }, function (error) {
                     reject(error);
@@ -153,13 +153,13 @@
             });
         }
 
-        function getProjectsByStatus(value) {
+        function getTasksByStatus(value) {
             var params = {};
             params.status = value;
-            return getProjects(params);
+            return getTasks(params);
         }
 
-        function getProjectsByParam(params) {
+        function getTasksByParam(params) {
             //no need to add filter query param if set to All
             for (var key in params) {
                 if (params.hasOwnProperty(key)) {
@@ -168,7 +168,7 @@
                     }
                 }
             }
-            return getProjects(params);
+            return getTasks(params);
         }
 
         /*
@@ -177,61 +177,61 @@
 
         // Sets the department owner based on the unit selected in the add form
         vm.setDepartmentOwner = function (param) {
-            if (param != elgg.echo('projects:pleaseselect')) {
+            if (param != elgg.echo('tasks:pleaseselect')) {
                 var deptOwner = null;
 
                 switch(param) {
-                    case elgg.echo('projects:ta:air_force'):
-                        deptOwner = elgg.echo('projects:owner:alsc');
+                    case elgg.echo('tasks:ta:air_force'):
+                        deptOwner = elgg.echo('tasks:owner:alsc');
                         break;
-                    case elgg.echo('projects:ta:army'):
-                    case elgg.echo('projects:ta:navy'):
-                    case elgg.echo('projects:ta:mpc'):
-                        deptOwner = elgg.echo('projects:owner:lsc');
+                    case elgg.echo('tasks:ta:army'):
+                    case elgg.echo('tasks:ta:navy'):
+                    case elgg.echo('tasks:ta:mpc'):
+                        deptOwner = elgg.echo('tasks:owner:lsc');
                         break;
                 }
 
-                vm.project.department_owner = deptOwner;
+                vm.task.department_owner = deptOwner;
             }
         }
 
-        //create a project
-        vm.createProject = function (isValid) {
+        //create a task
+        vm.createTask = function (isValid) {
             tinymce.triggerSave();
 
             setTimeout(function () {
                 //assign description attribute to the html generated by the mce editor
-                vm.project.description = $('body').find('#description').val();
+                vm.task.description = $('body').find('#description').val();
                 if (isValid) {
                     //display loading overlay
                     $rootScope.isLoading = true;
 
-                    if (!vm.project.hasOwnProperty('savings')) {
-                        vm.project.savings = {};
+                    if (!vm.task.hasOwnProperty('savings')) {
+                        vm.task.savings = {};
                     }
-                    vm.project.opis = vm.opis;
-                    vm.project.savings.choices = vm.choices;
-                    vm.project.percentage = 0;
-                    vm.project.status = 'Submitted';
+                    vm.task.opis = vm.opis;
+                    vm.task.savings.choices = vm.choices;
+                    vm.task.percentage = 0;
+                    vm.task.status = 'Submitted';
 
-                    project.create(vm.project).then(function (success) {
+                    task.create(vm.task).then(function (success) {
                         //upload attachments
                         Upload.upload({
-                            url: 'api/projects',
-                            data: {files: vm.files, 'projectId': success.data.id, 'accessId': success.data.accessId, 'action': 'attachFile'}
+                            url: 'api/tasks',
+                            data: {files: vm.files, 'taskId': success.data.id, 'accessId': success.data.accessId, 'action': 'attachFile'}
                         }).then(function (success) {
 
                         }, function (error) {
                             console.log(error);
                         });
 
-                        //notify project admins
-                        var filter = {'project_admin': true};
-                        filter.department_owner = vm.project.department_owner;
+                        //notify task admins
+                        var filter = {'task_admin': true};
+                        filter.department_owner = vm.task.department_owner;
 
                         user.getUsers(filter).then(function (result) {
                             var subject = 'New Support Request';
-                            var body = 'A new support request has been submitted by ' + $rootScope.user.name + '. You can view the new support request at ' + elgg.get_site_url() + 'projects#/projects/view/' + success.data.id;
+                            var body = 'A new support request has been submitted by ' + $rootScope.user.name + '. You can view the new support request at ' + elgg.get_site_url() + 'tasks#/tasks/view/' + success.data.id;
 
                             angular.forEach(result.data, function (value, key) {
                                 notification.create(subject, body, value.id).then(function (result) {
@@ -244,10 +244,10 @@
                             console.log(error);
                         });
 
-                        getProjectsByStatus('Submitted').then(function (success) {
+                        getTasksByStatus('Submitted').then(function (success) {
                             $rootScope.isLoading = false;
 
-                            $location.path('projects');
+                            $location.path('tasks');
                             $(window).scrollTop(0);
                         }, function (error) {
                             console.log(error);
@@ -261,14 +261,14 @@
             }, 500);
         }
 
-        vm.deleteProject = function (id, index) {
+        vm.deleteTask = function (id, index) {
             //display loading overlay
             $rootScope.isLoading = true;
 
             var paramObject = new Object();
-            project.remove(paramObject, id).then(function (success) {
-                //Instead of reload all the projects, we just remove the corresponding project row from list
-                //Cannot use 'delete vm.projects[index];', it will crash the datatables
+            task.remove(paramObject, id).then(function (success) {
+                //Instead of reload all the tasks, we just remove the corresponding task row from list
+                //Cannot use 'delete vm.tasks[index];', it will crash the datatables
                 $('#statusSelect' + index).closest('tr').remove();
                 //remove loading overlay
                 $rootScope.isLoading = false;
@@ -286,14 +286,14 @@
                 vm.savings.choices = vm.choices;
             }
 
-            project.update({
+            task.update({
                 'field': field,
                 'value': vm[field]
-            }, vm.project.id).then(function (success) {
+            }, vm.task.id).then(function (success) {
                 if (field == 'description') {
-                    vm.project[field] = $sce.trustAsHtml(vm[field]);
+                    vm.task[field] = $sce.trustAsHtml(vm[field]);
                 } else {
-                    vm.project[field] = vm[field];
+                    vm.task[field] = vm[field];
                 }
             }, function (error) {
                 console.log(error);
@@ -304,10 +304,10 @@
         vm.updateStatus = function (index) {
             $('#statusSelect' + index).prop('disabled', 'disabled');
 
-            project.update({
+            task.update({
                 'field': 'status',
-                'value': vm.projects[index].status
-            }, vm.projects[index].id).then(function (success) {
+                'value': vm.tasks[index].status
+            }, vm.tasks[index].id).then(function (success) {
                 $('#statusSelect' + index).prop('disabled', false);
             }, function (error) {
                 console.log(error);
@@ -362,9 +362,9 @@
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").addClass('active');
             }
 
-            //sort the projects
+            //sort the tasks
             vm.filters[filterType] = filter;
-            getProjectsByParam(vm.filters).then(function (success) {
+            getTasksByParam(vm.filters).then(function (success) {
 
             }, function (error) {
                 console.log(error);
@@ -375,7 +375,7 @@
             i = (typeof i === 'undefined') ? null : i;
 
             var value = event.target.attributes['data-id'].value;
-            var element = $('.project').find("[data-field-id='" + event.target.attributes['data-id'].value + "']");
+            var element = $('.task').find("[data-field-id='" + event.target.attributes['data-id'].value + "']");
 
             if (element.hasClass('hidden')) {
                 element.removeClass('hidden');
@@ -383,10 +383,10 @@
 
                 //hide cancel and accept buttons
                 if (value == 'opi') {
-                    vm.project.editable[value] = {};
-                    vm.project.editable[value][i] = false;
+                    vm.task.editable[value] = {};
+                    vm.task.editable[value][i] = false;
                 } else {
-                    vm.project.editable[value] = false;
+                    vm.task.editable[value] = false;
                 }
             } else {
                 element.addClass('hidden');
@@ -394,17 +394,17 @@
 
                 //show cancel and accept buttons
                 if (value == 'opi') {
-                    vm.project.editable[value] = {};
-                    vm.project.editable[value][i] = true;
+                    vm.task.editable[value] = {};
+                    vm.task.editable[value][i] = true;
                 } else {
-                    vm.project.editable[value] = true;
+                    vm.task.editable[value] = true;
                 }
             }
         }
 
         vm.toggleEditMode_variant = function (event) {
             var value = event.target.attributes['data-id'].value;
-            vm.project.editable[value] ? vm.project.editable[value] = false : vm.project.editable[value] = true;
+            vm.task.editable[value] ? vm.task.editable[value] = false : vm.task.editable[value] = true;
         }
 
         vm.animateToField = function (event) {
@@ -416,25 +416,25 @@
         }
 
         vm.printAll = function (opMandate) {
-            var projects = vm.projects.filter(function (el) {
+            var tasks = vm.tasks.filter(function (el) {
                 return (el.op_mandate === opMandate);
             });
-            var printContents = '<h1>DRT 5.1 Projects</h1>';
+            var printContents = '<h1>DRT 5.1 Tasks</h1>';
 
-            for (var i = 0; i < projects.length; i++) {
-                var project = projects[i];
+            for (var i = 0; i < tasks.length; i++) {
+                var task = tasks[i];
 
                 try {
-                    project.opis = JSON.parse(project.opis);
-                    project.sme = JSON.parse(project.sme);
-                    project.usa = JSON.parse(project.usa);
-                    project.savings = JSON.parse(project.savings);
+                    task.opis = JSON.parse(task.opis);
+                    task.sme = JSON.parse(task.sme);
+                    task.usa = JSON.parse(task.usa);
+                    task.savings = JSON.parse(task.savings);
                 } catch (e) {
                     console.log(e);
                 }
 
-                printContents += "<h2 style='margin-top: 2.25rem; padding-bottom:1rem; border-bottom: 1px solid grey; font-weight:bold;'>Project #" + (parseInt(i) + 1) + "</h2>";
-                printContents += getPrintContent(project);
+                printContents += "<h2 style='margin-top: 2.25rem; padding-bottom:1rem; border-bottom: 1px solid grey; font-weight:bold;'>Task #" + (parseInt(i) + 1) + "</h2>";
+                printContents += getPrintContent(task);
             }
 
             var popupWin = window.open('', '_blank', 'scrollbars=1,resizable=1,width=1024,height=778');
@@ -443,31 +443,31 @@
             popupWin.document.close();
         }
 
-        function getPrintContent(project) {
-            var fields = ['title', 'department_owner', 'status', 'course', 'org', 'ta', 'project_type', 'description', 'scope', 'opis',
+        function getPrintContent(task) {
+            var fields = ['title', 'department_owner', 'status', 'course', 'org', 'ta', 'task_type', 'description', 'scope', 'opis',
                 'op_mandate', 'priority', 'is_limitation', 'update_existing_product', 'life_expectancy', 'usa',
                 'comments', 'investment', 'risk', 'timeline', 'impact', 'savings'];
             var printContents = '';
 
             for (var i = 0; i < fields.length; i++) {
-                var object = project[fields[i]];
+                var object = task[fields[i]];
                 var value = '';
                 if (object) {
                     if (fields[i] == 'opis') {
-                        for (var index in project[fields[i]]) {
-                            value += "<h4 style='font-weight:bold;'>" + elgg.echo('projects:opi:title') + " " + (parseInt(index) + 1) + "</h4>";
-                            value += "<label style='font-weight:bold;'>" + elgg.echo('projects:rank') + ":</label> " + object[index].rank + "<br/>";
-                            value += "<label style='font-weight:bold;'>" + elgg.echo('projects:name') + ":</label> " + object[index].name + "<br/>";
-                            value += "<label style='font-weight:bold;'>" + elgg.echo('projects:phone') + ":</label> " + object[index].phone + "<br/>";
-                            value += "<label style='font-weight:bold;'>" + elgg.echo('projects:email') + ":</label> " + object[index].email + "<br/>";
+                        for (var index in task[fields[i]]) {
+                            value += "<h4 style='font-weight:bold;'>" + elgg.echo('tasks:opi:title') + " " + (parseInt(index) + 1) + "</h4>";
+                            value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:rank') + ":</label> " + object[index].rank + "<br/>";
+                            value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:name') + ":</label> " + object[index].name + "<br/>";
+                            value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:phone') + ":</label> " + object[index].phone + "<br/>";
+                            value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:email') + ":</label> " + object[index].email + "<br/>";
                         }
                     } else if (fields[i] == 'usa') {
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:rank') + ":</label> " + object.rank + "<br/>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:name') + ":</label> " + object.name + "<br/>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:position') + ":</label> " + object.position + "<br/>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:email') + ":</label> " + object.email + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:rank') + ":</label> " + object.rank + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:name') + ":</label> " + object.name + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:position') + ":</label> " + object.position + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:email') + ":</label> " + object.email + "<br/>";
                     } else if (fields[i] == 'savings') {
-                        value += "<h4 style='font-weight:bold;'>" + elgg.echo('projects:savings:label') + "</h4>";
+                        value += "<h4 style='font-weight:bold;'>" + elgg.echo('tasks:savings:label') + "</h4>";
 
                         for (var index in object.choices) {
                             var choice = object.choices[index];
@@ -476,7 +476,7 @@
                             }
                         }
 
-                        value += "<h4 style='font-weight:bold;'>" + elgg.echo('projects:savings:substantiation') + "</h4>";
+                        value += "<h4 style='font-weight:bold;'>" + elgg.echo('tasks:savings:substantiation') + "</h4>";
                         value += "<p>" + object.substantiation + "</p>";
                     } else {
                         object ? value = object : value = '&nbsp;';
@@ -484,7 +484,7 @@
                 }
 
                 printContents += '<div>';
-                printContents += '<label style="font-size:1.5rem; font-weight:bold;">' + elgg.echo('projects:' + fields[i]) + '</label>';
+                printContents += '<label style="font-size:1.5rem; font-weight:bold;">' + elgg.echo('tasks:' + fields[i]) + '</label>';
                 printContents += '<p>' + value + '</p>';
                 printContents += "</div>";
             }
@@ -493,30 +493,30 @@
         }
 
         vm.print = function () {
-            var fields = ['title', 'department_owner', 'status', 'course', 'org', 'ta', 'project_type', 'description', 'scope', 'opis',
+            var fields = ['title', 'department_owner', 'status', 'course', 'org', 'ta', 'task_type', 'description', 'scope', 'opis',
                 'op_mandate', 'priority', 'is_limitation', 'update_existing_product', 'life_expectancy', 'usa',
                 'comments', 'investment', 'risk', 'timeline', 'impact', 'savings'];
-            var printContents = '<h1>DRT 5.1 Project</h1>';
+            var printContents = '<h1>DRT 5.1 Task</h1>';
 
             for (var i = 0; i < fields.length; i++) {
-                var object = vm.project[fields[i]];
+                var object = vm.task[fields[i]];
                 var value = '';
 
                 if (fields[i] == 'opis') {
-                    for (var index in vm.project[fields[i]]) {
-                        value += "<h4 style='font-weight:bold;'>" + elgg.echo('projects:opi:title') + " " + (parseInt(index) + 1) + "</h4>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:rank') + ":</label> " + object[index].rank + "<br/>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:name') + ":</label> " + object[index].name + "<br/>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:phone') + ":</label> " + object[index].phone + "<br/>";
-                        value += "<label style='font-weight:bold;'>" + elgg.echo('projects:email') + ":</label> " + object[index].email + "<br/>";
+                    for (var index in vm.task[fields[i]]) {
+                        value += "<h4 style='font-weight:bold;'>" + elgg.echo('tasks:opi:title') + " " + (parseInt(index) + 1) + "</h4>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:rank') + ":</label> " + object[index].rank + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:name') + ":</label> " + object[index].name + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:phone') + ":</label> " + object[index].phone + "<br/>";
+                        value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:email') + ":</label> " + object[index].email + "<br/>";
                     }
                 } else if (fields[i] == 'usa') {
-                    value += "<label style='font-weight:bold;'>" + elgg.echo('projects:rank') + ":</label> " + object.rank + "<br/>";
-                    value += "<label style='font-weight:bold;'>" + elgg.echo('projects:name') + ":</label> " + object.name + "<br/>";
-                    value += "<label style='font-weight:bold;'>" + elgg.echo('projects:position') + ":</label> " + object.position + "<br/>";
-                    value += "<label style='font-weight:bold;'>" + elgg.echo('projects:email') + ":</label> " + object.email + "<br/>";
+                    value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:rank') + ":</label> " + object.rank + "<br/>";
+                    value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:name') + ":</label> " + object.name + "<br/>";
+                    value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:position') + ":</label> " + object.position + "<br/>";
+                    value += "<label style='font-weight:bold;'>" + elgg.echo('tasks:email') + ":</label> " + object.email + "<br/>";
                 } else if (fields[i] == 'savings') {
-                    value += "<h4 style='font-weight:bold;'>" + elgg.echo('projects:savings:label') + "</h4>";
+                    value += "<h4 style='font-weight:bold;'>" + elgg.echo('tasks:savings:label') + "</h4>";
 
                     for (var index in object.choices) {
                         var choice = object.choices[index];
@@ -525,14 +525,14 @@
                         }
                     }
 
-                    value += "<h4 style='font-weight:bold;'>" + elgg.echo('projects:savings:substantiation') + "</h4>";
+                    value += "<h4 style='font-weight:bold;'>" + elgg.echo('tasks:savings:substantiation') + "</h4>";
                     value += "<p>" + object.substantiation + "</p>";
                 } else {
                     object ? value = object : value = '&nbsp;';
                 }
 
                 printContents += '<div>';
-                printContents += '<label style="font-size:1.5rem; font-weight:bold;">' + elgg.echo('projects:' + fields[i]) + '</label>';
+                printContents += '<label style="font-size:1.5rem; font-weight:bold;">' + elgg.echo('tasks:' + fields[i]) + '</label>';
                 printContents += '<p>' + value + '</p>';
                 printContents += "</div>";
             }
