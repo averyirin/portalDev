@@ -38,9 +38,6 @@
                             templateUrl: 'projects/request_support',
                             controller: 'SupportRequestCtrl as vm',
                             resolve: {
-                                resolveProject: function () {
-                                    return {};
-                                }
                             }
                         }).
                         when('/projects/view/:project_id', {
