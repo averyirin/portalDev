@@ -13,37 +13,37 @@
  */
 class Task {
 
-	private $required = array('title', 'org', 'scope', 'opis', 'usa');
+/*
+Title,
+Associated Course,
+Client Org,
+Training Authority,
+Type,
+Description,
+Requested Completion Date
+*/
+	private $required = array('title', 'org', 'description');
 
-	public $attachments = array();
-	public $opis = array();
 	public $errors = array();
 	private $collection = array();
 	private $options = array();
-    protected $jsonFields = array('opis', 'sme', 'usa', 'savings');
+    protected $jsonFields = array('opis', 'usa');
 
-	public $id;
 	public $title;
-	public $description;
-	public $req_num;
-	public $status;
-	public $scope;
 	public $course;
 	public $org;
+	public $ta;
+	public $task_type;
+	public $description;
+	public $requested_completion_date;
+	public $req_num;
+
+
+	public $id;
 	public $owner_guid;
 	public $container_guid;
-	public $task_type;
-	public $priority;
-	public $is_sme_avail;
-	public $is_limitation;
-	public $update_existing_product;
-	public $life_expectancy;
 	public $access_id;
 	public $time_created;
-	public $ta;
-	public $department_owner;
-	public $classification;
-	public $percentage;
 	private $session;
 
 	public function __construct(Session $session)
@@ -125,35 +125,13 @@ class Task {
 		$this->id = $row->guid;
 		$this->title = $row->title;
 		$this->description = $row->description;
-		$this->scope = $row->scope;
 		$this->course = $row->course;
 		$this->org = $row->org;
 		$this->owner = get_entity($row->owner_guid)->name;
 		$this->container_guid = $row->container_guid;
 		$this->task_type = $row->task_type;
-		$this->opis[] = $row->opis;
-		$this->priority = $row->priority;
-		$this->is_sme_avail = $row->is_sme_avail;
-		$this->is_limitation = $row->is_limitation;
-		$this->update_existing_product = $row->update_existing_product;
-		$this->life_expectancy = $row->life_expectancy;
 		$this->access_id = $row->access_id;
 		$this->ta = $row->ta;
-		$this->time_created = gmdate("Y-m-d", $row->time_created);
-		$this->req_num = $row->guid;
-		$this->status = $row->status;
-		$this->sme = $row->sme;
-		$this->usa = $row->usa;
-		$this->comments = $row->comments;
-		$this->department_owner = $row->department_owner;
-		$this->classification = $row->classification;
-		$this->percentage = $row->percentage;
-        $this->op_mandate = $row->op_mandate;
-		$this->investment = $row->investment;
-        $this->risk = $row->risk;
-        $this->timeline = $row->timeline;
-        $this->impact = $row->impact;
-        $this->savings = $row->savings;
 
 		if( $this->session->getTaskAdmin() || ($this->session->getPublicKey() == $row->owner_guid && $row->status=='Submitted') ) {
 			$this->can_edit = true;

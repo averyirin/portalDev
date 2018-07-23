@@ -40,6 +40,12 @@
                             resolve: {
                             }
                         }).
+                        when('/projects/create_task', {
+                            templateUrl: 'projects/create_task',
+                            controller: '',
+                            resolve: {
+                            }
+                        }).
                         when('/projects/view/:project_id', {
                             templateUrl: function (params) {
                                 return 'projects/view/' + params.project_id;
