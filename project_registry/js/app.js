@@ -36,7 +36,7 @@
                         }).
                         when('/projects/request_support', {
                             templateUrl: 'projects/request_support',
-                            controller: 'SupportRequestCtrl as vm',
+                            controller: '',
                             resolve: {
                             }
                         }).
