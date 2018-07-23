@@ -35,7 +35,7 @@
                             }
                         }).
                         when('/projects/request_support', {
-                            templateUrl: 'projects/request_support_landing',
+                            templateUrl: 'projects/request_support',
                             controller: 'Projects as vm',
                             resolve: {
                                 resolveProject: function () {

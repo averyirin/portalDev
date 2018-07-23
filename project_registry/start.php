@@ -97,7 +97,7 @@ function projects_page_handler($project) {
             include "$angular_dir/dashboard.php";
             break;
         case 'request_support':
-            include "$angular_dir/request_support_landing.php";
+            include "$angular_dir/request_support.php";
             break;
         default:
             return false;
