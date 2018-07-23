@@ -1,6 +1,11 @@
 <?php
 ?>
+<div>
+Create Task form
+
+</div>
 <div ng-show='vm.loaded'>
+
 	<div class='template-header'>
 		<h2>{{vm.task.title}} Create Task Title</h2>
 		<a href='#/tasks' class='elgg-button elgg-button-action'><?php echo elgg_echo('tasks:all:list'); ?></a>
