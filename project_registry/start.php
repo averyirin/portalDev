@@ -100,7 +100,7 @@ function projects_page_handler($project) {
             include "$angular_dir/request_support.php";
             break;
         case 'create_task':
-            include "$angular_dir/create_task.php";
+            include "$angular_dir/add_task.php";
             break;
         default:
             return false;
