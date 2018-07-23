@@ -45,16 +45,6 @@
                           controller: '',
                           resolve: {
                           }
-
-                          /*
-                            templateUrl: 'tasks/add',
-                            controller: 'Tasks as vm',
-                            resolve: {
-                                resolveTask: function () {
-                                    return {};
-                                }
-                            }
-                            */
                         }).
                         when('/projects/view/:project_id', {
                             templateUrl: function (params) {
