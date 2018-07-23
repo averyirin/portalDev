@@ -42,9 +42,9 @@
                         }).
                         when('/projects/create_task', {
                             templateUrl: 'projects/create_task',
-                            controller: 'Projects as vm',
+                            controller: 'Tasks as vm',
                             resolve: {
-                                resolveProject: function () {
+                                resolveTask: function () {
                                     return {};
                                 }
                             }
