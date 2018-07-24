@@ -11,7 +11,7 @@ function userManagementMenuInit() {
         elgg_register_menu_item('page', array(
                 'name' => 'userManagementt',
                 'href' => 'usermgmt/all',
-                'text' => elgg_echo('admin:usermgmt'),
+                'text' => elgg_echo('admin:usermgmt')."Test",
                 'context' => 'admin',
                 'priority' => 15,
                 'section' => 'administer'
