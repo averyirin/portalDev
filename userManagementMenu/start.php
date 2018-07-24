@@ -10,15 +10,15 @@ function userManagementMenuInit() {
 
         $item = new ElggMenuItem('test', "Test Link", elgg_get_site_url().'usermgmt/all');
       //  elgg_register_menu_item('page-administer',$item);
-      elgg_register_menu_item('test_usermgmt', array(
-                             "name" => "digest",
-                             "text" => elgg_echo("digest:page_menu:theme_preview"),
-                             "href" => "digest/test",
-                             "context" => "theme_preview"
-                     ));
+      elgg_register_menu_item('page', array(
+                      'name' => "UserMgmtMenu",
+                      'href' => elgg_get_site_url().'usermgmt/all',
+                      'text' => elgg_echo("User Management Test"),
+                      'context' => 'admin',
+                      'section' => "administer"
 
 
-        elgg_register_admin_menu_item("administer","test_usermgmt");
+        //elgg_register_admin_menu_item("administer","test_usermgmt");
   /*
     $item = new ElggMenuItem('test', "Test Link", elgg_get_site_url().'usermgmt/all');
     elgg_register_menu_item('page',$item);
