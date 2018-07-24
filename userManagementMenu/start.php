@@ -16,6 +16,7 @@ function userManagementMenuInit() {
                       'text' => elgg_echo("User Management Test"),
                       'context' => 'admin',
                       'section' => "administer"
+                    ));
 
 
         //elgg_register_admin_menu_item("administer","test_usermgmt");
