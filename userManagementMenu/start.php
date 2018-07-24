@@ -10,7 +10,7 @@ function userManagementMenuInit() {
 
         $item = new ElggMenuItem('test', "Test Link", elgg_get_site_url().'usermgmt/all');
       //  elgg_register_menu_item('page-administer',$item);
-        elgg_register_admin_menu_item("administer",$item);
+        elgg_register_admin_menu_item("administer","usermgmt");
   /*
     $item = new ElggMenuItem('test', "Test Link", elgg_get_site_url().'usermgmt/all');
     elgg_register_menu_item('page',$item);
