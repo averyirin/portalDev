@@ -210,9 +210,11 @@ $english = array(
     'item:object:project_registry'                => 'Support Requests',
 
     /*Task and request support*/
-    'projectst:request_support'                => 'Request Support',
-    'projects:create:task' => 'Create task request',
-    'projects:create:project'=>'Create project request',
+    'support_request:request_support'                => 'Request Support',
+    'support_request:heading:task'                => 'Create a task request',
+    'support_request:heading:project'                => 'Create a project request',
+    'support_request:create:task'                => 'Create task',
+    'support_request:create:project'                => 'Create project',
 
 );
 
