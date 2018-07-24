@@ -69,6 +69,9 @@ function projects_page_handler($project) {
         case 'list':
             include "$angular_dir/list.php";
             break;
+        case 'list_task':
+            include "$angular_dir/list_task.php";
+            break;
         case 'add':
             include "$angular_dir/add.php";
             break;

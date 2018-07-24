@@ -25,8 +25,8 @@
    -->
    <div class='wb-tabs'>
        <ul role="tablist" class="generated">
-           <li class="active"><a href='' ng-click='' data-filter-type="request_type_guid" id='project'><?php echo elgg_echo('Projects'); ?></a></li>
-           <li><a href='#/projects/tasks_list' ng-click="" data-filter-type="request_type_guid" id='task'><?php echo elgg_echo('Tasks'); ?></a></li>
+           <li><a href='#/projects' ng-click='' data-filter-type="request_type_guid" id='project'><?php echo elgg_echo('Projects'); ?></a></li>
+           <li  class="active"> <a href='' ng-click="" data-filter-type="request_type_guid" id='task'><?php echo elgg_echo('Tasks'); ?></a></li>
        </ul>
        <div class="tabpanels">
            <div style="padding:0.5rem">

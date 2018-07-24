@@ -25,6 +25,15 @@
                         }
                     }
                 }).
+                when('/projects/list_task', {
+                    templateUrl: 'projects/list_task',
+                    controller: 'Projects as vm',
+                    resolve: {
+                        resolveProject: function () {
+                            return {};
+                        }
+                    }
+                }).
                         when('/projects/create', {
                             templateUrl: 'projects/add',
                             controller: 'Projects as vm',
