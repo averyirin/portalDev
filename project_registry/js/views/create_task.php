@@ -1,10 +1,9 @@
 <?php
 ?>
-	<div>Create task form</div>
 	<!-- <div ng-show='vm.loaded'> -->
 <div >
 	<div class='template-header'>
-		<h2>{{vm.task.title}} Title</h2>
+		<h2>{{vm.task.title}}</h2>
 		<a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
         <a ng-click="vm.print()" href='' target='_blank' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:print'); ?></a>
 		<div class="project-brief-info">
