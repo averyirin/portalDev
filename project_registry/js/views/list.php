@@ -26,8 +26,10 @@
    <div class='wb-tabs'>
      <ul role="tablist" class="generated">
          <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="classification" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
-         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Project'><?php echo elgg_echo('Project'); ?></a></li>
-     </ul>
+         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Project'><?php echo elgg_echo('Projects'); ?></a></li>
+         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Task'><?php echo elgg_echo('Task'); ?></a></li>
+         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Unassigned'><?php echo elgg_echo('Unassigned'); ?></a></li>
+   </ul>
        <div class="tabpanels">
            <div style="padding:0.5rem">
              <div class='wb-tabs'>
