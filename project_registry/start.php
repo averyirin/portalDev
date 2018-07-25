@@ -78,6 +78,9 @@ function projects_page_handler($project) {
         case 'view':
             include "$angular_dir/view.php";
             break;
+        case 'view_task':
+            include "$angular_dir/view_task.php";
+            break;
         case 'edit':
             include "$angular_dir/edit.php";
             break;
