@@ -82,7 +82,7 @@
 								<div class='col-sm-12 field-body'>
 										<textarea ng-model='vm.project.timeline'></textarea>
 											<p class="input-group">
-				 <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+				 <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 				 <span class="input-group-btn">
 					 <button type="button" class="btn btn-default" ng-click="open2()"><i class="elgg-icon elgg-icon-calendar"></i></button>
 				 </span>
