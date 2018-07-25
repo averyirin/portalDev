@@ -39,7 +39,7 @@
    -->
    <div>
        <h3><?php echo elgg_echo('Filter by Classification'); ?></h3>
-       <div>
+       <div class="col-xs-12">
 
          <a class="col-xs-2 list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
 
