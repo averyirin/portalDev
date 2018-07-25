@@ -217,6 +217,7 @@ $english = array(
     'support_request:create:project'                => 'Create project',
     'support_request:back'                => 'Back',
     'support_request:task:submit'               => 'Create Task',
+    'support_request:task:completion_date'               => 'Requested Completion Date',
 
 );
 
