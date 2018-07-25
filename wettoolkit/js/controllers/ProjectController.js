@@ -12,9 +12,13 @@
         vm.projects = [];
         vm.project = resolveProject;
         vm.opis = [{}];
+        //add Project / Task filter on
+
         //filter object
-        vm.filters = {owner_guid: '', status: '', project_type: '', department_owner: ''};
+        vm.filters = {owner_guid: '', status: '', project_type: '', department_owner: '', classification: 'Project' };
         vm.filters.owner_guid = vm.filters.status = vm.filters.project_type = vm.filters.department_owner = elgg.echo('projects:label:all');
+
+
 
         //JSON arrays for select dropdowns - this SHOULD be all retreived from a service or directive
         vm.statuses = [
@@ -364,7 +368,6 @@
 
             //sort the projects
             vm.filters[filterType] = filter;
-            console.log(vm.filters);
             getProjectsByParam(vm.filters).then(function (success) {
 
             }, function (error) {
