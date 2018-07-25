@@ -1,29 +1,96 @@
-<?php
-?>
-	<!-- <div ng-show='vm.loaded'> -->
-<div >
-	<div class='template-header'>
-		<h2>{{vm.task.title}}</h2>
-		<a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
-        <a ng-click="vm.print()" href='' target='_blank' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:print'); ?></a>
-		<div class="project-brief-info">
-			<div class='submitted' ng-if="vm.project.status=='Submitted'">
-				<span class='glyphicon exclamation'></span>
-				<p>{{vm.task.status}}</p>
-			</div>
-			<div class='under-review' ng-if="vm.project.status=='Under Review'">
-				<span class='glyphicon exclamation'></span>
-				<p>{{vm.task.status}}</p>
-			</div>
-			<div class='in-progress' ng-if="vm.project.status=='In Progress'">
-				<span class='glyphicon exclamation'></span>
-				<p>{{vm.task.status}}</p>
-			</div>
-			<div class='completed' ng-if="vm.project.status=='Completed'">
-				<span class='glyphicon exclamation'></span>
-				<p>{{vm.task.status}}</p>
-			</div>
-			<h4><?php echo elgg_echo('projects:submittedBy');?>: <span>{{vm.task.owner}}</span> <?php echo elgg_echo('projects:on');?> {{vm.task.time_created}}</h4>
-		</div>
-	</div>
+<?php ?>
+<div class='template-header'>
+    <h2><?php echo elgg_echo('projects:add'); ?></h2>
+    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div ng-include="'projects/toc'">
+        </div>
+    </div>
+    <div class='project-form project col-sm-7'>
+        <form name='projectForm' ng-submit="vm.createProject(projectForm.$valid)" ng-focus-error="" novalidate>
+            <div class='row form-row' data-row-id="title">
+                <div class='col-sm-12 field-header'>
+                    <label><?php echo elgg_echo('projects:title'); ?></label>
+                </div>
+
+                <div class='col-sm-12 field-body'>
+                    <input type='text' class='' name='title' ng-model='vm.project.title' required/>
+                    <div ng-messages="projectForm.title.$error" ng-if="(projectForm.title.$touched) || (projectForm.$submitted)">
+                        <div ng-messages-include="projects/messages"></div>
+                    </div>
+                </div>
+            </div>
+            <div class='row form-row' data-row-id="course">
+                <div class='col-sm-12 field-header'>
+                    <label><?php echo elgg_echo('projects:course'); ?></label>
+                </div>
+                <div class='col-sm-12 field-body'>
+                    <input type='text' class='' name='course' ng-model='vm.project.course'/>
+                </div>
+            </div>
+            <div class='row form-row' data-row-id="org">
+                <div class='col-sm-12 field-header'>
+                    <label><?php echo elgg_echo('projects:org'); ?></label>
+                </div>
+                <div class='col-sm-12 field-body'>
+                    <input type='text' class='' name="org" ng-model='vm.project.org' required/>
+                    <div ng-messages="projectForm.org.$error" ng-if="(projectForm.org.$touched) || (projectForm.$submitted)">
+                        <div ng-messages-include="projects/messages"></div>
+                    </div>
+                </div>
+            </div>
+            <div class='row form-row' data-row-id="ta">
+                <div class='col-sm-12 field-header'>
+                    <label><?php echo elgg_echo('projects:ta'); ?></label>
+                </div>
+                <div class='col-sm-12 field-body'>
+                    <select ng-model='vm.project.ta' ng-options='option for option in vm.ta_options.values' ng-change='vm.setDepartmentOwner(vm.project.ta)' required></select>
+                    <div ng-messages="projectForm.scope.$error" ng-if="(projectForm.$submitted)">
+                        <div ng-messages-include="projects/messages"></div>
+                    </div>
+                </div>
+            </div>
+            <div class='row form-row' data-row-id="type">
+                <div class='col-sm-12 field-header'>
+                    <label><?php echo elgg_echo('projects:type'); ?></label>
+                </div>
+                <div class='col-sm-12 field-body'>
+                    <select ng-model=vm.project.project_type ng-options='type for type in vm.projectTypes.values'>
+                    </select>
+                </div>
+            </div>
+            <div class='row form-row' data-row-id="description">
+                <div class='col-sm-12 field-header'>
+                    <label><?php echo elgg_echo('projects:description'); ?></label>
+                    <p><?php echo elgg_echo('projects:description:helptext'); ?></p>
+                </div>
+                <div class='col-sm-12 field-body'>
+                    <textarea mce-init="description" id="description" name='description' ng-model='vm.project.description'></textarea>
+                </div>
+            </div>
+						<div class='row form-row' data-row-id="timeline">
+								<div class='col-lg-12 field-header'>
+										<label><?php echo elgg_echo('Requested Completion Date'); ?></label>
+
+										<div class="help-text">
+												<p><?php echo elgg_echo('When would you like it done?'); ?></p>
+										</div>
+
+								</div>
+								<div class='col-sm-12 field-body'>
+										<textarea ng-model='vm.project.timeline'></textarea>
+											<p class="input-group">
+				 <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+				 <span class="input-group-btn">
+					 <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+				 </span>
+			 </p>
+								</div>
+						</div>
+
+            <button type='submit' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:submit'); ?></button>
+        </form>
+    </div>
 </div>
