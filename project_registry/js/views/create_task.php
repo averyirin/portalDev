@@ -1,11 +1,11 @@
 <?php ?>
 <div class='template-header'>
-    <h2><?php echo elgg_echo('projects:add'); ?></h2>
-    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list')." - Task"; ?></a>
+    <h2><?php echo elgg_echo('projects:add')." - Task"; ?></h2>
+    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
 </div>
 <div class="row">
     <div class="col-sm-4">
-        <div ng-include="'projects/toc'">
+        <div ng-include="'projects/toc_task'">
         </div>
     </div>
     <div class='project-form project col-sm-7'>
