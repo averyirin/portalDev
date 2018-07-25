@@ -41,14 +41,14 @@
        <h3><?php echo elgg_echo('Filter by Classification'); ?></h3>
        <div>
 
-         <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
+         <a class="col-xs-2 list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
 
 
-                     <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
+                     <a class="col-xs-2  list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
 
-                     <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
+                     <a class="col-xs-2 list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
 
-                     <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned" data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
+                     <a class="col-xs-2 list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned" data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
                    </div>
  </div>
 
