@@ -364,6 +364,7 @@
 
             //sort the projects
             vm.filters[filterType] = filter;
+            console.log(vm.filters);
             getProjectsByParam(vm.filters).then(function (success) {
 
             }, function (error) {
