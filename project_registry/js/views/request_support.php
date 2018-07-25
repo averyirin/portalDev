@@ -7,7 +7,9 @@ Create task form
 -->
 <div class='template-header col-lg-12'>
     <h2><?php echo elgg_echo('support_request:request_support'); ?></h2>
-
+    <div class="btn-group">
+        <a href='#/projects/projects' class='elgg-button elgg-button-action float-right'><?php echo elgg_echo('support_request:back'); ?></a>
+      </div>
 </div>
 
 <section class='col-md-1'></section>
