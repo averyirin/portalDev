@@ -13,7 +13,7 @@ Create task form
 </div>
 
 <section class='col-md-1'></section>
-<section class='col-md-5'>
+<section class='col-md-5'  style="min-height='300px'">
 
       <h1><?php echo elgg_echo('support_request:heading:task'); ?></h1>
 
@@ -40,7 +40,7 @@ Create task form
     </div>
     <a href='#/projects/create_task' style="margin-top:1em"  class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:task'); ?></a>
 </section>
-<section class='col-md-5 projects'>
+<section class='col-md-5 projects'  style="min-height='300px'">
 
       <h1><?php echo elgg_echo('support_request:heading:project'); ?></h1>
       <div>Projects are more than 80 hrs of work. Require scope, cost, time, and risk estimates</div>
