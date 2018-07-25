@@ -22,15 +22,22 @@
 
     </div>
     <div class="wb-tabs">
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    <div class='wb-tabs'>
+        <ul role="tablist" class="generated">
+            <li class="active"><a href='' ng-click='' data-filter-type="request_type_guid" id='project'><?php echo elgg_echo('Projects'); ?></a></li>
+            <li><a href='#/projects/list_task' ng-click="" data-filter-type="request_type_guid" id='task'><?php echo elgg_echo('Tasks'); ?></a></li>
+        </ul>
+        <div class="tabpanels">
+            <div style="padding:0.5rem">
+
+            </div>
+      </div>
+   </div>
+
    -->
-   <div class='wb-tabs'>
-       <ul role="tablist" class="generated">
-           <li class="active"><a href='' ng-click='' data-filter-type="request_type_guid" id='project'><?php echo elgg_echo('Projects'); ?></a></li>
-           <li><a href='#/projects/list_task' ng-click="" data-filter-type="request_type_guid" id='task'><?php echo elgg_echo('Tasks'); ?></a></li>
-       </ul>
-       <div class="tabpanels">
-           <div style="padding:0.5rem">
-             <div class='wb-tabs'>
+<div class='wb-tabs'>
                  <ul role="tablist" class="generated">
                      <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
                      <li><a href='' ng-click="vm.filter($event)" data-filter-type="owner_guid" id='mine'><?php echo elgg_echo('projects:label:mine'); ?></a></li>
@@ -69,9 +76,7 @@
                      </div>
                  </div>
              </div>
-           </div>
-       </div>
-     </div>
+
 
 
 
