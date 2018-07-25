@@ -73,20 +73,16 @@
 						<div class='row form-row' data-row-id="timeline">
 								<div class='col-lg-12 field-header'>
 										<label><?php echo elgg_echo('support_request:task:completion_date'); ?></label>
-
 										<div class="help-text">
 												<p><?php echo elgg_echo('When would you like it done?'); ?></p>
 										</div>
-
 								</div>
 								<div class='col-sm-12 field-body'>
-										<textarea ng-model='vm.project.timeline'></textarea>
-											<p class="input-group">
-				 <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-				 <span class="input-group-btn">
-					 <button type="button" class="btn btn-default" ng-click="open2()"><i class="elgg-icon elgg-icon-calendar"></i></button>
-				 </span>
-			 </p>
+										<input type="date" ng-model='vm.project.timeline'/>
+										<input type='date' class='' name="timeline" ng-model='vvm.project.timeline' required/>
+		                <div ng-messages="projectForm.timeline.$error" ng-if="(projectForm.timeline.$touched) || (projectForm.$submitted)">
+		                        <div ng-messages-include="projects/messages"></div>
+		                </div>
 								</div>
 						</div>
 
