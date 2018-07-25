@@ -73,9 +73,6 @@
 						<div class='row form-row' data-row-id="timeline">
 								<div class='col-lg-12 field-header'>
 										<label><?php echo elgg_echo('support_request:task:completion_date'); ?></label>
-										<div class="help-text">
-												<p><?php echo elgg_echo('When would you like it done?'); ?></p>
-										</div>
 								</div>
 								<div class='col-sm-12 field-body'>
 										<input type='date' class='' name="timeline" ng-model='vm.project.timeline' />
