@@ -104,7 +104,7 @@
                 <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Undefined" data-filter-type="classification"><?php echo elgg_echo('Undefined'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned" data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
             </li>
 
         </ul>
