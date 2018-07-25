@@ -24,7 +24,7 @@
 				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="description"><?php echo elgg_echo('projects:description'); ?></a>
 			</li>
 			<li>
-				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="timeline"><?php echo elgg_echo('projects:files'); ?></a>
+				<a class="list-group-item" href="" ng-click='vm.animateToField($event)' data-list-id="timeline"><?php echo elgg_echo('support_request:task:completion_date'); ?></a>
 			</li>
 		</ul>
 	</div>
