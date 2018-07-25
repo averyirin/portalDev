@@ -87,6 +87,9 @@ function projects_page_handler($project) {
         case 'toc':
             include "$angular_dir/toc.php";
             break;
+        case 'toc_task':
+            include "$angular_dir/toc_task.php";
+            break;
         case 'messages':
             include "$angular_dir/messages.php";
             break;
