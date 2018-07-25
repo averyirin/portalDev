@@ -215,6 +215,7 @@ $english = array(
     'support_request:heading:project'                => 'Create a project request',
     'support_request:create:task'                => 'Create task',
     'support_request:create:project'                => 'Create project',
+    'support_request:back'                => 'Back',
 
 );
 
