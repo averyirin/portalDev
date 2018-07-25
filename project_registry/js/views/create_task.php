@@ -90,7 +90,7 @@
 								</div>
 						</div>
 
-            <button type='submit' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:submit'); ?></button>
+            <button type='submit' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:task:submit'); ?></button>
         </form>
     </div>
 </div>

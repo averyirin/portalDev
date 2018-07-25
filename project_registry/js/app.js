@@ -50,13 +50,13 @@
                             }
                         }).
                         when('/projects/create_task', {
-                            templateUrl: 'projects/create_task',
-                            controller: 'Tasks as vm',
-                            resolve: {
-                                resolveTask: function () {
-                                    return {};
-                                }
-                            }
+                          templateUrl: 'projects/create_task',
+                          controller: 'Projects as vm',
+                          resolve: {
+                              resolveProject: function () {
+                                  return {};
+                              }
+                          }
                         }).
                         when('/projects/view/:project_id', {
                             templateUrl: function (params) {
