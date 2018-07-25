@@ -150,7 +150,7 @@
 
 
 
-            <div class='form-row clearfix' data-row-id="timeline">
+      <div class='form-row clearfix' data-row-id="timeline">
 				<div class='col-sm-12 field-header'>
 					<label><?php echo elgg_echo('projects:timeline'); ?></label>
 
@@ -172,8 +172,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
 
-          
+
 
 		<div class='project project-sidebar col-sm-3' style="float:right;">
 			<div class="project-sidebar-row clearfix">
