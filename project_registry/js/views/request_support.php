@@ -18,8 +18,25 @@ Create task form
       <h1><?php echo elgg_echo('support_request:heading:task'); ?></h1>
 
     <div>
-      Tasks are anything that is less than 80 hours of work.
+      Tasks are anything that is less than 80 hours of work.<br/>
+      Such as:
+        <ul>
+          <li>
+            Modifying and image
+          </li>
+            <li>
+              Editing section of course
+            </li>
 
+              <li>
+                Photo op
+              </li>
+
+                <li>
+                  Small video
+                </li>
+
+        </ul>
     </div>
     <a href='#/projects/create_task' style="margin-top:1em"  class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:task'); ?></a>
 </section>
