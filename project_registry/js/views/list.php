@@ -22,43 +22,34 @@
 
     </div>
     <div class="wb-tabs">
-    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-    <div class='wb-tabs'>
-        <ul role="tablist" class="generated">
-            <li class="active"><a href='' ng-click='' data-filter-type="request_type_guid" id='project'><?php echo elgg_echo('Projects'); ?></a></li>
-            <li><a href='#/projects/list_task' ng-click="" data-filter-type="request_type_guid" id='task'><?php echo elgg_echo('Tasks'); ?></a></li>
-        </ul>
-        <div class="tabpanels">
-            <div style="padding:0.5rem">
-
-            </div>
-      </div>
-   </div>
-
    -->
-   <div>
-       <h3><?php echo elgg_echo('Filter by Classification'); ?></h3>
-       <div>
-         <ul>
-           <li style=" display: inline-block;">
-             <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
+   <div class='wb-tabs'>
+       <ul role="tablist" class="generated">
+         <li>
+            <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All"
+data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
+          </li>
+      <li>
+        <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-
+
+filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
+       </li>
+        <li>
+          <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-
+
+type="classification"><?php echo elgg_echo('Task'); ?></a>
            </li>
-       <li style=" display: inline-block;">
-         <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
-        </li>
-         <li style=" display: inline-block;">
-           <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
-            </li>
-           <li style=" display: inline-block;">
-             <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned" data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
-            </li>
-          </ul>
-   </div>
- </div>
+          <li>
+            <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned"
+data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
+           </li>
+         </ul>
 
 
-<div class='wb-tabs'>
+
+       <div class="tabpanels">
+           <div style="padding:0.5rem">
+             <div class='wb-tabs'>
                  <ul role="tablist" class="generated">
                      <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
                      <li><a href='' ng-click="vm.filter($event)" data-filter-type="owner_guid" id='mine'><?php echo elgg_echo('projects:label:mine'); ?></a></li>
@@ -97,7 +88,9 @@
                      </div>
                  </div>
              </div>
-
+           </div>
+       </div>
+     </div>
 
 
 
