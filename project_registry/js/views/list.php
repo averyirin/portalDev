@@ -39,33 +39,24 @@
    -->
    <div>
        <h3><?php echo elgg_echo('Filter by Classification'); ?></h3>
-       <ul>
-               <li>
-                   <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
-               </li>
-               <li>
-                   <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
-               </li>
-               <li>
-                   <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
-               </li>
-               <li>
-                   <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned" data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
-               </li>
 
-<!--
-<ul class="pagination">
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-<li class="page-item active">
-<a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-</li>
-<li class="page-item"><a class="page-link" href="#">3</a></li>
-<li class="page-item">
-<a class="page-link" href="#">Next</a>
-</li>
--->
-       </ul>
-   </div>
+       <nav id="sidebar">
+              <ul>
+                 <li>
+                     <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
+                 </li>
+                 <li>
+                     <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
+                 </li>
+                 <li>
+                     <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
+                 </li>
+                 <li>
+                     <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Unassigned" data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
+                 </li>
+               </ul>
+             </nav>
+ </div>
 
 
 <div class='wb-tabs'>
