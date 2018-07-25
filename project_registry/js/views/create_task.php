@@ -78,8 +78,7 @@
 										</div>
 								</div>
 								<div class='col-sm-12 field-body'>
-										<input type="date" ng-model='vm.project.timeline'/>
-										<input type='date' class='' name="timeline" ng-model='vvm.project.timeline' required/>
+										<input type='date' class='' name="timeline" ng-model='vm.project.timeline' />
 		                <div ng-messages="projectForm.timeline.$error" ng-if="(projectForm.timeline.$touched) || (projectForm.$submitted)">
 		                        <div ng-messages-include="projects/messages"></div>
 		                </div>
