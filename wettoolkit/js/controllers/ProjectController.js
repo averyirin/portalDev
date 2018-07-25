@@ -12,6 +12,9 @@
         vm.projects = [];
         vm.project = resolveProject;
         vm.opis = [{}];
+
+        //Type filter
+        vm.classification_filter = {classification:elgg.echo('projects:project')}
         //add Project / Task filter on
 
         //filter object
@@ -131,7 +134,9 @@
             vm.project.editable = [];
             vm.loaded = true;
         } else {
-            getProjects();
+            var params = {};
+            params.classification = elgg.echo('projects:project');
+            getProjects(params);
 
             vm.project.ta = vm.ta_options.values[0];
             vm.project.project_type = vm.projectTypes.values[0];
