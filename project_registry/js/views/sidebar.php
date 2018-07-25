@@ -98,12 +98,12 @@
                 <a class="list-group-item active" href="" ng-click='vm.filter($event)' id="All" data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('projects:owner:learning_technologies'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Project" data-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
             </li>
             <li>
-                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('projects:owner:alsc'); ?></a>
+                <a class="list-group-item" href="" ng-click='vm.filter($event)' id="Task" data-filter-type="classification"><?php echo elgg_echo('Task'); ?></a>
             </li>
-            
+
         </ul>
     </div>
 </nav>

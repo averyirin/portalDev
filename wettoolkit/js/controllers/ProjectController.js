@@ -136,7 +136,7 @@
         } else {
             var params = {};
             params.classification = elgg.echo('projects:project');
-            getProjects(params);
+            getProjects();
 
             vm.project.ta = vm.ta_options.values[0];
             vm.project.project_type = vm.projectTypes.values[0];

@@ -17,12 +17,14 @@ function projectsRouter($method, $page, $publicKey) {
                 $department_owner = get_input('department_owner', null);
                 $createdAt    = get_input('created_at', null);
                 $ownerGuid    = get_input('owner_guid', null);
+                $classification    = get_input('classification', null);
 
                 $status ? $params['status']       = $status : '';
                 $project_type ? $params['project_type'] = $project_type : '';
                 $department_owner ? $params['department_owner'] = html_entity_decode($department_owner) : '';
                 $createdAt ? $params['created_at']   = $createdAt : '';
                 $ownerGuid ? $params['owner_guid']   = $ownerGuid : '';
+                $classification ? $params['classification'] = $classification : '';
 
                 $session = new Session($publicKey, $signature, $params);
 
