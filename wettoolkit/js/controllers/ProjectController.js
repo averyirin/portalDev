@@ -360,6 +360,10 @@
             //console.log('type = ' + filterType);
 
             //toggle menu item highlighting
+            if (filterType == 'classification') {
+                $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().siblings('.active').removeClass('active');
+                $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().addClass('active');
+            }    
             if (filterType == 'owner_guid') {
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().siblings('.active').removeClass('active');
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().addClass('active');
