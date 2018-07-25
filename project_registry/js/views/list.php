@@ -37,6 +37,23 @@
    </div>
 
    -->
+   <div>
+       <h3><?php echo elgg_echo('Filter by Classification'); ?></h3>
+
+       <ul class="pagination">
+         <li class="page-item"><a class="page-link" href="#">1</a></li>
+   <li class="page-item active">
+     <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+   </li>
+   <li class="page-item"><a class="page-link" href="#">3</a></li>
+   <li class="page-item">
+     <a class="page-link" href="#">Next</a>
+   </li>   
+
+       </ul>
+   </div>
+
+
 <div class='wb-tabs'>
                  <ul role="tablist" class="generated">
                      <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="owner_guid" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
