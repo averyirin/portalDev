@@ -52,10 +52,13 @@
                              </thead>
                              <tbody>
                                  <tr ng-repeat='(key,project) in vm.projects'>
+                                      <td>
+                                        {{project.classification}}
+                                      </td>
 
                                      <td>
                                        <a ng-if="{{project.classification =='Task'}}"  href='#/projects/view_task/{{project.id}}'>{{project.title}}</a>
-                                       <a ng-if="{{project.classification !='Task'}}"  href='#/projects/view/{{project.id}}'>{{project.title}}</a>
+                                       <a   href='#/projects/view/{{project.id}}'>{{project.title}}</a>
                                      </td>
 
 
