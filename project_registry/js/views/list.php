@@ -24,29 +24,10 @@
     <div class="wb-tabs">
    -->
    <div class='wb-tabs'>
-       <ul role="tablist" class="generated">
-         <li>
-            <a class="active" href="" ng-click='vm.filter($event)' id="All"
-data-filter-type="classification"><?php echo elgg_echo('projects:label:all'); ?></a>
-          </li>
-      <li>
-        <a class="" href="" ng-click='vm.filter($event)' id="Project" data-
-
-filter-type="classification"><?php echo elgg_echo('Project'); ?></a>
-       </li>
-        <li>
-          <a class="" href="" ng-click='vm.filter($event)' id="Task" data-filter-
-
-type="classification"><?php echo elgg_echo('Task'); ?></a>
-           </li>
-          <li>
-            <a class="" href="" ng-click='vm.filter($event)' id="Unassigned"
-data-filter-type="classification"><?php echo elgg_echo('Unassigned'); ?></a>
-           </li>
-         </ul>
-
-
-
+     <ul role="tablist" class="generated">
+         <li class="active"><a href='' ng-click='vm.filter($event)' data-filter-type="classification" id='all'><?php echo elgg_echo('projects:label:all'); ?></a></li>
+         <li><a href='' ng-click="vm.filter($event)" data-filter-type="classification" id='Project'><?php echo elgg_echo('Project'); ?></a></li>
+     </ul>
        <div class="tabpanels">
            <div style="padding:0.5rem">
              <div class='wb-tabs'>
