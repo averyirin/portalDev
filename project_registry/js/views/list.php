@@ -52,11 +52,12 @@
                              </thead>
                              <tbody>
                                  <tr ng-repeat='(key,project) in vm.projects'>
-                                    <td>
-                                       <a ng-if="project.classification == 'Task'"  href='#/projects/view_task/{{project.id}}'>{{project.title}}</a>
-                                       <a ng-if="project.classification != 'Task'"  href='#/projects/view/{{project.id}}'>{{project.title}}</a>
+                                    <td ng-if="project.classification == 'Task'">
+                                       <a  href='#/projects/view_task/{{project.id}}'>{{project.title}}</a>
+                                        </td>
+                                    <td ng-if="project.classification !== 'Task'">
+                                       <a   href='#/projects/view/{{project.id}}'>{{project.title}}</a>
                                     </td>
-
 
                                      <td>
                                          <select id='statusSelect{{key}}' ng-if="user.project_admin" ng-model='project.status' ng-options='status.name as status.name for status in vm.statuses' ng-change='vm.updateStatus(key)'></select>
