@@ -204,7 +204,7 @@ class Project {
 			if(in_array($key, $this->jsonFields)) {
 				$project->$key = json_encode($val);
 			}
-			else if($key=='options' || $key=='required'){
+			else if($key=='options' || $key=='required' || $key=='requiredTaskFields'){
 				//
 			}
 			else{
