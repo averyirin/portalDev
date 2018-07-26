@@ -14,14 +14,15 @@
 class Project {
 
 	private $required = array('title', 'org', 'scope', 'opis', 'usa');
-	
+
+	private $taskRequired = array('title', 'org', 'description');
 	public $attachments = array();
 	public $opis = array();
 	public $errors = array();
 	private $collection = array();
 	private $options = array();
     protected $jsonFields = array('opis', 'sme', 'usa', 'savings');
-	
+
 	public $id;
 	public $title;
 	public $description;
@@ -45,19 +46,19 @@ class Project {
 	public $classification;
 	public $percentage;
 	private $session;
-	
+
 	public function __construct(Session $session)
 	{
 		$this->session = $session;
 	}
-	
+
 	public static function withID($id, $session)
 	{
 		$instance = new self($session);
 		$instance->loadByID($id);
 		return $instance;
 	}
-	
+
 	public static function withParams($params)
 	{
 		$instance = new self();
@@ -76,23 +77,23 @@ class Project {
 		}
 		return $instance;
 	}
-	
+
 	public static function all($params, $session)
 	{
 		$instance = new self($session);
 		$instance->loadAll($params);
-		
+
 		return $instance;
 	}
-	
+
 	protected function loadByID($id)
 	{
 		$row = get_entity($id);
-		
+
 		$this->fill($row);
 		$this->setAttachments();
 	}
-	
+
 	protected function loadAll($params)
 	{
 		$this->options = array(
@@ -103,7 +104,7 @@ class Project {
 			"order_by" => "time_created DESC",
 			"metadata_name_value_pairs" => array()
 		);
-		
+
 		foreach($params as $key => $param) {
 			if($key == 'owner_guid') {
 				$this->options[$key] = $param;
@@ -115,13 +116,13 @@ class Project {
 				);
 			}
 		}
-		
+
 		$rows = elgg_get_entities_from_metadata($this->options);
 		$this->fillWithRows($rows);
 	}
 
 	private function fill($row)
-	{	
+	{
 		$this->id = $row->guid;
 		$this->title = $row->title;
 		$this->description = $row->description;
@@ -154,42 +155,51 @@ class Project {
         $this->timeline = $row->timeline;
         $this->impact = $row->impact;
         $this->savings = $row->savings;
-        
+
 		if( $this->session->getProjectAdmin() || ($this->session->getPublicKey() == $row->owner_guid && $row->status=='Submitted') ) {
 			$this->can_edit = true;
 		}
 	}
-	
+
 	private function fillWithRows($rows)
 	{
 		foreach($rows as $row) {
 			$project = new Project($this->session);
 			$project->fill($row);
-			
+
 			$this->addToCollection($project);
 		}
 	}
-	
+
 	public function validate()
 	{
 		//check required fields
 		foreach($this as $key => $val) {
-			if(in_array($key, $this->required)) {
-				if(empty($val)) {
-					$this->errors[$key] = $key." is a required field";
+			if($this->classification == 'Task'){
+				if(in_array($key, $this->taskRequired)) {
+					if(empty($val)) {
+						$this->errors[$key] = $key." is a required field";
+					}
+				}
+			}else{
+				if(in_array($key, $this->required)) {
+					if(empty($val)) {
+						$this->errors[$key] = $key." is a required field";
+					}
 				}
 			}
+
 		}
 		if(empty($this->errors)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public function create()
-	{	
+	{
 		elgg_set_ignore_access();
-		
+
 		$project = new ElggObject();
 		foreach($this as $key => $val) {
 			if(in_array($key, $this->jsonFields)) {
@@ -202,7 +212,7 @@ class Project {
 				$project->$key = $val;
 			}
 		}
-		
+
 		if($project->save()) {
 			$this->id = $project->guid;
 			return true;
@@ -211,9 +221,9 @@ class Project {
 			return false;
 		}
 	}
-	
+
 	public function edit($payload)
-	{	
+	{
 		elgg_set_ignore_access();
 
 		$project = get_entity($this->id);
@@ -236,20 +246,20 @@ class Project {
 			return false;
 		}
 	}
-	
+
 	public function update($payload)
-	{	
+	{
 		elgg_set_ignore_access();
 		if(!array_key_exists('value', $payload)) {
             $this->errors[] = 'value not provided in request payload';
             return false;
         }
-        
+
 		$project = get_entity($this->id);
 		if( in_array($payload['field'], $this->jsonFields) ) {
 			$payload['value'] = json_encode($payload['value']);
 		}
-		
+
 		$project->$payload['field'] = $payload['value'];
 		if($project->save()) {
 			$this->id = $project->guid;
@@ -259,8 +269,8 @@ class Project {
 			return false;
 		}
 	}
-	
-	public static function delete($project) 
+
+	public static function delete($project)
 	{
 		elgg_set_ignore_access();
 
@@ -342,7 +352,7 @@ class Project {
 		}
 		return $result;
 	}
-	
+
 	private function setAttachments()
 	{
 		$attachments = elgg_get_entities_from_relationship(array(
@@ -350,23 +360,23 @@ class Project {
 			"relationship_guid" => $this->id,
 			"inverse_relationship" => true
 		));
-		
+
 		foreach($attachments as $obj) {
 			$attachment = new Attachment($obj);
 			$this->attachments[] = $attachment;
 		}
 	}
-	
+
 	private function getAttachments()
 	{
 		return $this->attachments;
 	}
-	
+
 	private function addToCollection($project)
 	{
 		$this->collection[] = $project;
 	}
-	
+
 	public function getCollection()
 	{
 		return $this->collection;
@@ -403,7 +413,7 @@ class Project {
 				else {
 					register_error(elgg_echo('email:project:submit:error'));
 					return false;
-				}			
+				}
 				break;
 		}
 	}
