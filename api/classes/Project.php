@@ -178,13 +178,13 @@ class Project {
 			if($this->classification == 'Task'){
 				if(in_array($key, $this->taskRequired)) {
 					if(empty($val)) {
-						$this->errors[$key] = $key." is a required field";
+						$this->errors[$key] = $key." is a required field". $this->classification;
 					}
 				}
 			}else{
 				if(in_array($key, $this->required)) {
 					if(empty($val)) {
-						$this->errors[$key] = $key." is a required field";
+						$this->errors[$key] = $key." is a required field".$this->classification;
 					}
 				}
 			}
