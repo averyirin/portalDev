@@ -73,7 +73,7 @@
                     <p><?php echo elgg_echo('projects:description:helptext'); ?></p>
                 </div>
                 <div class='col-sm-12 field-body'>
-                    <textarea mce-init="description" id="description" name='description' ng-model='vm.project.description' required></textarea>
+                    <textarea mce-init="description" id="description" name='description' ng-model='vm.project.description' ></textarea>
                     <div ng-messages="projectForm.description.$error" ng-if="(projectForm.description.$touched) || (projectForm.$submitted)">
                         <div ng-messages-include="projects/messages"></div>
                     </div>
