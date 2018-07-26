@@ -47,9 +47,7 @@
                 </div>
                 <div class='col-sm-12 field-body'>
                     <select ng-model='vm.project.ta' ng-options='option for option in vm.ta_options.values' ng-change='vm.setDepartmentOwner(vm.project.ta)' required></select>
-                    <div ng-messages="projectForm.scope.$error" ng-if="(projectForm.$submitted)">
-                        <div ng-messages-include="projects/messages"></div>
-                    </div>
+
                 </div>
             </div>
             <div class='row form-row' data-row-id="type">
@@ -96,9 +94,7 @@
                 </div>
                 <div class='col-sm-12 field-body'>
                     <textarea name="scope" ng-model='vm.project.scope' required></textarea>
-                    <div ng-messages="projectForm.scope.$error" ng-if="(projectForm.scope.$touched) || (projectForm.$submitted)">
-                        <div ng-messages-include="projects/messages"></div>
-                    </div>
+
                 </div>
             </div>
             <div class='row form-row' data-row-id="opi">
@@ -124,9 +120,7 @@
                                     </div>
                                     <div class='col-sm-9'>
                                         <input type='text' class='' name='opi_rank' ng-model='opi.rank' required/>
-                                        <div ng-messages="projectForm.opi_rank.$error" ng-if="(projectForm.opi_rank.$touched) || (projectForm.$submitted)">
-                                            <div ng-messages-include="projects/messages"></div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class='row'>
@@ -135,9 +129,7 @@
                                     </div>
                                     <div class='col-sm-9'>
                                         <input type='text' class='' name='opi_name' ng-model='opi.name' required/>
-                                        <div ng-messages="projectForm.opi_name.$error" ng-if="(projectForm.opi_name.$touched) || (projectForm.$submitted)">
-                                            <div ng-messages-include="projects/messages"></div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class='row'>
@@ -146,9 +138,7 @@
                                     </div>
                                     <div class='col-sm-9'>
                                         <input type='text' class='' name='opi_phone' ng-model='opi.phone' required/>
-                                        <div ng-messages="projectForm.opi_phone.$error" ng-if="(projectForm.opi_phone.$touched) || (projectForm.$submitted)">
-                                            <div ng-messages-include="projects/messages"></div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class='row'>
@@ -157,9 +147,7 @@
                                     </div>
                                     <div class='col-sm-9'>
                                         <input type='email' class='' name='opi_email' ng-model='opi.email' required/>
-                                        <div ng-messages="projectForm.opi_email.$error" ng-if="(projectForm.opi_email.$touched) || (projectForm.$submitted)">
-                                            <div ng-messages-include="projects/messages"></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -238,9 +226,7 @@
                                     </div>
                                     <div class='col-sm-9'>
                                         <input type='email' name='sme_email' class='' ng-model='vm.project.sme.email'/>
-                                        <div ng-messages="projectForm.sme_email.$error" ng-if="(projectForm.sme_email.$dirty) || (projectForm.$submitted)">
-                                            <div ng-messages-include="projects/messages"></div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -290,36 +276,28 @@
                     </div>
                     <div class='col-sm-9'>
                         <input type='text' class='' name='usa_rank' ng-model='vm.project.usa.rank' required/>
-                        <div ng-messages="projectForm.usa_rank.$error" ng-if="projectForm.usa_rank.$touched || projectForm.$submitted">
-                            <div ng-messages-include='projects/messages'></div>
-                        </div>
+
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:name'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
                         <input type='text' class='' name='usa_name' ng-model='vm.project.usa.name' required/>
-                        <div ng-messages="projectForm.usa_name.$error" ng-if="(projectForm.usa_name.$touched) || (projectForm.$submitted)">
-                            <div ng-messages-include="projects/messages"></div>
-                        </div>
+
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:position'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
                         <input type='text' class='' name='usa_position' ng-model='vm.project.usa.position' required/>
-                        <div ng-messages="projectForm.usa_position.$error" ng-if="(projectForm.usa_position.$touched) || (projectForm.$submitted)">
-                            <div ng-messages-include="projects/messages"></div>
-                        </div>
+
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:email'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
                         <input type='email' class='' name='usa_email' ng-model='vm.project.usa.email' required/>
-                        <div ng-messages="projectForm.usa_email.$error" ng-if="(projectForm.usa_email.$touched) || (projectForm.$submitted)">
-                            <div ng-messages-include="projects/messages"></div>
-                        </div>
+
                     </div>
                 </div>
             </div>
