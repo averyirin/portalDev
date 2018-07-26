@@ -67,12 +67,11 @@
                     <p><?php echo elgg_echo('projects:description:helptext'); ?></p>
                 </div>
                 <div class='col-sm-12 field-body'>
-                    <textarea mce-init="description" id="description" name='description' required ng-model='vm.project.description'></textarea>
+                    <textarea mce-init="description" id="description" name='description' ng-model='vm.project.description'></textarea>
                 </div>
-                <div ng-messages="projectForm.description.$error" ng-if="(projectForm.$submitted)">
+                <div ng-messages="projectForm.scope.$error" ng-if="(projectForm.$submitted)">
                     <div ng-messages-include="projects/messages"></div>
                 </div>
-
             </div>
 						<div class='row form-row' data-row-id="timeline">
 								<div class='col-lg-12 field-header'>
