@@ -109,7 +109,7 @@
         function getProjects(filter) {
             var params = {'public_key': publicKey};
 
-            filter = (typeof filter === 'undefined') ? null : filter;
+            filter = (typeof filter === 'undefined' || filter === undefined) ? null : filter;
             if (filter) {
                 for (var key in filter) {
                     if (filter.hasOwnProperty(key)) {
