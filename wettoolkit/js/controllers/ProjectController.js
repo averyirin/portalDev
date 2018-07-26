@@ -222,6 +222,8 @@
                     vm.project.savings.choices = vm.choices;
                     vm.project.percentage = 0;
                     vm.project.status = 'Submitted';
+                    //Set the type to be Project
+                    vm.project.classification = 'Project';
 
                     project.create(vm.project).then(function (success) {
                         //upload attachments
@@ -363,7 +365,7 @@
             if (filterType == 'classification') {
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().siblings('.active').removeClass('active');
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().addClass('active');
-            }    
+            }
             if (filterType == 'owner_guid') {
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().siblings('.active').removeClass('active');
                 $("[id='" + filter + "'][data-filter-type=" + filterType + "]").parent().addClass('active');
