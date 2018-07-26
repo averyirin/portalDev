@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class='project-form project col-sm-7'>
-        <form name='projectForm' ng-submit="vm.createTask(projectForm.$valid)" ng-focus-error="" novalidate>
+        <form name='projectForm' ng-submit="vm.createProject(projectForm.$valid)" ng-focus-error="" novalidate>
             <div class='row form-row' data-row-id="title">
                 <div class='col-sm-12 field-header'>
                     <label><?php echo elgg_echo('projects:title'); ?></label>
@@ -68,9 +68,6 @@
                 </div>
                 <div class='col-sm-12 field-body'>
                     <textarea mce-init="description" id="description" name='description' ng-model='vm.project.description'></textarea>
-                </div>
-                <div ng-messages="projectForm.scope.$error" ng-if="(projectForm.$submitted)">
-                    <div ng-messages-include="projects/messages"></div>
                 </div>
             </div>
 						<div class='row form-row' data-row-id="timeline">
