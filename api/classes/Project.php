@@ -230,7 +230,7 @@ class Project {
 			if($key == 'opis' || $key == 'sme' || $key == 'usa') {
 				$project->$key = json_encode($val);
 			}
-			else if($key=='options' || $key=='required' || $key=='id'){
+			else if($key=='options' || $key=='required' ||$key=='requiredTaskFields' || $key=='id'){
 				//
 			}
 			else{
