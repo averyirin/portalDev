@@ -175,7 +175,7 @@ class Project {
 		foreach($this as $key => $val) {
 			if(in_array($key, $this->required)) {
 				if(empty($val)) {
-					$this->errors[$key] = $key." is a required field". $classification;
+					$this->errors[$key] = $key." is a required field". $this->classification;
 				}
 			}
 		}
