@@ -14,8 +14,7 @@
 class Project {
 
 	private $required = array('title', 'org', 'scope', 'opis', 'usa');
-
-	private $taskRequired = array('title', 'timeline');
+	
 	public $attachments = array();
 	public $opis = array();
 	public $errors = array();
@@ -175,15 +174,12 @@ class Project {
 	{
 		//check required fields
 		foreach($this as $key => $val) {
-
-				if(in_array($key, $this->required)) {
-					if(empty($val)) {
-						$this->errors[$key] = $key." is a required field";
-					}
+			if(in_array($key, $this->required)) {
+				if(empty($val)) {
+					$this->errors[$key] = $key." is a required field";
 				}
 			}
-
-
+		}
 		if(empty($this->errors)) {
 			return true;
 		}
