@@ -13,6 +13,7 @@
         vm.project = resolveProject;
         vm.opis = [{}];
 
+        vm.project.timeline = new Date(vm.project.timeline);
         //Type filter
         vm.classification_filter = {classification:elgg.echo('projects:project')}
         //add Project / Task filter on
@@ -274,7 +275,6 @@
 
         vm.createTask = function (isValid) {
 
-            vm.project.timeline = new Date(vm.project.timeline);
             tinymce.triggerSave();
 
             setTimeout(function () {
