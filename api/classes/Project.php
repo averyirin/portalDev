@@ -15,7 +15,7 @@ class Project {
 
 	private $required = array('title', 'org', 'scope', 'opis', 'usa');
 
-	private $taskRequired = array('title', 'org', 'description');
+	private $taskRequired = array('title', 'timeline');
 	public $attachments = array();
 	public $opis = array();
 	public $errors = array();
