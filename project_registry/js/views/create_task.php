@@ -349,7 +349,7 @@
 
                 </div>
                 <div class='col-sm-12 field-body'>
-                    <textarea ng-model='vm.project.timeline'></textarea>
+                    <input type="date" ng-model='vm.project.timeline'/>
                 </div>
             </div>
 
