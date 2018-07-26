@@ -173,9 +173,17 @@ class Project {
 	public function validate()
 	{
 		foreach($this as $key => $val) {
-			if(in_array($key, $this->required)) {
-				if(empty($val)) {
-					$this->errors[$key] = $key." is a required field". $this->classification;
+			if($this->classification == "Task"){
+				if(in_array($key, $this->requiredTaskFields)) {
+					if(empty($val)) {
+						$this->errors[$key] = $key." is a required field". ;
+					}
+				}
+			}else{
+				if(in_array($key, $this->required)) {
+					if(empty($val)) {
+						$this->errors[$key] = $key." is a required field". ;
+					}
 				}
 			}
 		}
