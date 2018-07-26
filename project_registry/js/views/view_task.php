@@ -27,7 +27,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-3">
-			<div ng-include="'projects/toc'">
+			<div ng-include="'projects/toc_task'">
 			</div>
 		</div>
 		<div class='project col-sm-6'>
@@ -152,12 +152,7 @@
 
       <div class='form-row clearfix' data-row-id="timeline">
 				<div class='col-sm-12 field-header'>
-					<label><?php echo elgg_echo('projects:timeline'); ?></label>
-
-                    <div class="help-text">
-						<p><?php echo elgg_echo('projects:timeline:helptext');?></p>
-                    </div>
-
+					<label><?php echo elgg_echo('support_request:task:completion_date'); ?></label>
 					<a class='glyphicon edit-button timeline' data-id="timeline" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
