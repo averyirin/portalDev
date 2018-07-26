@@ -174,6 +174,7 @@ class Project {
 	{
 		foreach($this as $key => $val) {
 			if($this->classification == "Task"){
+				$this->required =  array('title', 'org', 'description');
 				if(in_array($key, $this->required)) {
 						if(empty($val)) {
 							$this->errors[$key] = $key." is a required field";
