@@ -14,7 +14,7 @@
 class Project {
 
 	private $required = array('title', 'org', 'scope', 'opis', 'usa');
-	private $requiredTaskFields = array('title', 'org', 'description');
+	//private $requiredTaskFields = array('title', 'org', 'description');
 	public $attachments = array();
 	public $opis = array();
 	public $errors = array();
@@ -174,7 +174,7 @@ class Project {
 	{
 		foreach($this as $key => $val) {
 			if($this->classification == "Task"){
-				if(in_array($key, $this->requiredTaskFields)) {
+				if(in_array($key, $this->required)) {
 						if(empty($val)) {
 							$this->errors[$key] = $key." is a required field";
 						}
