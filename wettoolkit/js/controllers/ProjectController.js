@@ -294,6 +294,7 @@
 
                     project.create(vm.project).then(function (success) {
                         //upload attachments
+                        console.log(success);
                         Upload.upload({
                             url: 'api/projects',
                             data: {files: vm.files, 'projectId': success.data.id, 'accessId': success.data.accessId, 'action': 'attachFile'}
