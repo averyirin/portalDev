@@ -273,6 +273,8 @@
         }
 
         vm.createTask = function (isValid) {
+
+            vm.timeline = new Date(vm.timeline);
             tinymce.triggerSave();
 
             setTimeout(function () {
