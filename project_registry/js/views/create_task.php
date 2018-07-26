@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class='col-sm-12 field-body'>
-                    <textarea name="scope" ng-model='vm.project.scope' required></textarea>
+                    <textarea name="scope" ng-model='vm.project.scope'></textarea>
 
                 </div>
             </div>
@@ -119,7 +119,7 @@
                                         <label><?php echo elgg_echo('projects:rank'); ?>:</label>
                                     </div>
                                     <div class='col-sm-9'>
-                                        <input type='text' class='' name='opi_rank' ng-model='opi.rank' required/>
+                                        <input type='text' class='' name='opi_rank' ng-model='opi.rank' />
 
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                         <label><?php echo elgg_echo('projects:name'); ?>:</label>
                                     </div>
                                     <div class='col-sm-9'>
-                                        <input type='text' class='' name='opi_name' ng-model='opi.name' required/>
+                                        <input type='text' class='' name='opi_name' ng-model='opi.name' />
 
                                     </div>
                                 </div>
@@ -137,7 +137,7 @@
                                         <label><?php echo elgg_echo('projects:phone'); ?>:</label>
                                     </div>
                                     <div class='col-sm-9'>
-                                        <input type='text' class='' name='opi_phone' ng-model='opi.phone' required/>
+                                        <input type='text' class='' name='opi_phone' ng-model='opi.phone' />
 
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                                         <label><?php echo elgg_echo('projects:email'); ?>:</label>
                                     </div>
                                     <div class='col-sm-9'>
-                                        <input type='email' class='' name='opi_email' ng-model='opi.email' required/>
+                                        <input type='email' class='' name='opi_email' ng-model='opi.email' />
 
                                     </div>
                                 </div>
@@ -275,28 +275,28 @@
                         <label><?php echo elgg_echo('projects:rank'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='text' class='' name='usa_rank' ng-model='vm.project.usa.rank' required/>
+                        <input type='text' class='' name='usa_rank' ng-model='vm.project.usa.rank' />
 
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:name'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='text' class='' name='usa_name' ng-model='vm.project.usa.name' required/>
+                        <input type='text' class='' name='usa_name' ng-model='vm.project.usa.name' />
 
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:position'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='text' class='' name='usa_position' ng-model='vm.project.usa.position' required/>
+                        <input type='text' class='' name='usa_position' ng-model='vm.project.usa.position' />
 
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:email'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='email' class='' name='usa_email' ng-model='vm.project.usa.email' required/>
+                        <input type='email' class='' name='usa_email' ng-model='vm.project.usa.email' />
 
                     </div>
                 </div>
