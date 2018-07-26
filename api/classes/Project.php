@@ -151,7 +151,11 @@ class Project {
         $this->op_mandate = $row->op_mandate;
 		$this->investment = $row->investment;
         $this->risk = $row->risk;
-        $this->timeline = $row->timeline;
+				if($this->classification == "Task"){
+	        $this->timeline =	gmdate("Y-m-d", $row->time_created);
+				}else{
+        	$this->timeline = $row->timeline;
+				}
         $this->impact = $row->impact;
         $this->savings = $row->savings;
 
