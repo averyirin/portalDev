@@ -181,8 +181,8 @@
 					</div>
 
 					<div ng-if="vm.project.editable['attachments']">
-                        <input type="date" ng-model='vm.project.attachments' />
-						<div class='editable-content-buttons'>
+						<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
+					<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
 							<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
 						</div>
