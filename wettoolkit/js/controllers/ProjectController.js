@@ -374,7 +374,7 @@
             Upload.upload({
                 url: 'api/projects',
                 data: {files: vm.files, 'projectId': success.data.id, 'accessId': success.data.accessId, 'action': 'attachFile'}
-            }).then(function (success) {
+            }).then(function (field) {
 
             }, function (error) {
                 console.log(error);
