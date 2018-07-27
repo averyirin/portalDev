@@ -12,7 +12,6 @@
         vm.projects = [];
         vm.project = resolveProject;
         vm.opis = [{}];
-        vm.usa = {};
 
         vm.project.timeline = new Date(vm.project.timeline);
         //Type filter
@@ -220,7 +219,6 @@
                     if (!vm.project.hasOwnProperty('savings')) {
                         vm.project.savings = {};
                     }
-                    vm.project.usa = vm.usa;
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
                     vm.project.percentage = 0;
@@ -290,7 +288,6 @@
                     if (!vm.project.hasOwnProperty('savings')) {
                         vm.project.savings = {};
                     }
-                    vm.project.usa = vm.usa;
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
                     vm.project.percentage = 0;

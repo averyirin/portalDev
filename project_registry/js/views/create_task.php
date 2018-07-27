@@ -275,29 +275,37 @@
                         <label><?php echo elgg_echo('projects:rank'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='text' class='' name='usa_rank' ng-model='vm.usa.rank' />
-
+                        <input type='text' class='' name='usa_rank' ng-model='vm.project.usa.rank' required/>
+                        <div ng-messages="projectForm.usa_rank.$error" ng-if="projectForm.usa_rank.$touched || projectForm.$submitted">
+                            <div ng-messages-include='projects/messages'></div>
+                        </div>
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:name'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='text' class='' name='usa_name' ng-model='vm.usa.name' />
-
+                        <input type='text' class='' name='usa_name' ng-model='vm.project.usa.name' required/>
+                        <div ng-messages="projectForm.usa_name.$error" ng-if="(projectForm.usa_name.$touched) || (projectForm.$submitted)">
+                            <div ng-messages-include="projects/messages"></div>
+                        </div>
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:position'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='text' class='' name='usa_position' ng-model='vm.usa.position' />
-
+                        <input type='text' class='' name='usa_position' ng-model='vm.project.usa.position' required/>
+                        <div ng-messages="projectForm.usa_position.$error" ng-if="(projectForm.usa_position.$touched) || (projectForm.$submitted)">
+                            <div ng-messages-include="projects/messages"></div>
+                        </div>
                     </div>
                     <div class='col-sm-3'>
                         <label><?php echo elgg_echo('projects:email'); ?>:</label>
                     </div>
                     <div class='col-sm-9'>
-                        <input type='email' class='' name='usa_email' ng-model='vm.usa.email' />
-
+                        <input type='email' class='' name='usa_email' ng-model='vm.project.usa.email' required/>
+                        <div ng-messages="projectForm.usa_email.$error" ng-if="(projectForm.usa_email.$touched) || (projectForm.$submitted)">
+                            <div ng-messages-include="projects/messages"></div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -93,7 +93,9 @@ function projectsRouter($method, $page, $publicKey) {
                             $session->setHeader(201);
                             $status = 'success';
                             $data   = array('id' => $project->id, 'accessId' => $project->access_id);
-                            $project->sendEmail('submit');
+                            if($project->classification != "Task"){
+                              $project->sendEmail('submit');                              
+                            }
                         } else {
                             $session->setHeader(500);
                         }
