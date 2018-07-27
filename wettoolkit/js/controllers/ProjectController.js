@@ -12,6 +12,7 @@
         vm.projects = [];
         vm.project = resolveProject;
         vm.opis = [{}];
+        vm.usa = {};
 
         vm.project.timeline = new Date(vm.project.timeline);
         //Type filter
