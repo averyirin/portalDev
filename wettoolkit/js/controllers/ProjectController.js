@@ -13,7 +13,6 @@
         vm.project = resolveProject;
         vm.opis = [{}];
 
-        vm.project.timeline = new Date(vm.project.timeline);
         //Type filter
         vm.classification_filter = {classification:elgg.echo('projects:project')}
         //add Project / Task filter on
@@ -113,6 +112,7 @@
             vm.sme = {};
             vm.usa = {};
             vm.savings = {};
+            vm.project.timeline = new Date(vm.project.timeline);
 
             //set default value for existing project from saved json data
             angular.forEach(vm.project, function (value, key) {
