@@ -117,7 +117,8 @@
             angular.forEach(vm.project, function (value, key) {
                 vm[key] = value;
             });
-            vm.project.timeline = "";
+            vm.project.timeline = null;
+            vm.project.timeline = vm.project.timeline == null ? "" : new Date(vm.project.timeline);
             vm.project.description = $sce.trustAsHtml(vm.project.description);
 
             //create slider for percentage complete
@@ -372,6 +373,7 @@
                 'field': field,
                 'value': vm[field]
             }, vm.project.id).then(function (success) {
+                console.log(field+" "+ vm[field]);
                 if (field == 'description') {
                     vm.project[field] = $sce.trustAsHtml(vm[field]);
                 } else {
