@@ -181,8 +181,18 @@
 					</div>
 
 					<div ng-if="vm.project.editable['attachments']">
+
+
 						<div ng-repeat='attachment in vm.project.attachments'>
-							<a href='{{attachment.url}}' >{{attachment.title}}</a>
+							<div class="col-xs-8">
+									<a href='{{attachment.url}}' >{{attachment.title}}</a>
+							</div>
+							<div class="col-xs-2">
+								<a href="#/projects/view/1742098" class="glyphicon edit-button action-item ng-scope" ng-if="project.can_edit"></a>
+							</div>
+							<div class="col-xs-2">
+								<a class="glyphicon delete-button action-item ng-scope" ng-if="project.can_edit" ng-click="vm.deleteProject(project.id, key)" ng-delete-once="Are you sure you want to delete this project? There is no undo!"></a>
+							</div>
 						</div>
 						<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
 					<div class='editable-content-buttons'>
