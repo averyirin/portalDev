@@ -363,18 +363,21 @@
         }
 
         vm.update = function (field) {
-            tinyMCE.triggerSave();
+
+          if(field == 'timeline' && vm.project.classification == "Task"){
+
+            console.log("Before Val " + vm.project[timeline]);
+            vm.project[field] = new Date(vm[field]);
+            console.log("Did timeline date update");
             console.log("Update Val " + field+" "+ vm[field]);
+          }
+            tinyMCE.triggerSave();
 
 
             if (field == "description") {
                 vm[field] = $('body').find('#description').val();
             } else if (field == "savings") {
                 vm.savings.choices = vm.choices;
-            }
-            if(field == 'timeline' && vm.project.classification == "Task"){
-              vm.project[field] = new Date(vm[field]);
-              console.log("Did timeline date update");
             }
             project.update({
                 'field': field,
