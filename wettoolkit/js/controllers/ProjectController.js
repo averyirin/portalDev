@@ -382,7 +382,7 @@
             }, vm.project.id).then(function (success) {
                 console.log(field+" "+ vm[field]);
 
-                else if (field == 'description') {
+                if (field == 'description') {
                     vm.project[field] = $sce.trustAsHtml(vm[field]);
                 } else {
                     vm.project[field] = vm[field];
