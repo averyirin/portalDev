@@ -364,20 +364,24 @@
 
         vm.update = function (field) {
             tinyMCE.triggerSave();
+            console.log("Update Val " + field+" "+ vm[field]);
+
+
             if (field == "description") {
                 vm[field] = $('body').find('#description').val();
             } else if (field == "savings") {
                 vm.savings.choices = vm.choices;
             }
-
+            if(field == 'timeline' && vm.project.classification == "Task"){
+              vm.project[field] = new Date(vm[field]);
+              console.log("Did timeline date update");
+            }
             project.update({
                 'field': field,
                 'value': vm[field]
             }, vm.project.id).then(function (success) {
                 console.log(field+" "+ vm[field]);
-                if(field == 'timeline' && vm.project.classification == "Task"){
-                  vm.project[field] = new Date(vm[field]);
-                }
+
                 else if (field == 'description') {
                     vm.project[field] = $sce.trustAsHtml(vm[field]);
                 } else {
