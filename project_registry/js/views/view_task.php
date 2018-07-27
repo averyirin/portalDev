@@ -159,7 +159,7 @@
 					<p data-field-id="timeline">{{vm.project.timeline | date: 'yyyy-MM-dd'}} </p>
 
 					<div ng-if="vm.project.editable['timeline']">
-                        <input type="date" ng-model='vm.timeline' />
+                        <input type="date" ng-model='vm.project.timeline' />
 						<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="timeline" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
 							<a class='elgg-button elgg-button-action elgg-button-accept' data-id="timeline" ng-click="vm.update('timeline'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
