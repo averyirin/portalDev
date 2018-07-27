@@ -184,10 +184,10 @@
 
 
 						<div ng-repeat='attachment in vm.project.attachments'>
-							<div class="col-xs-10">
+							<div class="col-xs-11">
 									<a href='{{attachment.url}}' >{{attachment.title}}</a>
 							</div>
-							<div class="col-xs-2">
+							<div class="col-xs-1">
 								<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteFile(project.id, key)" ng-delete-once="Are you sure you want to delete this file? There is no undo!"></a>
 							</div>
 						</div>
