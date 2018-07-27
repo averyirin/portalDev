@@ -111,12 +111,13 @@
             vm.loaded = false;
             vm.sme = {};
             vm.usa = {};
-            vm.savings = {};            
+            vm.savings = {};
 
             //set default value for existing project from saved json data
             angular.forEach(vm.project, function (value, key) {
                 vm[key] = value;
             });
+            vm.project.timeline = new Date(vm.project.timeline);
             vm.project.description = $sce.trustAsHtml(vm.project.description);
 
             //create slider for percentage complete
@@ -130,7 +131,7 @@
                     }
                 }
             };
-
+            console.log(vm.project);
             vm.project.editable = [];
             vm.loaded = true;
         } else {
