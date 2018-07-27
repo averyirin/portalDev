@@ -119,7 +119,7 @@
             });
             //vm.project.timeline = null;
             vm.project.description = $sce.trustAsHtml(vm.project.description);
-
+            vm.project.timeline = new Date(vm.project.timeline);
             //create slider for percentage complete
             vm.slider = {
                 'options': {
