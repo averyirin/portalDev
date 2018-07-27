@@ -368,8 +368,9 @@
             console.log("Did timeline date update");
             console.log("Before Val " + new Date(vm[field]));
             console.log("Update Val " +  new Date(vm.project[field]));
-            vm.project[field] =  new Date(vm.project[field]);
+            vm[field] =  new Date(vm.project[field]);
           }
+
             tinyMCE.triggerSave();
 
 
