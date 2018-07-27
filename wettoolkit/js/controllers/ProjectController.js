@@ -219,13 +219,7 @@
                     if (!vm.project.hasOwnProperty('savings')) {
                         vm.project.savings = {};
                     }
-                    if (!vm.project.hasOwnProperty('usa')) {
-                        vm.project.usa = {};
-                        vm.project.usa.rank ="t";
-                        vm.project.usa.name = "t";
-                        vm.project.usa.position = "t";
-                        vm.project.usa.email ="t";
-                    }
+                    vm.project.usa = vm.usa;
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
                     vm.project.percentage = 0;
@@ -295,9 +289,7 @@
                     if (!vm.project.hasOwnProperty('savings')) {
                         vm.project.savings = {};
                     }
-                    if (!vm.project.hasOwnProperty('usa')) {
-                        vm.project.usa = {};
-                    }
+                    vm.project.usa = vm.usa;
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
                     vm.project.percentage = 0;
