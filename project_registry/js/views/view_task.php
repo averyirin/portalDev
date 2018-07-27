@@ -183,8 +183,8 @@
 					<div ng-if="vm.project.editable['attachments']">
 
 
-						<div style="margin-bottom:10px;" ng-repeat='attachment in vm.project.attachments'>
-							<div class="col-xs-11">
+						<div ng-repeat='attachment in vm.project.attachments'>
+							<div class="col-xs-11"  style="margin-bottom:10px;" >
 									<a href='{{attachment.url}}' >{{attachment.title}}</a>
 							</div>
 							<div class="col-xs-1">
