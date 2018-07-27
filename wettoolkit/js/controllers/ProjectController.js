@@ -111,8 +111,7 @@
             vm.loaded = false;
             vm.sme = {};
             vm.usa = {};
-            vm.savings = {};
-            vm.project.timeline = new Date(vm.project.timeline);
+            vm.savings = {};            
 
             //set default value for existing project from saved json data
             angular.forEach(vm.project, function (value, key) {
