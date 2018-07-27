@@ -151,11 +151,7 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
         $this->op_mandate = $row->op_mandate;
 		$this->investment = $row->investment;
         $this->risk = $row->risk;
-				if($this->classification == "Task"){
-	        $this->timeline =	gmdate("Y-m-d", $row->time_created);
-				}else{
-        	$this->timeline = $row->timeline;
-				}
+				$this->timeline = $row->timeline;				
         $this->impact = $row->impact;
         $this->savings = $row->savings;
 
