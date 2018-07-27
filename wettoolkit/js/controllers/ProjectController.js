@@ -221,10 +221,10 @@
                     }
                     if (!vm.project.hasOwnProperty('usa')) {
                         vm.project.usa = {};
-                        vm.project.usa.rank ="";
-                        vm.project.usa.name = "";
-                        vm.project.usa.position = "";
-                        vm.project.usa.email ="";
+                        vm.project.usa.rank =" ";
+                        vm.project.usa.name = " ";
+                        vm.project.usa.position = " ";
+                        vm.project.usa.email =" ";
                     }
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
