@@ -151,7 +151,9 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
         $this->op_mandate = $row->op_mandate;
 		$this->investment = $row->investment;
         $this->risk = $row->risk;
-				$this->timeline = $row->timeline;				
+				
+        	$this->timeline = $row->timeline;
+				}
         $this->impact = $row->impact;
         $this->savings = $row->savings;
 
