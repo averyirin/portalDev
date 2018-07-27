@@ -366,9 +366,10 @@
 
           if(field == 'timeline' && vm.project.classification == "Task"){
 
-            console.log("Before Val " + vm.project[timeline]);
-            vm.project[field] = new Date(vm[field]);
+
             console.log("Did timeline date update");
+            console.log("Before Val " + vm.project[field]);
+            vm.project[field] = new Date(vm[field]);
             console.log("Update Val " + field+" "+ vm[field]);
           }
             tinyMCE.triggerSave();
