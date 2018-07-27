@@ -294,7 +294,7 @@
                     vm.project.status = 'Submitted';
                     //Set the type to be Project
                     vm.project.classification = 'Task';
-
+                    console.log(vm.project);
                     project.create(vm.project).then(function (success) {
                         //upload attachments
                         console.log(success.data);
