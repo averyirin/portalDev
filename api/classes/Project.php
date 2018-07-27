@@ -12,8 +12,8 @@
  * @author McFarlane.a
  */
 class Project {
- private $required = array();
-	//private $required = array('title', 'org', 'scope', 'opis', 'usa');
+// private $required = array();
+private $required = array('title', 'org', 'scope', 'opis', 'usa');
 //	private $requiredTaskFields = array('title', 'org',;
 	public $attachments = array();
 	public $opis = array();
@@ -176,6 +176,10 @@ class Project {
 
 	public function validate()
 	{
+		if($this->classification == "Task"){
+			$this->required =  array('title', 'org');
+		}
+
 		foreach($this as $key => $val) {
 				if(in_array($key, $this->required)) {
 						if(empty($val)) {
@@ -195,11 +199,7 @@ class Project {
 		elgg_set_ignore_access();
 
 		$project = new ElggObject();
-		/*
-		if($this->classification == "Task"){
-			$this->required =  array('title', 'org');
-		}
-		*/
+
 		foreach($this as $key => $val) {
 			if(in_array($key, $this->jsonFields)) {
 				$project->$key = json_encode($val);

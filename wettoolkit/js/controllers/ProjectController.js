@@ -219,6 +219,9 @@
                     if (!vm.project.hasOwnProperty('savings')) {
                         vm.project.savings = {};
                     }
+                    if (!vm.project.hasOwnProperty('usa')) {
+                        vm.project.usa = {};
+                    }
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
                     vm.project.percentage = 0;
@@ -287,6 +290,9 @@
 
                     if (!vm.project.hasOwnProperty('savings')) {
                         vm.project.savings = {};
+                    }
+                    if (!vm.project.hasOwnProperty('usa')) {
+                        vm.project.usa = {};
                     }
                     vm.project.opis = vm.opis;
                     vm.project.savings.choices = vm.choices;
