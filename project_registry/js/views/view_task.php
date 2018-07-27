@@ -174,7 +174,11 @@
 					<a class='glyphicon edit-button attachments' data-id="attachments" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
-					<p data-field-id="attachments">{{vm.project.title}} </p>
+					<p data-field-id="attachments">
+						<div ng-repeat='attachment in vm.project.attachments'>
+							<a href='{{attachment.url}}' >{{attachment.title}}</a>
+						</div>
+					</p>
 
 					<div ng-if="vm.project.editable['attachments']">
                         <input type="date" ng-model='vm.project.attachments' />
