@@ -184,14 +184,11 @@
 
 
 						<div ng-repeat='attachment in vm.project.attachments'>
-							<div class="col-xs-8">
+							<div class="col-xs-10">
 									<a href='{{attachment.url}}' >{{attachment.title}}</a>
 							</div>
 							<div class="col-xs-2">
-								<a href="#/projects/view/1742098" class="glyphicon edit-button action-item ng-scope" ></a>
-							</div>
-							<div class="col-xs-2">
-								<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteFile(project.id, key)" ng-delete-once="Are you sure you want to delete this project? There is no undo!"></a>
+								<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteFile(project.id, key)" ng-delete-once="Are you sure you want to delete this file? There is no undo!"></a>
 							</div>
 						</div>
 						<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
