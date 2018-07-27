@@ -169,6 +169,24 @@
 	</div>
 
 	<div class='form-row clearfix' data-row-id="attachments">
+				<div class='col-sm-12 field-header'>
+					<label><?php echo elgg_echo('projects:files'); ?></label>
+					<a class='glyphicon edit-button attachments' data-id="attachments" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
+				</div>
+				<div class='col-sm-12 field-body'>
+					<p data-field-id="attachments">{{vm.project.title}} </p>
+
+					<div ng-if="vm.project.editable['attachments']">
+                        <input type="date" ng-model='vm.project.attachments' />
+						<div class='editable-content-buttons'>
+							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
+							<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
+						</div>
+					</div>
+				</div>
+	</div>
+	<!--
+	<div class='form-row clearfix' data-row-id="attachments">
 		<div class='col-sm-12 field-header'>
 			<label><?php echo elgg_echo('projects:files'); ?></label>
 			<a class='glyphicon edit-button attachments' data-id="attachments" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
@@ -184,9 +202,9 @@
 					<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
 				</div>
 			</div>
-
 		</div>
 	</div>
+-->
 	<!--
 	<div class='row form-row' data-row-id="attachments">
 			<div class='col-lg-12 field-header'>
