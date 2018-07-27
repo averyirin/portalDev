@@ -181,6 +181,9 @@
 					</div>
 
 					<div ng-if="vm.project.editable['attachments']">
+						<div ng-repeat='attachment in vm.project.attachments'>
+							<a href='{{attachment.url}}' >{{attachment.title}}</a>
+						</div>
 						<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
 					<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
