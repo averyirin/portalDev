@@ -177,21 +177,11 @@ class Project {
 	public function validate()
 	{
 		foreach($this as $key => $val) {
-			if($this->classification == "Task"){
-				$this->required =  array('title', 'org');
 				if(in_array($key, $this->required)) {
 						if(empty($val)) {
 							$this->errors[$key] = $key." is a required field";
 						}
 					}
-			}else{
-				if(in_array($key, $this->required)) {
-						if(empty($val)) {
-							$this->errors[$key] = $key." is a required field";
-						}
-					}
-			}
-
 			}
 
 		if(empty($this->errors)) {
@@ -205,6 +195,9 @@ class Project {
 		elgg_set_ignore_access();
 
 		$project = new ElggObject();
+		if($this->classification == "Task"){
+			$this->required =  array('title', 'org');
+		}
 		foreach($this as $key => $val) {
 			if(in_array($key, $this->jsonFields)) {
 				$project->$key = json_encode($val);
