@@ -12,7 +12,7 @@
  * @author McFarlane.a
  */
 class Project {
- $required = array();
+ private $required = array();
 	//private $required = array('title', 'org', 'scope', 'opis', 'usa');
 //	private $requiredTaskFields = array('title', 'org',;
 	public $attachments = array();
