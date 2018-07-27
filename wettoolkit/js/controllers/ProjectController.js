@@ -369,7 +369,18 @@
             console.log("Before Val " + new Date(vm[field]));
             console.log("Update Val " +  new Date(vm.project[field]));
             vm[field] =  new Date(vm.project[field]);
+          }else if (field == 'attachments'){
+            //upload attachments
+            Upload.upload({
+                url: 'api/projects',
+                data: {files: vm.files, 'projectId': success.data.id, 'accessId': success.data.accessId, 'action': 'attachFile'}
+            }).then(function (success) {
+
+            }, function (error) {
+                console.log(error);
+            });
           }
+
 
             tinyMCE.triggerSave();
 
