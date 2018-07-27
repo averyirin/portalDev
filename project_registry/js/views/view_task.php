@@ -150,13 +150,13 @@
 
 
 
-      <div class='form-row clearfix' data-row-id="timeline">
+  <div class='form-row clearfix' data-row-id="timeline">
 				<div class='col-sm-12 field-header'>
 					<label><?php echo elgg_echo('support_request:task:completion_date'); ?></label>
 					<a class='glyphicon edit-button timeline' data-id="timeline" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
-					<p data-field-id="timeline">{{vm.project.timeline | date: 'yyyy-MM-dd'}} </p>
+					<p data-field-id="timeline">{{vm.project.timeline == null ? "" : vm.project.timeline | date: 'yyyy-MM-dd'}} </p>
 
 					<div ng-if="vm.project.editable['timeline']">
                         <input type="date" ng-model='vm.project.timeline' />
@@ -166,8 +166,39 @@
 						</div>
 					</div>
 				</div>
-			</div>
+	</div>
+
+	<div class='form-row clearfix' data-row-id="attachments">
+		<div class='col-sm-12 field-header'>
+			<label><?php echo elgg_echo('projects:files'); ?></label>
+			<a class='glyphicon edit-button attachments' data-id="attachments" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 		</div>
+		<div class='col-sm-12 field-body'>
+			<div ng-repeat='attachment in vm.project.attachments'>
+				<a href='{{attachment.url}}' >{{attachment.title}}</a>
+			</div>
+			<div ng-if="vm.project.editable['attachments']">
+					<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
+				<div class='editable-content-buttons'>
+					<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
+					<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--
+	<div class='row form-row' data-row-id="attachments">
+			<div class='col-lg-12 field-header'>
+					<label><?php echo elgg_echo('projects:files'); ?></label>
+			</div>
+			<div class='col-sm-12 field-body'>
+					<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
+			</div>
+	</div>
+-->
+
+</div>
 
 
 
