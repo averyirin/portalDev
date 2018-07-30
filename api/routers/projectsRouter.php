@@ -55,7 +55,7 @@ function projectsRouter($method, $page, $publicKey) {
                     $session->setHeader(200);
                     //Get this to work..
                     $data = Project::deleteAttachment($_POST['projectId'], $_POST['attachmentId']);
-                    
+                  //  $data = 
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
