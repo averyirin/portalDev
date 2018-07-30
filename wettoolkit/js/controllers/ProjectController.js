@@ -403,7 +403,7 @@
                     $location.path('projects/view/'+vm.project.id);
                   }
                 }else if (field == 'attachments'){
-                    $location.url();
+                    $location.path($location.path());
                 }
                 else if (field == 'description') {
                     vm.project[field] = $sce.trustAsHtml(vm[field]);
