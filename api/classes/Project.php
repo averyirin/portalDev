@@ -278,7 +278,7 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
 			return false;
 		}
 	}
-
+	
 	public static function saveAttachments($attachments, $id, $accessId)
 	{
 		elgg_set_ignore_access();
