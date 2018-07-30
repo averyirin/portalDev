@@ -189,7 +189,7 @@
 										<a href='{{attachment.url}}' >{{attachment.title}}</a>
 								</div>
 								<div class="col-xs-1">
-									<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteAttachment(project.id, key)" ng-delete-once="Are you sure you want to delete this file {{attachment.title}}? There is no undo!"></a>
+									<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteAttachment(vm.project.id, key)" ng-delete-once="Are you sure you want to delete this file {{attachment.title}}? There is no undo!"></a>
 								</div>
 							</div>
 						</div>
