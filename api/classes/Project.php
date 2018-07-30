@@ -363,7 +363,7 @@ private function hasAttachment($index, $project_id){
 			$this->attachments[] = $attachment;
 		}
 */
-	return $attachments;
+	return json_encode($attachments);
 	}
 
 	private function setAttachments()
