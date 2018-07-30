@@ -54,7 +54,7 @@ function projectsRouter($method, $page, $publicKey) {
                 $session = new Session(null, null, null);
                 if (Project::deleteAttachment($_POST['projectId'], $_POST['accessId'])) {
                     $session->setHeader(200);
-
+                    $data = "Works!";
                     $status = 'success';
                 } else {
                     $session->setHeader(400);
