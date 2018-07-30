@@ -1,7 +1,7 @@
 <?php ?>
 <div class='template-header'>
     <h2><?php echo elgg_echo('projects:add')." - Task"; ?></h2>
-    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
+    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:task:create_title'); ?></a>
 </div>
 <div class="row">
     <div class="col-sm-4">
@@ -79,11 +79,7 @@
 
             <div class='row form-row' data-row-id="timeline">
                 <div class='col-lg-12 field-header'>
-                    <label><?php echo elgg_echo('projects:timeline'); ?></label>
-
-                    <div class="help-text">
-                        <p><?php echo elgg_echo('projects:timeline:helptext'); ?></p>
-                    </div>
+                    <label><?php echo elgg_echo('support_request:task:completion_date'); ?></label>
 
                 </div>
                 <div class='col-sm-12 field-body'>
@@ -101,7 +97,7 @@
             </div>
 
 
-            <button type='submit' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:submit'); ?></button>
+            <button type='submit' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:task:submit'); ?></button>
         </form>
     </div>
 </div>

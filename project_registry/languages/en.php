@@ -218,7 +218,8 @@ $english = array(
     'support_request:back'                => 'Back',
     'support_request:task:submit'               => 'Create Task',
     'support_request:task:completion_date'               => 'Requested Completion Date',
-
+    'support_request:task:create_title' => 'Support Request - Create Task',
+    'support_request:task:timeline:helptext' => 'Estimated completion date',
 );
 
 add_translation("en", $english);
