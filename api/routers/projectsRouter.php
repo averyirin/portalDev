@@ -50,7 +50,7 @@ function projectsRouter($method, $page, $publicKey) {
                     $session->setHeader(400);
                     $status = 'error';
                 }
-            } else if (get_input('action') == 'dettachFile'){
+            } else if (get_input('action') == 'deleteAttachment'){
               $session = new Session(null, null, null);
               if (hasAttachment($_POST['attachmentId'],$_POST['projectId'])) {
                   $data = Project::deleteAttachment($_POST['attachmentId'], $_POST['projectId']);
