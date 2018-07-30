@@ -358,7 +358,6 @@ private function hasAttachment($index, $project_id){
 			"relationship_guid" => $this->id,
 			"inverse_relationship" => true
 		));
-		return $attachments;
 	/*	foreach($attachments as $obj) {
 			$attachment = new Attachment($obj);
 			$this->attachments[] = $attachment;
