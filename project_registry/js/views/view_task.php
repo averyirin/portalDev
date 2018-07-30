@@ -184,7 +184,8 @@
 
 
 						<div ng-repeat='attachment in vm.project.attachments'>
-							<div class="row" style="margin-bottom:10px;">
+							<div class="row" style="margin-bottom:10px;
+							border-bottom: 1px solid #dde4e6;padding: 10px;">
 								<div class="col-xs-11"  >
 										<a href='{{attachment.url}}' >{{attachment.title}}</a>
 								</div>
