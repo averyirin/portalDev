@@ -348,7 +348,7 @@
 
           Upload.upload({
               url: 'api/projects',
-              data: {'attachmentId': id, 'projectId': index, 'action': 'detachFile'}
+              data: {'attachmentId': 1, 'projectId': 1234, 'action': 'detachFile'}
           }).then(function (success) {
               console.log(success);
           }, function (error) {
