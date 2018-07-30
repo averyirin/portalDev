@@ -398,9 +398,9 @@
                 console.log(field+" "+ vm[field]);
                 if(field == 'classification'){
                   if(vm[field] == 'Task'){
-                    $window.location.href = '/projects/view_task/'+vm.project.id;
+                    $location.path('projects/view_task/'+vm.project.id);
                   }else{
-                    $window.location.href = '/projects/view/'+vm.project.id;
+                    $location.path('projects/view/'+vm.project.id);
                   }
                 }
                 else if (field == 'description') {
