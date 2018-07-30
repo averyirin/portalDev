@@ -181,7 +181,7 @@
 					</div>
 
 					<div ng-if="vm.project.editable['attachments']">
-						<div ng-repeat='attachment in vm.project.attachments'>
+						<div ng-repeat='(key, attachment) in vm.project.attachments'>
 							{{attachment}}
 							<div class="row" style="margin-bottom:10px;
 							border-bottom: 1px solid #dde4e6;padding: 10px;">

@@ -50,17 +50,17 @@ function projectsRouter($method, $page, $publicKey) {
                     $session->setHeader(400);
                     $status = 'error';
                 }
-            } else if (get_input('action') == 'detachFile'){
-              $session = new Session(null, null, null);
-              if (Project::hasAttachment($_POST['attachmentId'],$_POST['projectId'])) {
-                  $data = Project::deleteAttachment($_POST['attachmentId'], $_POST['projectId']);
-                  $session->setHeader(200);
-                  $status = 'success';
-              } else {
-                  $session->setHeader(400);
-                  $status = 'error';
-              }
-            }else {
+            }else if (get_input('action') == 'detachFile') {
+                $session = new Session(null, null, null);
+                if (Project::deleteAttachment($_POST['projectId'], $_POST['accessId'])) {
+                    $session->setHeader(200);
+
+                    $status = 'success';
+                } else {
+                    $session->setHeader(400);
+                    $status = 'error';
+                }
+            } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
                 $payload['user_id'] = (int) $payload['user_id'];
 

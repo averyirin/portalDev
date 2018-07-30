@@ -344,11 +344,11 @@
                 }
             }, 500);
         }
-        vm.deleteAttachment = function (id, index){
+        vm.deleteAttachment = function (id, key){
 
-          Upload.upload({
-              url: 'api/projects',
-              data: {'attachmentId': 1, 'projectId': 1234, 'action': 'detachFile'}
+          project.upload({
+              url: 'internal_api/projects',
+              data: {'attachmentId': key, 'projectId': id, 'action': 'detachFile'}
           }).then(function (success) {
               console.log(success);
           }, function (error) {
