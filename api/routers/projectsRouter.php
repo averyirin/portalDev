@@ -53,8 +53,8 @@ function projectsRouter($method, $page, $publicKey) {
             }else if (get_input('action') == 'detachFile') {
                 $session = new Session(null, null, null);
                     $session->setHeader(200);
-                    $data = Project::deleteAttachment($_POST['projectId'], $_POST['attachmentId']);
-                    
+                    Project::deleteAttachment($_POST['projectId'], $_POST['attachmentId']);
+                    $data =  array ('Message' => "Test");
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
