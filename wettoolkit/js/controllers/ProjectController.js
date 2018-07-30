@@ -282,7 +282,7 @@
                 vm.project.description = $('body').find('#description').val();
                 vm.project.timeline = vm.project.timeline == null ? "" : new Date(vm.project.timeline);
 
-            //    vm.project.timeline = $('body').find('#timeline').val();
+                //vm.project.timeline = $('body').find('#timeline').val();
                 if (isValid) {
                     //display loading overlay
                     $rootScope.isLoading = true;
@@ -344,7 +344,16 @@
                 }
             }, 500);
         }
-
+        vm.deleteAttachment = function (id, index){
+          project.post({
+              url: 'api/projects',
+              data: {'attachmentId': id, 'projectId': index, 'action': 'attachFile'}
+          }).then(function (success) {
+              console.log(success);
+          }, function (error) {
+              console.log(error);
+          });
+        }
         vm.deleteProject = function (id, index) {
             //display loading overlay
             $rootScope.isLoading = true;

@@ -50,7 +50,17 @@ function projectsRouter($method, $page, $publicKey) {
                     $session->setHeader(400);
                     $status = 'error';
                 }
-            } else {
+            } else if (get_input('action') == 'dettachFile'){
+              $session = new Session(null, null, null);
+              if (hasAttachment($_POST['attachmentId'],$_POST['projectId'])) {
+                  $data = Project::deleteAttachment($_POST['attachmentId'], $_POST['projectId']);
+                  $session->setHeader(200);
+                  $status = 'success';
+              } else {
+                  $session->setHeader(400);
+                  $status = 'error';
+              }
+            }else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
                 $payload['user_id'] = (int) $payload['user_id'];
 
@@ -94,7 +104,7 @@ function projectsRouter($method, $page, $publicKey) {
                             $status = 'success';
                             $data   = array('id' => $project->id, 'accessId' => $project->access_id);
                             if($project->classification != "Task"){
-                              $project->sendEmail('submit');                              
+                              $project->sendEmail('submit');
                             }
                         } else {
                             $session->setHeader(500);
