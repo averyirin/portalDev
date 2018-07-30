@@ -51,11 +51,15 @@ function projectsRouter($method, $page, $publicKey) {
                     $status = 'error';
                 }
             }else if (get_input('action') == 'detachFile') {
-                $session = new Session(null, null, null);
+                $session = new Session($publicKey, $signature, $payload);
+
+                    $payload            = json_decode(file_get_contents("php://input"), true);
+                    $payload['projectId'] = (int) $payload['projectId'];
+                    $payload['attachmentId'] = (int) $payload['attachmentId'];
                     $session->setHeader(200);
                     //Get this to work..
-                    $data = Project::deleteAttachment($_POST['projectId'], $_POST['attachmentId']);
-                  //  $data = 
+                    $data = Project::deleteAttachment($payload['projectId'], $payload['attachmentId']);
+                  //  $data =
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
