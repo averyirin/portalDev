@@ -352,6 +352,8 @@ private function hasAttachment($index, $project_id){
 	return true;
 }
 	public static function deleteAttachment($index, $project_id){
+
+			elgg_set_ignore_access();
 	//	$file->addRelationship($project_id, 'attachment');
 		$attachments = elgg_get_entities_from_relationship(array(
 			"relationship" => "attachment",
