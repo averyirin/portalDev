@@ -345,8 +345,8 @@
             }, 500);
         }
         vm.deleteAttachment = function (id, key){
-
-          project.upload({
+          
+          Upload.upload({
               url: 'internal_api/projects',
               data: {'attachmentId': key, 'projectId': id, 'action': 'detachFile'}
           }).then(function (success) {
