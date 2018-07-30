@@ -364,7 +364,7 @@ private function hasAttachment($index, $project_id){
 		}
 			return json_encode($attachments);
 */
-	return "Test";
+	 return array ('Message' => "Test");
 	}
 
 	private function setAttachments()
