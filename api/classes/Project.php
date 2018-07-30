@@ -351,7 +351,7 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
 private function hasAttachment($index, $project_id){
 	return true;
 }
-	private function deleteAttachment($index, $project_id){
+	public static function deleteAttachment($index, $project_id){
 	//	$file->addRelationship($project_id, 'attachment');
 		$attachments = elgg_get_entities_from_relationship(array(
 			"relationship" => "attachment",
@@ -364,7 +364,8 @@ private function hasAttachment($index, $project_id){
 		}
 			return json_encode($attachments);
 */
-	 
+return $attachments;
+
 	}
 
 	private function setAttachments()
