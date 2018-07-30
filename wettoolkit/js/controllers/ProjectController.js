@@ -396,12 +396,21 @@
                 'value': vm[field]
             }, vm.project.id).then(function (success) {
                 console.log(field+" "+ vm[field]);
-
-                if (field == 'description') {
+                if(field == 'classification'){
+                  if(vm[field] == 'Task'){
+                    $window.location.href = '/projects/view_task/'+vm.project.id;
+                  }else{
+                    $window.location.href = '/projects/view/'+vm.project.id;
+                  }
+                }
+                else if (field == 'description') {
                     vm.project[field] = $sce.trustAsHtml(vm[field]);
                 } else {
                     vm.project[field] = vm[field];
                 }
+
+
+
             }, function (error) {
                 console.log(error);
             });
