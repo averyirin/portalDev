@@ -63,7 +63,7 @@ function projectsRouter($method, $page, $publicKey) {
                         "relationship_guid" => $project_id,
                         "inverse_relationship" => true
                       ));
-                      $filesArr = new Array();
+                      $filesArr = array();
                       foreach($files as $file) {
                         			$f = new Array ($file['title'], $file['guid']);
                         			$filesArr[] = $f;
