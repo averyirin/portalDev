@@ -57,6 +57,7 @@ function projectsRouter($method, $page, $publicKey) {
                     //Get this to work
                     elgg_set_ignore_access();
                     $project_id =  $_POST['projectId'];
+                    $attachment_index =  $_POST['attachmentIndex'];
                   	//	$file->addRelationship($project_id, 'attachment');
                     $files = elgg_get_entities_from_relationship(array(
                         "relationship" => "attachment",
@@ -64,8 +65,8 @@ function projectsRouter($method, $page, $publicKey) {
                         "inverse_relationship" => true
                       ));
                       $filesArr = array();
-                      foreach($files as $file) {
-                        			$f = array($file['title'], $file['guid']);
+                      foreach($files as $key=>$file) {
+                        			$f = array($key, $file['title'], $file['guid']);
                         			$filesArr[] = $f;
                           }
                   	/*

@@ -348,7 +348,7 @@
           console.log(id+" "+key);
           Upload.upload({
               url: 'internapi/projects',
-              data: {'attachmentId': key, 'projectId': id, 'action': 'detachFile'}
+              data: {'attachmentIndex': key, 'projectId': id, 'action': 'detachFile'}
           }).then(function (success) {
               console.log(success);
           }, function (error) {
