@@ -57,12 +57,13 @@ function projectsRouter($method, $page, $publicKey) {
                     //Get this to work
                     elgg_set_ignore_access();
                   	//	$file->addRelationship($project_id, 'attachment');
-                  	$attachments = elgg_get_entities_from_relationship(array(
+
+                  	/*
+                    $attachments = elgg_get_entities_from_relationship(array(
                   			"relationship" => "attachment",
                   			"relationship_guid" => $this->id,
                   			"inverse_relationship" => true
                   		));
-                  	/*
                     Project::deleteAttachment($payload['projectId'], $payload['attachmentId']);
                 foreach($attachments as $obj) {
                   			$attachment = new Attachment($obj);
