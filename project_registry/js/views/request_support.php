@@ -15,11 +15,11 @@ Create task form
 <section class='col-md-1'></section>
 <section class='col-md-4'>
   <div class='row form-row' data-row-id="title">
-      <div class='col-sm-12 field-header'>
+      <div class='col-sm-12 field-header' style="text-align:center;" >
           <label><?php echo elgg_echo('support_request:heading:task'); ?></label>
       </div>
       <div class='col-sm-12 field-body'>
-        <div   style="min-height:100px">
+        <div >
           Tasks are anything that is less than 80 hours of work.<br/>
           Such as:
             <ul>
@@ -29,7 +29,7 @@ Create task form
               <li>Small video</li>
             </ul>
         </div>
-        <a href='#/projects/create_task' style="margin-top:1em"  class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:task'); ?></a>
+        <a href='#/projects/create_task'  class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:task'); ?></a>
       </div>
   </div>
 </section>
@@ -37,16 +37,16 @@ Create task form
 <section class='col-md-4 projects'>
 
     <div class='row form-row' data-row-id="title">
-        <div class='col-sm-12 field-header'>
+        <div class='col-sm-12 field-header' style="text-align:center;" >
             <label><?php echo elgg_echo('support_request:heading:project'); ?></label>
         </div>
         <div class='col-sm-12 field-body'>
-          <div   style="min-height:100px">
+          <div>
             Projects are more than 80 hrs of work. Require scope, cost, time, and risk estimates
           </div>
         </div>
         <div class='col-sm-12 field-body' style="text-align:center;">
-          <a href='#/projects/create' class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:project'); ?></a>
+          <a href='#/projects/create' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:project'); ?></a>
         </div>
     </div>
 </section>
