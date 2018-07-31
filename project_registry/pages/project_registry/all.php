@@ -8,7 +8,7 @@ $title = elgg_echo('projects');
 $siteUrl = elgg_get_site_url();
 $pluginUrl = $siteUrl."mod/project_registry";
 $wettoolkit_url = $siteUrl."mod/wettoolkit";
-$content = 
+$content =
 "
 <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css'/>
 <script type='text/javascript' src='https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js'></script>
@@ -37,26 +37,29 @@ $content =
 
 <section ng-app='portal' ng-controller='MainCtrl' style='position:relative;'>
 	<link rel='stylesheet' href='mod/project_registry/css/styles.css'/>
-	
+
 	<div class='alert alert-success fade' ng-cloak ng-show='successMessage'>
 		<strong>Success:</strong>{{message}}
 	</div>
-	
+	<!-- Failure message -->
+	<div class='alert alert-warning fade' ng-cloak ng-show='errorMessage'>
+		<strong>Failure:</strong>{{message}}
+	</div>
 	<div class='fade' ng-cloak ng-view>
 	</div>
-    
+
 	<div ng-cloak ng-if='isViewLoading'>
 		<div class='full-screen loading-screen'>
 			<h3>Please Wait...</h3>
 		</div>
 	</div>
-    
+
     <div ng-cloak ng-if='isLoading'>
 		<div class='full-screen loading-screen'>
 			<h3>Please Wait...</h3>
 		</div>
 	</div>
-    
+
 </section>";
 
 $sidebar = elgg_view('project_registry/sidebar/filter');
@@ -76,7 +79,7 @@ switch ($vars['page']) {
 
 		break;
 	case 'onhold':
-	
+
 		break;
 	default:
 		break;

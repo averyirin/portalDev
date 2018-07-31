@@ -222,6 +222,22 @@ $english = array(
     'support_request:task:create_title' => 'Support Request - Create Task',
     'support_request:task:timeline:helptext' => 'Estimated completion date',
     'support_request:files:add' => 'Add new file(s)',
+
+ /**
+     * Confluence Integration
+     */
+    'projects:confluence:add' => 'Add to Confluence',
+    'projects:confluence:already' => 'Already in Confluence',
+    'projects:confluence:view' => 'View in Confluence',
+    'projects:confluence:modal:title' => "Add project to Confluence",
+    'projects:confluence:modal:addTo' => "Add to Confluence",
+    'projects:confluence:modal:x' => "x",
+    'projects:confluence:modal:newSpace' => "New space",
+    'projects:confluence:modal:newSpaceDesc' => "(A new space will automatically be created)",
+    'projects:confluence:modal:existingSpace' => "Existing space",
+    'projects:confluence:modal:createNewSpace' => "Create new space",
+    'projects:confluence:modal:addExistingSpace' => "Add to existing space",
+	   'projects:confluence:modal:whereAddTo' => "Where would you like to add this project to?",
 );
 
 add_translation("en", $english);
