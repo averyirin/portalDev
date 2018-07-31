@@ -751,18 +751,6 @@
 
             </div>
 
-			<div class='form-row clearfix' data-row-id="attachments">
-				<div class='col-sm-12 field-header'>
-					<label><?php echo elgg_echo('projects:files'); ?></label>
-				</div>
-				<div class='col-sm-12 field-body'>
-					<div ng-repeat='attachment in vm.project.attachments'>
-						<a href='{{attachment.url}}' >{{attachment.title}}</a>
-					</div>
-				</div>
-			</div>
-			<!-- -->
-
 				<div class='form-row clearfix' data-row-id="attachments">
 							<div class='col-sm-12 field-header'>
 								<label><?php echo elgg_echo('projects:files'); ?></label>
@@ -774,7 +762,6 @@
 										<a href='{{attachment.url}}' >{{attachment.title}}</a>
 									</div>
 								</div>
-
 								<div ng-if="vm.project.editable['attachments']">
 									<div ng-repeat='(key, attachment) in vm.project.attachments'>
 										<div class="row" style="border-bottom: 1px solid #dde4e6;
