@@ -51,12 +51,9 @@ function projectsRouter($method, $page, $publicKey) {
                     $status = 'error';
                 }
             }else if (get_input('action') == 'detachFile') {
-                $session = new Session($publicKey, $signature, $payload);
-
-                    $payload            = json_decode(file_get_contents("php://input"), true);
-                    $payload['projectId'] = (int) $payload['projectId'];
-                    $payload['attachmentId'] = (int) $payload['attachmentId'];
+                $session = new Session(null, null, null);
                     $session->setHeader(200);
+
                     //Get this to work
                     elgg_set_ignore_access();
                   	//	$file->addRelationship($project_id, 'attachment');
@@ -75,7 +72,7 @@ function projectsRouter($method, $page, $publicKey) {
                   */
                   	//return $attachments;
 
-                    $data =  $attachments;
+                    $data =  $_POST['projectId'];
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
