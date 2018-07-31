@@ -44,13 +44,16 @@ Create task form
         </div>
         <div class='col-sm-12 field-body'>
           <p>Projects are more than 80 hrs of work.</p>
-          Requires estimates of:
-            <ul>
-              <li>Scope</li>
-              <li>Cost</li>
-              <li>Time</li>
-              <li>Risk</li>
-            </ul>
+          <p>
+            Requires estimates of: <br/>
+              <ul>
+                <li>Scope</li>
+                <li>Cost</li>
+                <li>Time</li>
+                <li>Risk</li>
+              </ul>
+          </p>
+
         </div>
         <div class='col-sm-12 field-body' style="text-align:center;">
           <a href='#/projects/create' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:project'); ?></a>
