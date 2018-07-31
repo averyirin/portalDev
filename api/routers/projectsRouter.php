@@ -57,9 +57,25 @@ function projectsRouter($method, $page, $publicKey) {
                     $payload['projectId'] = (int) $payload['projectId'];
                     $payload['attachmentId'] = (int) $payload['attachmentId'];
                     $session->setHeader(200);
-                    //Get this to work..
-                    $data = Project::deleteAttachment($payload['projectId'], $payload['attachmentId']);
-                  //  $data =
+                    //Get this to work
+                    elgg_set_ignore_access();
+                  	//	$file->addRelationship($project_id, 'attachment');
+                  	$attachments = elgg_get_entities_from_relationship(array(
+                  			"relationship" => "attachment",
+                  			"relationship_guid" => $this->id,
+                  			"inverse_relationship" => true
+                  		));
+                  	/*
+                    Project::deleteAttachment($payload['projectId'], $payload['attachmentId']);
+                foreach($attachments as $obj) {
+                  			$attachment = new Attachment($obj);
+                  			$this->attachments[] = $attachment;
+                  		}
+                  			return json_encode($attachments);
+                  */
+                  	//return $attachments;
+
+                    $data =  $attachments;
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);

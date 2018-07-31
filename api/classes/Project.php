@@ -351,24 +351,7 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
 private function hasAttachment($index, $project_id){
 	return true;
 }
-	public static function deleteAttachment($index, $project_id){
-
-			elgg_set_ignore_access();
-	//	$file->addRelationship($project_id, 'attachment');
-		$attachments = elgg_get_entities_from_relationship(array(
-			"relationship" => "attachment",
-			"relationship_guid" => $this->id,
-			"inverse_relationship" => true
-		));
-	/*	foreach($attachments as $obj) {
-			$attachment = new Attachment($obj);
-			$this->attachments[] = $attachment;
-		}
-			return json_encode($attachments);
-*/
-	//return $attachments;
-	echo array ('Message' => "Test");
-	}
+	
 
 	private function setAttachments()
 	{
