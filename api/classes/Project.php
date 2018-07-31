@@ -279,6 +279,23 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
 		}
 	}
 
+	public static function detachAttachment($attachment_index, $project_id){
+		elgg_set_ignore_access();
+		$files = elgg_get_entities_from_relationship(array(
+				"relationship" => "attachment",
+				"relationship_guid" => $project_id,
+				"inverse_relationship" => true
+			));
+			$filesArr = array();
+			foreach($files as $key=>$file) {
+					if($key == $attachment_index){
+						$f = array($key, $file['title'], $file['guid']);
+						$filesArr[] = $f;
+						remove_entity_relationship($file['guid'], "attachment", $project_id);
+					}
+		 }
+		 return $filesArr;
+	}
 	public static function saveAttachments($attachments, $id, $accessId)
 	{
 		elgg_set_ignore_access();
@@ -347,11 +364,6 @@ private $required = array('title', 'org', 'scope', 'opis', 'usa');
 		}
 		return $result;
 	}
-
-private function hasAttachment($index, $project_id){
-	return true;
-}
-	
 
 	private function setAttachments()
 	{

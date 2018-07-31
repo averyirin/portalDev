@@ -53,37 +53,10 @@ function projectsRouter($method, $page, $publicKey) {
             }else if (get_input('action') == 'detachFile') {
                     $session = new Session(null, null, null);
                     $session->setHeader(200);
-
-                    //Get this to work
                     elgg_set_ignore_access();
-                    $project_id =  $_POST['projectId'];
-                    $attachment_index =  $_POST['attachmentIndex'];
-                  	//	$file->addRelationship($project_id, 'attachment');
-                    $files = elgg_get_entities_from_relationship(array(
-                        "relationship" => "attachment",
-                        "relationship_guid" => $project_id,
-                        "inverse_relationship" => true
-                      ));
-                      $filesArr = array();
-                      foreach($files as $key=>$file) {
-                          if($key == $attachment_index){
-                            $f = array($key, $file['title'], $file['guid']);
-                            $filesArr[] = $f;
-                            remove_entity_relationship($file['guid'], "attachment", $project_id);
-                          }
-                     }
-                  	/*
-
-                    Project::deleteAttachment($payload['projectId'], $payload['attachmentId']);
-                    foreach($attachments as $obj) {
-                      			$attachment = new Attachment($obj);
-                      			$this->attachments[] = $attachment;
-                      		}
-                  			return json_encode($attachments);
-                  */
-                  	//return $attachments;
-
-                    $data = $filesArr;
+                		$project_id =  $_POST['projectId'];
+                		$attachment_index =  $_POST['attachmentIndex'];
+                    $data = Project::detachAttachment($attachment_index, $project_id);
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
