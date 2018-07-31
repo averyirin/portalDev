@@ -310,13 +310,13 @@
 					</div>
 				</div>
 				<div class='col-sm-12 field-body'>
-                    
+
                     <div data-field-id="priority">
                         <p>{{vm.project.priority}}</p>
                     </div>
 
 					<div ng-if="vm.project.editable['priority']">
-                                            
+
 						<textarea ng-model='vm.priority' value='{{vm.project.priority}}'></textarea>
 						<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="priority" ng-click="vm.toggleEditMode($event)">Cancel</a>
@@ -492,7 +492,7 @@
 						<p><?php echo elgg_echo('projects:usa:helptext'); ?></p>
 					</div>
 				</div>
-				
+
 				<div class='col-sm-12 field-body' data-field-id='usa'>
 					<div class='row'>
 						<div class='col-sm-3'>
@@ -527,16 +527,16 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class='col-sm-12 field-body' ng-if="vm.project.editable['usa']">
 					<div class='row'>
 						<div class='col-sm-3'>
 							<label><?php echo elgg_echo('projects:rank');?> :</label>
 						</div>
-						
+
 						<div class='col-sm-9'>
 							<input type='text' class='' name='usa_rank' ng-model='vm.usa.rank' required/>
-							
+
 							<div ng-messages="projectForm.usa_rank.$error" ng-if="projectForm.usa_rank.$touched || projectForm.$submitted">
 								<div ng-messages-include='projects/messages'></div>
 							</div>
@@ -546,10 +546,10 @@
 						<div class='col-sm-3'>
 							<label><?php echo elgg_echo('projects:name');?> :</label>
 						</div>
-						
+
 						<div class='col-sm-9'>
 							<input type='text' class='' name='usa_name' ng-model='vm.usa.name' required/>
-							
+
 							<div ng-messages="projectForm.usa_name.$error" ng-if="(projectForm.usa_name.$touched) || (projectForm.$submitted)">
 								<div ng-messages-include="projects/messages"></div>
 							</div>
@@ -559,10 +559,10 @@
 						<div class='col-sm-3'>
 							<label><?php echo elgg_echo('projects:position'); ?> :</label>
 						</div>
-						
+
 						<div class='col-sm-9'>
 							<input type='text' class='' name='usa_position' ng-model='vm.usa.position' required/>
-							
+
 							<div ng-messages="projectForm.usa_position.$error" ng-if="(projectForm.usa_position.$touched) || (projectForm.$submitted)">
 								<div ng-messages-include="projects/messages"></div>
 							</div>
@@ -579,13 +579,13 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class='editable-content-buttons'>
 						<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="usa" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
 						<a class='elgg-button elgg-button-action elgg-button-accept' data-id="usa" ng-click="vm.update('usa'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
 					</div>
 				</div>
-				
+
 			</div>
 
 			<div class='form-row clearfix' data-row-id="comments">
@@ -605,15 +605,15 @@
 					</div>
 				</div>
 			</div>
-            
+
             <div class='form-row clearfix' data-row-id="investment">
 				<div class='col-sm-12 field-header'>
 					<label><?php echo elgg_echo('projects:investment'); ?></label>
-                    
+
                     <div class="help-text">
 						<p><?php echo elgg_echo('projects:investment:helptext');?></p>
                     </div>
-                    
+
 					<a class='glyphicon edit-button investment' data-id="investment" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
@@ -628,15 +628,15 @@
 					</div>
 				</div>
 			</div>
-            
+
             <div class='form-row clearfix' data-row-id="risk">
 				<div class='col-sm-12 field-header'>
 					<label><?php echo elgg_echo('projects:risk'); ?></label>
-                    
+
                     <div class="help-text">
 						<p><?php echo elgg_echo('projects:risk:helptext');?></p>
                     </div>
-                    
+
 					<a class='glyphicon edit-button risk' data-id="risk" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
@@ -651,15 +651,15 @@
 					</div>
 				</div>
 			</div>
-            
+
             <div class='form-row clearfix' data-row-id="timeline">
 				<div class='col-sm-12 field-header'>
 					<label><?php echo elgg_echo('projects:timeline'); ?></label>
-                    
+
                     <div class="help-text">
 						<p><?php echo elgg_echo('projects:timeline:helptext');?></p>
                     </div>
-                    
+
 					<a class='glyphicon edit-button timeline' data-id="timeline" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
@@ -674,7 +674,7 @@
 					</div>
 				</div>
 			</div>
-            
+
             <div class='form-row clearfix' data-row-id="impact">
 				<div class='col-sm-12 field-header'>
 					<label><?php echo elgg_echo('projects:impact'); ?></label>
@@ -692,15 +692,15 @@
 					</div>
 				</div>
 			</div>
-            
+
 			<div class='form-row clearfix' data-row-id="savings">
 				<div class='col-sm-12 field-header'>
                     <label><?php echo elgg_echo('projects:savings'); ?></label>
-                    
+
                     <div class="help-text">
 						<p><?php echo elgg_echo('projects:savings:helpText');?></p>
                     </div>
-                    
+
                     <a class='glyphicon edit-button savings' data-id ="savings" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
                 </div>
 
@@ -761,6 +761,48 @@
 					</div>
 				</div>
 			</div>
+			<!-- -->
+
+				<div class='form-row clearfix' data-row-id="attachments">
+							<div class='col-sm-12 field-header'>
+								<label><?php echo elgg_echo('projects:files'); ?></label>
+								<a class='glyphicon edit-button attachments' data-id="attachments" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
+							</div>
+							<div class='col-sm-12 field-body'>
+								<div data-field-id="attachments">
+									<div ng-repeat='attachment in vm.project.attachments'>
+										<a href='{{attachment.url}}' >{{attachment.title}}</a>
+									</div>
+								</div>
+
+								<div ng-if="vm.project.editable['attachments']">
+									<div ng-repeat='(key, attachment) in vm.project.attachments'>
+										<div class="row" style="border-bottom: 1px solid #dde4e6;
+										padding: 5px;">
+											<div class="col-xs-11"  >
+													<a href='{{attachment.url}}' >{{attachment.title}}</a>
+											</div>
+											<div class="col-xs-1">
+												<a class="glyphicon delete-button action-item ng-scope"  ng-click="vm.deleteAttachment(vm.project.id, key)" ng-delete-once="Are you sure you want to detach this file {{attachment.title}}? There is no undo!"></a>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class='col-sm-12 field-header'>
+											<label><?php echo elgg_echo('support_request:files:add'); ?></label>
+										</div>
+										<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
+
+									</div>
+									<div class='editable-content-buttons'>
+										<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
+										<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
+									</div>
+								</div>
+							</div>
+				</div>
+
+
 		</div>
 
 		<div class='project project-sidebar col-sm-3' style="float:right;">
@@ -799,7 +841,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="project-sidebar-row clearfix">
 				<div class="col-sm-12 field-header">
 					<label><?php echo elgg_echo('projects:status'); ?></label>
@@ -817,7 +859,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="project-sidebar-row clearfix">
 				<div class="col-sm-12 field-header">
 					<label><?php echo elgg_echo('projects:percentage'); ?></label>
