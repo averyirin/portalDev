@@ -1,20 +1,15 @@
 (function () {
     'use strict';
-
     angular
             .module('portal')
             .factory('project', project);
-
     function project($resource, helper, $q) {
         var publicKey = localStorage.getItem('publicKey');
         if (!publicKey) {
             publicKey = elgg.get_logged_in_user_guid();
         }
-
         function getProject(data, id) {
-
             data.public_key = publicKey;
-
             var Project = $resource('internapi/projects/:id',
                     {id: "@id"},
                     {
@@ -23,8 +18,8 @@
                         }
                     }
             );
-
-            return Project.get({}, {'id': id}).$promise.then(function (results) {
+            return Project.get({}, {'id': id}).$promise.then(function 
+(results) {
                 var project = results.data;
                 //parse JSON strings into objects
                 try {
@@ -40,10 +35,8 @@
                 return $q.reject(error);
             });
         }
-
   function getSpace(id) {
             var params = {'public_key': publicKey};
-
             var Space = $resource('internapi/confluence_spaces/:id',
                 {"id": "@id"},
                 {
@@ -52,16 +45,15 @@
                     }
                 }
             );
-            return Space.get({}, {'id': id}).$promise.then(function (results) {
+            return Space.get({}, {'id': id}).$promise.then(function 
+(results) {
                 return results;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         function getSpaces() {
             var params = {'public_key': publicKey};
-
             var Space = $resource('internapi/confluence_spaces/:id',
                 {},
                 {
@@ -71,18 +63,14 @@
                 }
             );
             return Space.query().$promise.then(function (results) {
-
                 return results;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
-
-        function createNewCharter(body, addMethod, spaceKey, projectGuid, spaceName) {
+        function createNewCharter(body, addMethod, spaceKey, 
+projectGuid, spaceName) {
             var params = {'public_key': publicKey};
-
-
             var Space = $resource('internapi/confluence_spaces/:id',
                 {},
                 {
@@ -98,17 +86,15 @@
             sendData.spaceKey = spaceKey;
             sendData.projectGuid = projectGuid;
             sendData.spaceName = spaceName;
-
-            return Space.save(sendData).$promise.then(function (success) {
+            return Space.save(sendData).$promise.then(function (success) 
+{
                 return success;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         function getProjects(filter) {
             var params = {'public_key': publicKey};
-
             filter = (typeof filter === 'undefined') ? null : filter;
             if (filter) {
                 for (var key in filter) {
@@ -117,7 +103,6 @@
                     }
                 }
             }
-
             var Project = $resource('internapi/projects/:id',
                     {},
                     {
@@ -126,7 +111,6 @@
                         }
                     }
             );
-
             return Project.query().$promise.then(function (results) {
                 //filter out DRT 5.1
                 results.data = results.data.filter(filterOutDRT);
@@ -135,12 +119,10 @@
                 return $q.reject(error);
             });
         }
-
         function create(data) {
             data.user_id = parseInt(publicKey);
             //stringify JSON
             var queryString = angular.toJson(data);
-
             var Project = $resource('internapi/projects/:id',
                     {},
                     {
@@ -150,20 +132,17 @@
                         }
                     }
             );
-
             return Project.save(data).$promise.then(function (success) {
                 return success;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         function edit(data, id) {
             data.user_id = parseInt(publicKey);
             //stringify JSON
             var queryString = angular.toJson(data);
             var privateKey = localStorage.getItem('privateKey');
-
             var Project = $resource('internapi/projects/:id',
                     {id: "@id"},
                     {
@@ -173,20 +152,18 @@
                         }
                     }
             );
-
-            return Project.save({'id': id}, data).$promise.then(function (success) {
+            return Project.save({'id': id}, data).$promise.then(function 
+(success) {
                 return success;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         function update(data, id) {
             //stringify JSON
             var queryString = angular.toJson(data);
             //create signature
             var privateKey = localStorage.getItem('privateKey');
-
             var Project = $resource('internapi/projects/:id',
                     {id: "@id"},
                     {
@@ -196,20 +173,17 @@
                         }
                     }
             );
-
-            return Project.update({'id': id}, data).$promise.then(function (success) {
+            return Project.update({'id': id}, 
+data).$promise.then(function (success) {
                 return success;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         function remove(data, id) {
             var privateKey = localStorage.getItem('privateKey');
-
             data.public_key = publicKey;
             var queryString = angular.toJson(data);
-
             var Project = $resource('internapi/projects/:id',
                     {id: "@id"},
                     {
@@ -219,14 +193,13 @@
                         }
                     }
             );
-
-            return Project.remove({'id': id}, data).$promise.then(function (success) {
+            return Project.remove({'id': id}, 
+data).$promise.then(function (success) {
                 return success;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         function filterOutDRT(obj)
         {
             if (obj.op_mandate == 'DRT 5.1')
@@ -235,7 +208,6 @@
             }
             return true;
         }
-
         return {
             getProject: getProject,
             getProjects: getProjects,
@@ -248,25 +220,20 @@
             remove: remove
         }
     }
-
     angular
             .module('portal')
             .service('helper', helper);
-
     function helper() {
         function createSignature(queryString, publicKey, sharedSecret) {
             var hashedQS = CryptoJS.SHA1(queryString).toString();
             var privateKey = sharedSecret;
-
-            var hash = CryptoJS.HmacSHA256(hashedQS, privateKey).toString();
-
+            var hash = CryptoJS.HmacSHA256(hashedQS, 
+privateKey).toString();
             return hash;
         }
-
         function orderParams(params) {
             var keys = [];
             var orderedObject = {};
-
             for (var k in params) {
                 if (params.hasOwnProperty(k)) {
                     keys.push(k);
@@ -277,31 +244,26 @@
                 k = keys[i];
                 orderedObject[k] = params[k];
             }
-
             return orderedObject;
         }
-
         return {
             createSignature: createSignature,
             orderParams: orderParams
         }
     }
     ;
-
     /*
      * bootstrapper for language files
      */
     angular
             .module('portal')
             .service('languageLoader', languageLoader);
-
     function languageLoader(helper, $resource, $q) {
-
         function getLocalization(publicKey, plugin) {
             var params = {'public_key': publicKey};
             var queryString = angular.toJson(params);
-            var signature = helper.createSignature(queryString, publicKey);
-
+            var signature = helper.createSignature(queryString, 
+publicKey);
             var Language = $resource('api/language/:plugin/',
                     {plugin: "@plugin"},
                     {
@@ -311,14 +273,13 @@
                         }
                     }
             );
-
-            return Language.get({}, {'plugin': plugin}).$promise.then(function (results) {
+            return Language.get({}, {'plugin': 
+plugin}).$promise.then(function (results) {
                 return results;
             }, function (error) {
                 return $q.reject(error);
             });
         }
-
         return {
             getLocalization: getLocalization
         }
