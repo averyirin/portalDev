@@ -1,7 +1,7 @@
 <?php ?>
 <div class='template-header'>
-    <h2><?php echo elgg_echo('projects:add'); ?></h2>
-    <a href='#/projects' class='elgg-button elgg-button-action'><?php echo elgg_echo('projects:all:list'); ?></a>
+    <h2><?php echo elgg_echo('support_request:project:create_title'); ?></h2>
+    <a href='#/projects/request_support' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:back'); ?></a>
 </div>
 <div class="row">
     <div class="col-sm-4">

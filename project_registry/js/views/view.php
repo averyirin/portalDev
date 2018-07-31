@@ -788,8 +788,6 @@
 								</div>
 							</div>
 				</div>
-
-
 		</div>
 
 		<div class='project project-sidebar col-sm-3' style="float:right;">

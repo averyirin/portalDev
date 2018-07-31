@@ -218,6 +218,7 @@ $english = array(
     'support_request:back'                => 'Back',
     'support_request:task:submit'               => 'Create Task',
     'support_request:task:completion_date'               => 'Requested Completion Date',
+    'support_request:project:create_title' => 'Support Request - Create Project',
     'support_request:task:create_title' => 'Support Request - Create Task',
     'support_request:task:timeline:helptext' => 'Estimated completion date',
     'support_request:files:add' => 'Add new file(s)',
