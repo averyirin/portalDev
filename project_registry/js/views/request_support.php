@@ -21,13 +21,14 @@ Create task form
       <div class='col-sm-12 field-body'>
         <div >
           <p>Tasks are anything that is less than 80 hours of work.<p>
-          Examples include:
+          <p>Examples include:<br/>          
             <ul>
               <li>Modifying and image</li>
               <li>Editing section of course</li>
               <li>Photo op</li>
               <li>Small video</li>
             </ul>
+          </p>
         </div>
       </div>
       <div class='col-sm-12 field-body' style="text-align:center;">
