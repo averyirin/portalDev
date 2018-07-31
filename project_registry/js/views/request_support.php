@@ -13,7 +13,7 @@ Create task form
 </div>
 
 <section class='col-md-1'></section>
-<section class='col-md-5'>
+<section class='col-md-4'>
   <div class='row form-row' data-row-id="title">
       <div class='col-sm-12 field-header'>
           <label><?php echo elgg_echo('support_request:heading:task'); ?></label>
@@ -33,7 +33,8 @@ Create task form
       </div>
   </div>
 </section>
-<section class='col-md-5 projects'>
+<section class='col-md-1'></section>
+<section class='col-md-4 projects'>
 
     <div class='row form-row' data-row-id="title">
         <div class='col-sm-12 field-header'>
@@ -45,5 +46,5 @@ Create task form
           </div>
           <a href='#/projects/create' style="margin-top:1em" class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:project'); ?></a>
         </div>
-    </div>  
+    </div>
 </section>
