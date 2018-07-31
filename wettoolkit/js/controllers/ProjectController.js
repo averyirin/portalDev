@@ -117,6 +117,7 @@
             vm.loaded = false;
             vm.sme = {};
             vm.usa = {};
+
             vm.savings = {};
 
             //default on load
@@ -815,7 +816,7 @@
             //Unit signing authorities
             var usaList = '';
             var usa = vm.project.usa;
-            usaList += usa.rank + " " + usa.name + ", " + usa.position + "<br />";
+            usaList += ((usa.rank == null) ? undefined : usa.rank) + " " + usa.name + ", " + usa.position + "<br />";
             usaList += "<a href='" + "mailto:" + usa.email + "'>" + usa.email + "</a><br />";
 
             projCharterPg2 += "<tr><td>" + "Unit Signing Authorit(ies)" + "</td>" +
