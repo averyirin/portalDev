@@ -29,7 +29,9 @@ Create task form
               <li>Small video</li>
             </ul>
         </div>
-        <a href='#/projects/create_task'  class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:task'); ?></a>
+      </div>
+      <div class='col-sm-12 field-body'>
+          <a href='#/projects/create_task'  class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:task'); ?></a>
       </div>
   </div>
 </section>
