@@ -15,30 +15,24 @@ Create task form
 <section class='col-md-1'></section>
 <section class='col-md-5'>
 
-      <h1><?php echo elgg_echo('support_request:heading:task'); ?></h1>
-
-    <div   style="min-height:120px">
-      Tasks are anything that is less than 80 hours of work.<br/>
-      Such as:
-        <ul>
-          <li>
-            Modifying and image
-          </li>
-            <li>
-              Editing section of course
-            </li>
-
-              <li>
-                Photo op
-              </li>
-
-                <li>
-                  Small video
-                </li>
-
-        </ul>
-    </div>
-    <a href='#/projects/create_task' style="margin-top:1em"  class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:task'); ?></a>
+  <div class='row form-row' data-row-id="title">
+      <div class='col-sm-12 field-header'>
+          <label><?php echo elgg_echo('support_request:heading:task'); ?></label>
+      </div>
+      <div class='col-sm-12 field-body'>
+        <div   style="min-height:120px">
+          Tasks are anything that is less than 80 hours of work.<br/>
+          Such as:
+            <ul>
+              <li>Modifying and image</li>
+              <li>Editing section of course</li>
+              <li>Photo op</li>
+              <li>Small video</li>
+            </ul>
+        </div>
+        <a href='#/projects/create_task' style="margin-top:1em"  class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:task'); ?></a>
+      </div>
+  </div>
 </section>
 <section class='col-md-5 projects'>
 
