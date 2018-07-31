@@ -44,7 +44,9 @@ Create task form
           <div   style="min-height:100px">
             Projects are more than 80 hrs of work. Require scope, cost, time, and risk estimates
           </div>
-          <a href='#/projects/create' style="margin-top:1em" class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:project'); ?></a>
+        </div>
+        <div class='col-sm-12 field-body' style="text-align:center;">
+          <a href='#/projects/create' class='elgg-button elgg-button-action float-left'><?php echo elgg_echo('support_request:create:project'); ?></a>
         </div>
     </div>
 </section>
