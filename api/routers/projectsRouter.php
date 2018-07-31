@@ -74,7 +74,7 @@ function projectsRouter($method, $page, $publicKey) {
                   */
                   	//return $attachments;
 
-                    $data = $project_id;
+                    $data = $attachments;
                     $status = 'success';
             } else {
                 $payload            = json_decode(file_get_contents("php://input"), true);
