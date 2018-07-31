@@ -30,7 +30,7 @@ Create task form
             </ul>
         </div>
       </div>
-      <div class='col-sm-12 field-body'>
+      <div class='col-sm-12 field-body' style="text-align:center;">
           <a href='#/projects/create_task'  class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:task'); ?></a>
       </div>
   </div>
