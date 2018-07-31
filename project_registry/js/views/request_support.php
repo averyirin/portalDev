@@ -20,7 +20,7 @@ Create task form
       </div>
       <div class='col-sm-12 field-body'>
         <div >
-          Tasks are anything that is less than 80 hours of work.<br/>
+          <p>Tasks are anything that is less than 80 hours of work.<p>
           Such as:
             <ul>
               <li>Modifying and image</li>
@@ -44,7 +44,7 @@ Create task form
         </div>
         <div class='col-sm-12 field-body'>
           <p>Projects are more than 80 hrs of work.</p>
-          <p>Require scope, cost, time, and risk estimates</p>
+          <p>Require scope, cost, time, and risk estimates.</p>
         </div>
         <div class='col-sm-12 field-body' style="text-align:center;">
           <a href='#/projects/create' class='elgg-button elgg-button-action'><?php echo elgg_echo('support_request:create:project'); ?></a>
