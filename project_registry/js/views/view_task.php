@@ -192,8 +192,14 @@
 								</div>
 							</div>
 						</div>
-						<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
-					<div class='editable-content-buttons'>
+						<div class="row">
+							<div class='col-sm-12 field-header'>
+								<label><?php echo elgg_echo('support_request:files:add'); ?></label>
+							</div>
+							<input type="file" ngf-select="" ng-model="vm.files" name="file" ngf-multiple="true">
+				
+						</div>
+						<div class='editable-content-buttons'>
 							<a class='elgg-button elgg-button-action elgg-button-cancel' data-id="attachments" ng-click="vm.toggleEditMode($event)"><?php echo elgg_echo('projects:cancel'); ?></a>
 							<a class='elgg-button elgg-button-action elgg-button-accept' data-id="attachments" ng-click="vm.update('attachments'); vm.toggleEditMode($event)"><?php echo elgg_echo('projects:accept'); ?></a>
 						</div>
