@@ -65,7 +65,7 @@ function projectsRouter($method, $page, $publicKey) {
                       ));
                       $filesArr = array();
                       foreach($files as $file) {
-                        			$f = new Array ($file['title'], $file['guid']);
+                        			$f = array($file['title'], $file['guid']);
                         			$filesArr[] = $f;
                           }
                   	/*
