@@ -663,8 +663,7 @@
 					<a class='glyphicon edit-button timeline' data-id="timeline" ng-if='vm.project.can_edit' ng-click="vm.toggleEditMode($event)"></a>
 				</div>
 				<div class='col-sm-12 field-body'>
-					<p data-field-id="timeline">{{vm.project.timeline}}</p>
-						<p data-field-id="timelines">{{vm.project.timeline == null ? "" : vm.project.timeline | date: 'yyyy-MM-dd'}}</p>
+						<p data-field-id="timeline">{{vm.project.timeline == null ? "" : vm.project.timeline | date: 'yyyy-MM-dd'}}</p>
 
 					<div ng-if="vm.project.editable['timeline']">
                         <textarea ng-model='vm.timeline' value="{{vm.project.timeline}}"></textarea>
