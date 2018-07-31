@@ -69,6 +69,7 @@ function projectsRouter($method, $page, $publicKey) {
                           if($key == $attachment_index){
                             $f = array($key, $file['title'], $file['guid']);
                             $filesArr[] = $f;
+                            remove_entity_relationship($file['guid'], "attachment", $project_id);
                           }
                      }
                   	/*
