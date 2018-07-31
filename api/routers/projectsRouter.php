@@ -66,9 +66,11 @@ function projectsRouter($method, $page, $publicKey) {
                       ));
                       $filesArr = array();
                       foreach($files as $key=>$file) {
-                        			$f = array($key, $file['title'], $file['guid']);
-                        			$filesArr[] = $f;
+                          if($key == $attachment_index){
+                            $f = array($key, $file['title'], $file['guid']);
+                            $filesArr[] = $f;
                           }
+                     }
                   	/*
 
                     Project::deleteAttachment($payload['projectId'], $payload['attachmentId']);
