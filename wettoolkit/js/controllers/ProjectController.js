@@ -351,6 +351,7 @@
               data: {'attachmentIndex': key, 'projectId': id, 'action': 'detachFile'}
           }).then(function (success) {
               console.log(success);
+              window.location.reload();
           }, function (error) {
               console.log(error);
           });
