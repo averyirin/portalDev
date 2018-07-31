@@ -296,10 +296,8 @@
                     vm.project.status = 'Submitted';
                     //Set the type to be Project
                     vm.project.classification = 'Task';
-                    console.log(vm.project);
                     project.create(vm.project).then(function (success) {
                         //upload attachments
-                        console.log(success.data);
                         Upload.upload({
                             url: 'api/projects',
                             data: {files: vm.files, 'projectId': success.data.id, 'accessId': success.data.accessId, 'action': 'attachFile'}
@@ -345,12 +343,10 @@
             }, 500);
         }
         vm.deleteAttachment = function (id, key){
-          console.log(id+" "+key);
           Upload.upload({
               url: 'internapi/projects',
               data: {'attachmentIndex': key, 'projectId': id, 'action': 'detachFile'}
           }).then(function (success) {
-              console.log(success);
               window.location.reload();
           }, function (error) {
               console.log(error);
@@ -376,9 +372,6 @@
         vm.update = function (field) {
 
           if(field == 'timeline' && vm.project.classification == "Task"){
-            console.log("Did timeline date update");
-            console.log("Before Val " + new Date(vm[field]));
-            console.log("Update Val " +  new Date(vm.project[field]));
             vm[field] =  new Date(vm.project[field]);
           }
           if (field == 'attachments'){
@@ -406,7 +399,6 @@
                 'field': field,
                 'value': vm[field]
             }, vm.project.id).then(function (success) {
-                console.log(field+" "+ vm[field]);
                 if(field == 'classification'){
                   if(vm[field] == 'Task'){
                     $location.path('projects/view_task/'+vm.project.id);
