@@ -130,8 +130,7 @@
                         $log.info('Event: Slider stop - set with slider options', event);
                     }
                 }
-            };
-            console.log(vm.project);
+            };            
             vm.project.editable = [];
             vm.loaded = true;
         } else {
